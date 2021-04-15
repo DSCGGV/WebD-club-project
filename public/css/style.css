@@ -49,17 +49,18 @@ input[type=submit]{
 	background-color: purple;
 	color: white;
 	padding-left: 0px;
-	height: 23px; width: 100px;
+	height: 30px; width: 100px;
+	font-family: monospace;
 }
 .login button{
 	margin-top: 20px;
+	margin-left: 0px;
 	background-color: #00ABF0;
 	color: white;
 	align-self: center;
 	width: 51%;
 	height: 30px;
 	padding-bottom:1px;
-	margin-left:0px;
 	font-size: 20px;
 	font-family: monospace;
 }
@@ -67,7 +68,8 @@ select[id=user]{
 	background-color: #00ABF0;
 	color: white;
 	width: 50%;
-	height: 23px;
+	height: 30px;
+	font-family: monospace;
 
 }
 
@@ -83,7 +85,8 @@ select[id=user]{
 	width: 45%;
 	height: 65%;
 	border-radius: 50%;
-	margin-left: 130px;
+	margin-left: 165px;
+	align-items: center;
 }
 .logo p{
 	font-size: 20px;
