@@ -1,0 +1,109 @@
+body{
+	font-family: Arial;
+	margin: 10px;
+	padding: 20px;
+	background-image: url("college.jpeg")
+	height:500px;
+	background-size:cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+*{
+	box-sizing: border-box;
+}
+.row:after{
+	display: inline;
+	clear: both;
+}
+h4{
+	text-align: center;
+	font-size: 30px;
+	color: #000000;
+	padding-top:0px;
+	font-family: monospace;
+
+}
+
+.left{
+	float: left;
+	width: 50%;
+	padding-left: 210px;
+	border-radius: 15px 0px 0px 15px;
+  
+}
+.right{
+	width:38%;
+	float: right;
+	height: 350px;
+	background-color: #ffffff;
+	margin-top: 100px;
+	margin-right:174px;
+	padding-top: 40px;
+}
+.login{
+	padding-top: 10px;
+	padding-left: 160px;
+	width: 80%;
+	height: 200px;
+	font-size: 20px;
+}
+input[type=submit]{
+	background-color: purple;
+	color: white;
+	padding-left: 0px;size: 
+}
+.login button{
+	margin-top: 20px;
+	background-color: #00ABF0;
+	color: white;
+	align-self: center;
+	width: 51%;
+	height: 25px;
+	padding-bottom:1px;
+	margin-left:0px;
+	font-size: 20px;
+	font-family: monospace;
+}
+select[id=user]{
+	background-color: #00ABF0;
+	color: white;
+	width: 50%;
+	height: 23px;
+
+}
+
+.logo{
+	background-color: #55CEFF;
+	opacity: 0.7;
+	margin-top: 100px;
+	height: 350px;
+	padding-top: 80px;
+
+}
+.logo img{
+	width: 45%;
+	height: 65%;
+	border-radius: 50%;
+	margin-left: 130px;
+}
+.logo p{
+	font-size: 20px;
+	font-family: monospace;
+	color: white;
+	text-align: center;
+}
+footer{
+	background-color: #dddddd;
+	padding: 20px;
+	text-align: center;
+	margin-top: 20px;
+
+
+  /*responsive*/
+  @media(max-width:800px){
+  	.left , .right{
+  		width: 99%
+  		padding:0px;
+  	}
+
+  }
