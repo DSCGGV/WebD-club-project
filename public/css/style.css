@@ -2,7 +2,7 @@ body{
 	font-family: Arial;
 	margin: 10px;
 	padding: 20px;
-	background-image: url("college.jpeg")
+	background-image: url("../images/college.jpeg");
 	height:500px;
 	background-size:cover;
 	background-position: center;
@@ -11,6 +11,7 @@ body{
 *{
 	box-sizing: border-box;
 }
+
 .row:after{
 	display: inline;
 	clear: both;
@@ -27,18 +28,15 @@ h4{
 .left{
 	float: left;
 	width: 50%;
-	padding-left: 210px;
 	border-radius: 15px 0px 0px 15px;
-  
+	height: fit-content;
 }
 .right{
-	width:38%;
+	width:50%;
 	float: right;
 	height: 350px;
 	background-color: #ffffff;
 	margin-top: 100px;
-	margin-right:174px;
-	padding-top: 40px;
 }
 .login{
 	padding-top: 10px;
@@ -50,7 +48,8 @@ h4{
 input[type=submit]{
 	background-color: purple;
 	color: white;
-	padding-left: 0px;size: 
+	padding-left: 0px;
+	height: 23px; width: 100px;
 }
 .login button{
 	margin-top: 20px;
@@ -58,7 +57,7 @@ input[type=submit]{
 	color: white;
 	align-self: center;
 	width: 51%;
-	height: 25px;
+	height: 30px;
 	padding-bottom:1px;
 	margin-left:0px;
 	font-size: 20px;
@@ -107,3 +106,4 @@ footer{
   	}
 
   }
+}
