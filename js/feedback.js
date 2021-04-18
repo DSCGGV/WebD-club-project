@@ -3,7 +3,7 @@ console.log('Hello world')
 
 NAMES = ["voice", "speed", "presentation", "communication", "interest", "knowledge", "assessible", "simulation", "encourage", "puntual", "overall"];
 
-let boxes = document.querySelectorAll('main .box');
+let boxes = document.querySelectorAll('main .form-box');
 console.log(boxes[0].innerHTML);
 
 boxes.forEach((element, index) => {
