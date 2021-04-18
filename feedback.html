@@ -6,7 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Form</title>
-    <link rel="stylesheet" href="../css/feedback.css">
+    <link rel="stylesheet" href="css/feedback.css">
+    <style>
+
+
+.buttons {
+    margin: 0%;
+    text-align: center;
+}
+
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+    </style>
 </head>
 
 <body>
@@ -56,14 +99,14 @@
             <textarea name="suggestion" id="suggestion" placeholder="Any Suggestion You Want To Give"></textarea>
         </div>
 
-        <footer>
-            <input type="submit" value="SUBMIT">
-            <input type="reset" value="RESET">
+        <footer class="buttons">
+            <input type="submit" class="btn-hover color-9" value="SUBMIT">
+            <input type="reset" class="btn-hover color-9" value="RESET">
         </footer>
     </form>
 
 </body>
 
-<script src="../js/feedback.js"></script>
+<script src="js/feedback.js"></script>
 
 </html>

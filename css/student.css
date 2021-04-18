@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -10,9 +10,8 @@ body {
   display: grid;
   place-items: center;
   width: 100vw;
-  background : linear-gradient(to bottom, #09c6f9, #045de9);
+  background: linear-gradient(to bottom, #09c6f9, #045de9);
   padding: 50px 0;
-
 }
 
 form {
@@ -20,21 +19,22 @@ form {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 70%;
   -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   border-radius: 20px;
   padding: 0 20px;
   min-width: 400px;
-  background-color: #91e0ff;
+  background-color: #fff;
   -webkit-box-shadow: 2px 2px 10px #444;
-          box-shadow: 2px 2px 10px #444;
+  box-shadow: 2px 2px 10px #444;
+  border-top: 12px solid #045de9;
 }
 
 form header {
@@ -55,15 +55,15 @@ form header h1 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
 }
 
 .submit-btn input {
@@ -79,13 +79,13 @@ form header h1 {
 
 .submit-btn input:hover {
   -webkit-box-shadow: 2px 2px 10px #444;
-          box-shadow: 2px 2px 10px #444;
+  box-shadow: 2px 2px 10px #444;
 }
 
 .submit-btn input:active {
   outline: none;
   -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .submit-btn input:focus {
@@ -107,64 +107,66 @@ form header h1 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   width: 100%;
   padding: 10px 0;
 }
 
-.main .self, .main .teacher {
+.main .self,
+.main .teacher {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   width: 48%;
   min-width: 310px;
   margin: auto;
 }
 
-.main .teacher{
+.main .teacher {
   margin-top: 0;
 }
 
-.main .self .box, .main .teacher .box {
+.main .self .box,
+.main .teacher .box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   width: 80%;
   min-width: 300px;
   max-width: 600px;
-  border: 1px solid #0088ff;
+  border-left: 10px solid #0088ff;
   height: 120px;
   border-radius: 20px;
   margin: 5px;
@@ -172,7 +174,8 @@ form header h1 {
   background-color: #e1f6ff;
 }
 
-.main .self .box input, .main .teacher .box input {
+.main .self .box input,
+.main .teacher .box input {
   width: 100%;
   margin: 20px 0;
   border: none;
@@ -181,22 +184,30 @@ form header h1 {
   background: transparent;
 }
 
-.main .self .box input:hover, .main .self .box input:focus, .main .teacher .box input:hover, .main .teacher .box input:focus {
+.main .self .box input:hover,
+.main .self .box input:focus,
+.main .teacher .box input:hover,
+.main .teacher .box input:focus {
   outline: none;
 }
 
-.main .self .box input::-webkit-input-placeholder, .main .teacher .box input::-webkit-input-placeholder {
+.main .self .box input::-webkit-input-placeholder,
+.main .teacher .box input::-webkit-input-placeholder {
   font-weight: 700;
 }
 
-.main .self .box input:-ms-input-placeholder, .main .teacher .box input:-ms-input-placeholder {
+.main .self .box input:-ms-input-placeholder,
+.main .teacher .box input:-ms-input-placeholder {
   font-weight: 700;
 }
 
-.main .self .box input::-ms-input-placeholder, .main .teacher .box input::-ms-input-placeholder {
+.main .self .box input::-ms-input-placeholder,
+.main .teacher .box input::-ms-input-placeholder {
   font-weight: 700;
 }
 
-.main .self .box input::placeholder, .main .teacher .box input::placeholder {
-  font-weight: 700;
+.main .self .box input::placeholder,
+.main .teacher .box input::placeholder {
+  font-weight: 500;
+  font-size: 15px;
 }
