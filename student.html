@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="form1">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login Form</title>
-    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+.buttons {
+    margin: 0%;
+    text-align: center;
+}
+
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+    </style>
 </head>
-<body>
-    
-    <form action="#">
+<body class="feedback-form-1">
+
+    <form action="#" class="form">
         <header>
             <h1>Online Feedback Form</h1>
         </header>
@@ -88,9 +129,10 @@
                 </div>
             </div>
         </div>
-        <div class="submit-btn">
-            <input type="reset" value="RESET">
-            <input type="submit" value="NEXT">
+        <div class="submit-btn buttons">
+            <input type="reset" class="btn-hover color-9" value="RESET">
+            <input type="submit" class="btn-hover color-9" value="NEXT">
+            <button><a href="feedback.html">NEXT</a>
         </div>
     </form>
 
