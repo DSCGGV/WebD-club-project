@@ -525,9 +525,11 @@ h3 {
 }
 .ftco-section {
   padding: 7em 0;
-  background-color: #045de9;
-  background-image: linear-gradient(#045de9 0%, #09c6f9 74%);
+  background: linear-gradient(to bottom, #09c6f9, #045de9);
+  background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   height: 100vh;
 }
 
@@ -645,6 +647,10 @@ h3 {
   width: 100vw;
   height: 100vh;
   background: linear-gradient(to bottom, #09c6f9, #045de9);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   padding: 50px 0;
   background-repeat: no-repeat;
   background-position: center;
@@ -869,6 +875,7 @@ h3 {
   background: linear-gradient(to bottom, #09c6f9, #045de9);
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   overflow-x: hidden;
   min-width: 350px;
@@ -878,10 +885,11 @@ h3 {
   margin: 50px 10px;
   padding: 20px;
   width: 800px;
-  border-radius: 20px;
-  background: #fff;
+  background-color: #fff;
   box-shadow: 2px 2px 10px #444;
   border-top: 15px solid #045de9;
+  border-radius: 20px;
+  margin-bottom: 30px;
 }
 
 .form2-h1 {
@@ -1019,6 +1027,7 @@ footer input:active {
     padding: 20px;
   }
 }
+
 =====================================================================
   ADMIN
   LOGIN
@@ -1441,4 +1450,103 @@ iframe {
   img {
   width: 100%;
   height: 0%;
+}
+
+=====================================================================
+  RESULT
+  PAGE
+  =====================================================================
+  .result-body {
+  background: #ccc url("../images/photography.png") no-repeat;
+  background: linear-gradient(to bottom, #09c6f9, #045de9);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Inconsolata", SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #6c757d;
+}
+
+a {
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+h2 {
+  color: #000;
+  font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.wrap {
+  max-width: 1350px;
+  margin: 0 auto;
+  background: #fff;
+  -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 20px;
+}
+
+.site-section {
+  padding: 7em 0;
+}
+.site-section.py-sm {
+  padding: 0em 0;
+}
+
+.result-entries .result-entry {
+  display: block;
+  -webkit-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+  margin-bottom: 30px;
+  position: relative;
+  border-radius: 20px;
+}
+.result-entries .result-entry:hover,
+.result-entries .result-entry:focus {
+  opacity: 0.7;
+  top: -1px;
+  -webkit-box-shadow: 0 3px 50px -2px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 3px 50px -2px rgba(0, 0, 0, 0.2) !important;
+}
+.result-entries .result-entry .blog-content-body {
+  padding: 20px;
+  border: 1px solid #efefef;
+  border-top: none;
+}
+.result-entries .result-entry img {
+  max-width: 100%;
+}
+.result-entries .result-entry h2 {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.result-entries .post-meta {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #b3b3b3;
+}
+.result-entries .post-meta .author img {
+  width: 30px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.element-animate {
+  opacity: 0;
+  visibility: hidden;
 }
