@@ -58,6 +58,9 @@ section {
   text-align: left;
   background-color: #fff;
 }
+html{
+   height: 100%;
+    background: linear-gradient(to bottom, #09c6f9, #045de9);
 h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -1057,6 +1060,9 @@ footer input:active {
 html {
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
+}
+ .admin-body img {
+    padding-bottom: 65px;
 }
 a {
   font-family: Poppins-Regular;
