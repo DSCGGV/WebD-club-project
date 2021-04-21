@@ -5,6 +5,7 @@ const User = require("../db/userSchema");
 const path = require("path");
 
 router.get("/", (req, res) => {
+  console.log(req.url);
   res.send(`Home Page`);
 });
 router.get("/register", (req, res) => {
@@ -30,18 +31,18 @@ router.post("/register", (req, res) => {
   if (!name || !email || !enrollment || !department || !semester) {
     return res.status(422).json({ error: "Please Fill all the field" });
   }
-
+  
   User.findOne({ enrollment: enrollment }).then((userExist) => {
     if (userExist) {
       return res.status(422).json({ error: "User Already Exist" });
     }
 
     const user = new User({
-      name,
-      email,
-      enrollment,
-      department,
-      semester,
+      name :req.body.name,
+      email :req.body.email,
+      enrollment :req.body.enrollment,
+      department :req.body.department,
+      semester :req.body.semester,
     });
     user
       .save()
