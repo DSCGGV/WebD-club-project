@@ -9,17 +9,12 @@ dotenv.config({ path: "./config.env" });
 require("./db/connection");
 const User = require("./db/userSchema");
 
-app.use("/", (req,res) => {
-  res.status(200).sendFile('../index.html', {root:__dirname});
-})
-
 app.use(express.json());
 
 // we link the router files to make our route easy
 app.use(require("./router/auth"));
 
 const PORT = process.env.PORT || 3000;
-
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);
