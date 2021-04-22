@@ -58,8 +58,12 @@ section {
   text-align: left;
   background-color: #fff;
 }
+html{
+   height: 100%;
+    background: linear-gradient(to bottom, #09c6f9, #045de9);
+}
 h3 {
-  margin-top: 0;
+  margin-top :0;     
   margin-bottom: 0.5rem;
 }
 label {
@@ -624,11 +628,6 @@ h3 {
   border: 1px solid #045de9;
 }
 
-=====================================================================
-  FEEDBACK
-  FORM
-  1
-  =====================================================================
   .form1 {
   margin: 0;
   padding: 0;
@@ -856,11 +855,6 @@ h3 {
   font-weight: 500;
   font-size: 15px;
 }
-=====================================================================
-  FEEDBACK
-  FORM
-  2
-  =====================================================================
   .form2 {
   margin: 0;
   padding: 0;
@@ -1027,11 +1021,6 @@ footer input:active {
     padding: 20px;
   }
 }
-
-=====================================================================
-  ADMIN
-  LOGIN
-  =====================================================================
   @font-face {
   font-family: Poppins-Regular;
   src: url(../fonts/poppins/Poppins-Regular.ttf);
@@ -1057,6 +1046,9 @@ footer input:active {
 html {
   height: 100%;
   font-family: Poppins-Regular, sans-serif;
+}
+ .admin-body img {
+    padding-bottom: 65px;
 }
 a {
   font-family: Poppins-Regular;
