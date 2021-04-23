@@ -1,15 +1,10 @@
-console.log('Hello world')
-
-
 NAMES = ["voice", "speed", "presentation", "communication", "interest", "knowledge", "assessible", "simulation", "encourage", "puntual", "overall"];
 
-let boxes = document.querySelectorAll('main .form-box');
-console.log(boxes[0].innerHTML);
+let boxes = document.querySelectorAll('form .form-box');
 
 boxes.forEach((element, index) => {
     element.innerHTML += make_options(index+1, NAMES[index]);
 });
-
 
 function make_options(i, name)
 {
@@ -34,3 +29,16 @@ function make_options(i, name)
 
     return options;
 }
+
+$(function()
+{
+
+    $('form').hide();
+
+    $('.teacher-box>h2').before().click(function()
+    {
+        console.log("This is clicked");
+        $(this).parent().children('form').slideToggle();
+    })
+
+})

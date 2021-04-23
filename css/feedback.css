@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width : 100vw;
+    display : grid;
+    place-items: center;
+    padding: 50px 0;
+    background: linear-gradient(to bottom, #09c6f9, #045de9);
+}
+
+main{
+    width : 800px;
+    min-width : 340px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px #444;
+    border-radius: 20px;
+    border-top: 15px solid #045de9;
+}
+main h1{
+    border-bottom: 2px solid #045de9;
+    padding-bottom: 20px;
+}
+
+.teacher-box{
+    width : 100%;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius : 20px;
+    border: 1px solid #045de9;
+}
+
+.teacher-box>h2{
+    padding: 20px;
+    position: relative;
+}
+
+.teacher-box>h2::before{
+    content : "";
+    position : absolute;
+    border: 10px solid transparent;
+    border-top-color: #045de9;
+    right : 10px;
+    top : 50%;
+    transform: translate(-50%);
+    cursor : pointer;
+}
+
+form{
+    width : 100%;
+    background: lightskyblue;
+    display : grid;
+    border-radius : 20px;
+    gap: 10px;
+    padding: 30px;
+}
+
+.form-box{
+    border: 1px solid #045de9;
+    border-radius : 20px;
+    padding: 20px;
+}
+
+.options{
+    display : flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.options span{
+    display : grid;
+    place-items: center;
+    margin: 40px 0 20px 0;
+}
+
+.suggestion{
+    width : 100%;
+    padding: 10px 0;
+}
+
+.suggestion textarea{
+    width : 100%;
+    height : 150px;
+    padding: 20px;
+    border-radius : 20px;
+    font-size: 1.2rem;
+}
+
+.suggestion textarea:focus{
+    outline: none;
+}
+
+.buttons {
+    margin: 0%;
+    text-align: center;
+}
+
+.btn-hover {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    
+}
+
+@media (max-width : 800px)
+{
+    main{
+        width : 100%;
+        padding: 20px 0;
+    }
+}
+
+@media (max-width : 450px)
+{
+    .teacher-box{
+        padding : 20px 0;
+    }
+
+    form{
+        padding: 30px 0;
+    }
+}
