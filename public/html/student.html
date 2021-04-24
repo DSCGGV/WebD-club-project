@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="form1">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,48 +8,50 @@
     <title>Student Login Form</title>
     <link rel="stylesheet" href="../../css/main.css">
     <style>
-.buttons {
-    margin: 0%;
-    text-align: center;
-}
+        .buttons {
+            margin: 0%;
+            text-align: center;
+        }
 
-.btn-hover {
-    width: 200px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-    margin: 20px;
-    height: 55px;
-    text-align:center;
-    border: none;
-    background-size: 300% 100%;
+        .btn-hover {
+            width: 200px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin: 20px;
+            height: 55px;
+            text-align: center;
+            border: none;
+            background-size: 300% 100%;
 
-    border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
+            border-radius: 50px;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
 
-.btn-hover:hover {
-    background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
+        .btn-hover:hover {
+            background-position: 100% 0;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
 
-.btn-hover:focus {
-    outline: none;
-}
-.btn-hover.color-9 {
-    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-}
+        .btn-hover:focus {
+            outline: none;
+        }
+
+        .btn-hover.color-9 {
+            background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+        }
     </style>
 </head>
-<body class="feedback-form-1">
+
+<body class="feedback-form-1" style="height : auto;">
 
     <form action="#" class="form">
         <header>
@@ -64,24 +67,18 @@
                 </div>
                 <div class="box">
                     <h3>Enrollment Number</h3>
-                    <input type="text" name="enrollment" id="enrollment" placeholder="Enter your Enrollment Number" required>
+                    <input type="text" name="enrollment" id="enrollment" placeholder="Enter your Enrollment Number"
+                        required>
                 </div>
                 <div class="box">
                     <h3>Email ID</h3>
                     <input type="email" name="email" id="email" placeholder="Enter your email" required>
                 </div>
-                <div class="box">
-                    <h3>Course</h3>
-                    <input type="text" name="course" id="course" list="courses" placeholder="Enter Your Course" required>
-                    <datalist id="courses">
-                        <option value="first"></option>
-                        <option value="second"></option>
-                        <option value="Third"></option>
-                    </datalist>
-                </div>
+                
                 <div class="box">
                     <h3>Session</h3>
-                    <input type="text" name="session" id="session" list="sessions" placeholder="Enter Your Session" required>
+                    <input type="text" name="session" id="session" list="sessions" placeholder="Enter Your Session"
+                        required>
                     <datalist id="sessions">
                         <option value="first"></option>
                         <option value="second"></option>
@@ -93,7 +90,8 @@
             <div class="teacher">
                 <div class="box">
                     <h3>Department</h3>
-                    <input type="text" name="department" id="department" list="departments" placeholder="Enter the Name of Department" required>
+                    <input type="text" name="department" id="department" list="departments"
+                        placeholder="Enter the Name of Department" required>
                     <datalist id="departments">
                         <option value="first"></option>
                         <option value="second"></option>
@@ -101,17 +99,9 @@
                     </datalist>
                 </div>
                 <div class="box">
-                    <h3>Faculty</h3>
-                    <input type="text" name="faculty" id="faculty" list="faculties" placeholder="Enter the Name of Faculty" required>
-                    <datalist id="faculties">
-                        <option value="first"></option>
-                        <option value="second"></option>
-                        <option value="Third"></option>
-                    </datalist>
-                </div>
-                <div class="box">
                     <h3>Semester</h3>
-                    <input type="text" name="semester" id="semester" list="semesters" placeholder="Enter Your semester" size="3" required>
+                    <input type="text" name="semester" id="semester" list="semesters" placeholder="Enter Your semester"
+                        size="3" required>
                     <datalist id="semesters">
                         <option value="first"></option>
                         <option value="second"></option>
@@ -120,8 +110,19 @@
                 </div>
                 <div class="box">
                     <h3>Subject</h3>
-                    <input type="text" name="subject" id="subject" list="subjects" placeholder="Enter the Name of Subject" required>
+                    <input type="text" name="subject" id="subject" list="subjects"
+                        placeholder="Enter the Name of Subject" required>
                     <datalist id="subjects">
+                        <option value="first"></option>
+                        <option value="second"></option>
+                        <option value="Third"></option>
+                    </datalist>
+                </div>
+                <div class="box">
+                    <h3>Course</h3>
+                    <input type="text" name="course" id="course" list="courses" placeholder="Enter Your Course"
+                        required>
+                    <datalist id="courses">
                         <option value="first"></option>
                         <option value="second"></option>
                         <option value="Third"></option>
@@ -136,4 +137,5 @@
     </form>
 
 </body>
+
 </html>
