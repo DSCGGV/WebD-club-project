@@ -32,12 +32,9 @@ router.get("/admin", (req, res) => {
   res.send(`Admin Page`);
 });
 
-router
-  // redirect to feedback  page
-  .get("/studentlogin", (req, res) => {
-  res.sendFile(path.join(__dirname+'../../../public/html/feedback.html'))})
-  //student login post request
-  .post("/studentlogin", (req, res) => {
+
+//student login post request
+router.post("/studentlogin", (req, res) => {
   const { enrollment, department, semester } = req.body;
 
   if (!enrollment || !department || !semester) {
@@ -57,11 +54,13 @@ router
     user
       .save()
       .then(() => {
-        res.status(201).json({ message: "User Registered Sucessfully" });
+        res.redirect('/feedback')
+        res.status(201).json({ message: "User Registered Sucessfully" })
         
       })
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
+        console.log("error posting data :" + err)
       });
   });
 });
