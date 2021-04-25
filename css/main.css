@@ -1993,11 +1993,11 @@ h2 {
 /* ===================================================================
                                         FEEDBACK FORM 2
 =================================================================== */
-.feedback-form-2 {
+/* .feedback-form-2 {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .feedback-form-2-body {
   width: 100vw;
@@ -2009,6 +2009,7 @@ h2 {
 
 .form-2-main {
   width: 800px;
+  min-width : 350px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 2px 2px 10px #444;
@@ -2134,4 +2135,31 @@ h2 {
     #3f86ed
   );
   box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+@media (max-width : 800px)
+{
+  .form-2-main{
+    width : 100%;
+    padding : 20px 0;
+  }
+}
+
+@media (max-width : 450px)
+{
+  .teacher-box{
+    padding : 5px;
+  }
+
+  .feedback-form-2{
+    padding : 30px 0;
+  }
+
+  .feedback-form-box{
+    padding : 5px;
+  }
+  
+  .options{
+    justify-content : space-between;
+  }
 }
