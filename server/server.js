@@ -7,14 +7,28 @@ const path = require("path");
 dotenv.config({ path: "config.env" });
 
 require("./db/connection");
-const User = require("./db/userSchema");
 
 app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+
+// loading static assets
+app.use('/css',express.static(path.resolve(__dirname ,"../css" )))
+app.use('/images',express.static(path.resolve(__dirname ,"../public/images" )))
+app.use('/js',express.static(path.resolve(__dirname ,"../js" )))
+
 
 // we link the router files to make our route easy
-app.use(require("./router/auth"));
+const auth = require("./router/auth");
 
-const PORT = process.env.PORT;
+app
+    .get('/' , (req,res) => {
+        res.sendFile(path.join(__dirname+'../../public/html/index.html'))})
+    .get('/register', auth)
+    .post('/studentlogin' , auth)
+    .get('/feedback' , auth)
+
+
+    const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);
