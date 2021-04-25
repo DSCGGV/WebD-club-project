@@ -1,14 +1,7 @@
 const mongooose = require("mongoose");
 
 const userSchema = new mongooose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
+  
   enrollment: {
     type: Number,
     required: true,
@@ -18,7 +11,7 @@ const userSchema = new mongooose.Schema({
     required: true,
   },
   semester: {
-    type: Number,
+    type: String,
     required: true,
   },
   time: {
