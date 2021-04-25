@@ -53,7 +53,7 @@
 
 <body class="feedback-form-1" style="height : auto;">
 
-    <form action="#" class="form">
+    <form action="/studentlogin" class="form" method="POST">
         <header>
             <h1>Online Feedback Form</h1>
         </header>
@@ -89,10 +89,9 @@
 
             <div class="teacher">
                 <div class="box">
-                    <h3>Department</h3>
-                    <input type="text" name="department" id="department" list="departments"
-                        placeholder="Enter the Name of Department" required>
-                    <datalist id="departments">
+                    <h3>Course</h3>
+                    <input type="text" name="course" id="course" list="courses" placeholder="Enter Your Course" required>
+                    <datalist id="courses">
                         <option value="first"></option>
                         <option value="second"></option>
                         <option value="Third"></option>
@@ -108,21 +107,11 @@
                         <option value="Third"></option>
                     </datalist>
                 </div>
+                
                 <div class="box">
-                    <h3>Subject</h3>
-                    <input type="text" name="subject" id="subject" list="subjects"
-                        placeholder="Enter the Name of Subject" required>
-                    <datalist id="subjects">
-                        <option value="first"></option>
-                        <option value="second"></option>
-                        <option value="Third"></option>
-                    </datalist>
-                </div>
-                <div class="box">
-                    <h3>Course</h3>
-                    <input type="text" name="course" id="course" list="courses" placeholder="Enter Your Course"
-                        required>
-                    <datalist id="courses">
+                    <h3>Department</h3>
+                    <input type="text" name="department" id="department" list="departments" placeholder="Enter Your department" required>
+                    <datalist id="departments">
                         <option value="first"></option>
                         <option value="second"></option>
                         <option value="Third"></option>
