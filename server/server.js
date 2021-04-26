@@ -23,7 +23,7 @@ const auth = require("./router/auth");
 
 app
     .get('/' , (req,res) => {
-        res.sendFile(path.join(__dirname+'../../frontend/html/index.html'))})
+        res.sendFile(path.join(__dirname+'../../public/html/index.html'))})
     .get('/register', auth)
     .post('/studentlogin' , auth)
     .get('/feedback' , auth)
