@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const path = require("path");
+const ejs = require('ejs');
+
+app.set('view engine', 'ejs');
 
 dotenv.config({ path: "config.env" });
 
@@ -27,7 +30,7 @@ app
     .get('/register', auth)
     .post('/studentlogin' , auth)
     .get('/feedback' , auth)
-
+    .post('/addfaculty', auth)
 
     const PORT =4000;
 
