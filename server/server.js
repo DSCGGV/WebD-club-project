@@ -12,9 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 // loading static assets
-app.use('/css',express.static(path.resolve(__dirname ,"../css" )))
+app.use('/css',express.static(path.resolve(__dirname ,"../public/css" )))
 app.use('/images',express.static(path.resolve(__dirname ,"../public/images" )))
-app.use('/js',express.static(path.resolve(__dirname ,"../js" )))
+app.use('/js',express.static(path.resolve(__dirname ,"../public/js" )))
 
 
 // we link the router files to make our route easy
@@ -28,7 +28,7 @@ app
     .get('/feedback' , auth)
 
 
-    const PORT = process.env.PORT;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);

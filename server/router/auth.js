@@ -7,10 +7,10 @@ const Teacher = require("../db/teacherSchema");
 
 
 
-router.get("/", (req, res) => {
-  console.log(req.url);
-  res.send(`Home Page`);
-});
+// router.get("/", (req, res) => {
+//   console.log(req.url);
+//   res.send(`Home Page`);
+// });
 router.get("/register", (req, res) => {
   if(req.query.user =="student")
   {
