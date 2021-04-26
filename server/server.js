@@ -20,6 +20,7 @@ app.use('/images',express.static(path.resolve(__dirname ,"../public/images" )))
 app.use('/js',express.static(path.resolve(__dirname ,"../public/js" )))
 
 
+
 // we link the router files to make our route easy
 const auth = require("./router/auth");
 
@@ -31,7 +32,7 @@ app
     .get('/feedback' , auth)
     .post('/addfaculty', auth)
 
-const PORT = process.env.PORT;
+    const PORT =4000;
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);
