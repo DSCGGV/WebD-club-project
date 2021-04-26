@@ -12,9 +12,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 // loading static assets
-app.use('/css',express.static(path.resolve(__dirname ,"../../frontend/css" )))
-app.use('/images',express.static(path.resolve(__dirname ,"../../frontend/images" )))
-app.use('/js',express.static(path.resolve(__dirname ,"../../frontend/js" )))
+app.use('/css',express.static(path.resolve(__dirname ,"../public/css" )))
+app.use('/images',express.static(path.resolve(__dirname ,"../public/images" )))
+app.use('/js',express.static(path.resolve(__dirname ,"../public/js" )))
+
 
 
 // we link the router files to make our route easy
