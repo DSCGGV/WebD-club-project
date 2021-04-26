@@ -3,7 +3,7 @@ const router = express.Router();
 require("../db/connection");
 const User = require("../db/userSchema");
 const path = require("path");
-const Teacher = require("../db/teacherSchema");
+const faculty = require("../db/editfaculty");
 
 
 
@@ -22,8 +22,7 @@ router.get("/register", (req, res) => {
   }
 });
 router.get("/feedback", (req, res) => {
-  res.sendFile(path.join(__dirname+'../../../public/html/feedback.html'))
-  
+    res.render('feedback');
 });
 router.get("/result", (req, res) => {
   res.send(`Result Page`);
@@ -78,4 +77,7 @@ router.post("/studentlogin", (req, res) => {
 //   // Teacher.findOne({ name: name }).then((teacherExist) => {});
 // });
 
+router.post('/addfaculty' , (req,res) => {
+  // crud faculty details code
+})
 module.exports = router;
