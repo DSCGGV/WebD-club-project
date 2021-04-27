@@ -29,6 +29,7 @@ router.get("/admin", (req, res) => {
   res.send(`Admin Page`);
 });
 
+
 //student login post request
 router.post("/studentlogin", (req, res) => {
   const { enrollment, department, semester } = req.body;
@@ -60,37 +61,39 @@ router.post("/studentlogin", (req, res) => {
   });
 });
 
-// router.post("/feedback", (req, res) => {
-//   const { name, feedbackBy } = req.body;
-//   // console.log(req.body.name);
-//   // console.log(req.body);
-//   console.log(typeof req.body.feedbackBy);
+router.post("/feedback", (req, res) => {
+  console.log(req.body);
+  //   const { name, feedbackBy } = req.body;
+  //   // console.log(req.body.name);
+  //   // console.log(req.body);
+  //   console.log(typeof req.body.feedbackBy);
 
-//   if (!name || !feedbackBy) {
-//     return res.status(422).json({ error: "Please Fill all the field" });
-//   }
+  //   if (!name || !feedbackBy) {
+  //     return res.status(422).json({ error: "Please Fill all the field" });
+  //   }
 
-//   // Teacher.findOne({ name: name }).then((teacherExist) => {});
-// });
+  //   // Teacher.findOne({ name: name }).then((teacherExist) => {});
+});
 
 router.post("/addfaculty", (req, res) => {
   // crud faculty details code
+  console.log("/editfaculty called");
   const { department, faculty } = req.body;
 
   if (!department || !faculty) {
     return res.status(422).json({ error: "Please Fill all the fields" });
   }
 
-  User.findOne({ faculty: faculty }).then((userExist) => {
+  Faculty.findOne({ faculty: faculty }).then((userExist) => {
     if (userExist) {
       return res.status(422).json({ error: "User Already Exist" });
     }
 
-    const faculty = new Faculty({
+    const facultylist = new Faculty({
       department: req.body.department,
       faculty: req.body.faculty,
     });
-    faculty
+    facultylist
       .save()
       .then(() => {
         res.redirect("/feedback");
