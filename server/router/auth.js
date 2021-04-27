@@ -5,24 +5,22 @@ const User = require("../db/userSchema");
 const path = require("path");
 const Faculty = require("../db/editfaculty");
 
-
-
 // router.get("/", (req, res) => {
 //   console.log(req.url);
 //   res.send(`Home Page`);
 // });
 router.get("/register", (req, res) => {
-  if(req.query.user =="student")
-  {
-    res.sendFile(path.join(__dirname+'../../../public/html/student.html'))
+  if (req.query.user == "student") {
+    res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
   }
-  if(req.query.user =="admin")
-  {
-    res.sendFile(path.join(__dirname+'../../../public/html/admin_login.html'))
+  if (req.query.user == "admin") {
+    res.sendFile(
+      path.join(__dirname + "../../../public/html/admin_login.html")
+    );
   }
 });
 router.get("/feedback", (req, res) => {
-    res.render('feedback');
+  res.render("feedback");
 });
 router.get("/result", (req, res) => {
   res.send(`Result Page`);
@@ -30,7 +28,6 @@ router.get("/result", (req, res) => {
 router.get("/admin", (req, res) => {
   res.send(`Admin Page`);
 });
-
 
 //student login post request
 router.post("/studentlogin", (req, res) => {
@@ -53,13 +50,12 @@ router.post("/studentlogin", (req, res) => {
     user
       .save()
       .then(() => {
-        res.redirect('/feedback')
-        res.status(201).json({ message: "User Registered Sucessfully" })
-        
+        res.redirect("/feedback");
+        res.status(201).json({ message: "User Registered Sucessfully" });
       })
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
-        console.log("error posting data :" + err)
+        console.log("error posting data :" + err);
       });
   });
 });
@@ -77,11 +73,11 @@ router.post("/studentlogin", (req, res) => {
 //   // Teacher.findOne({ name: name }).then((teacherExist) => {});
 // });
 
-router.post('/addfaculty' , (req,res) => {
+router.post("/addfaculty", (req, res) => {
   // crud faculty details code
   const { department, faculty } = req.body;
 
-  if (!department || !faculty || ) {
+  if (!department || !faculty) {
     return res.status(422).json({ error: "Please Fill all the fields" });
   }
 
@@ -105,5 +101,5 @@ router.post('/addfaculty' , (req,res) => {
         console.log("error posting data :" + err);
       });
   });
-})
+});
 module.exports = router;
