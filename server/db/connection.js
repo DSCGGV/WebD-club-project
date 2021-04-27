@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const PORT =4000;
-const DB = process.env.DATABASE || PORT;
+const PORT = process.env.PORT;
+const DB = process.env.DATABASE || "mongodb://localhost:27017/feedback";
 console.log(`Database URI String ${DB}`);
 
 mongoose
