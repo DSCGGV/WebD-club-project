@@ -4,6 +4,7 @@ require("../db/connection");
 const User = require("../db/userSchema");
 const path = require("path");
 const Faculty = require("../db/editfaculty");
+const Admin = require("../db/adminSchema");
 
 // router.get("/", (req, res) => {
 //   console.log(req.url);
@@ -26,9 +27,31 @@ router.get("/result", (req, res) => {
   res.send(`Result Page`);
 });
 router.get("/admin", (req, res) => {
-  res.send(`Admin Page`);
+   res.sendFile(
+     path.join(__dirname+"../../../public/html/dashboard.html")
+   );
 });
 
+//admin login post request
+router.post("/adminlogin", async(req,res) => {
+   const email= req.body.email;
+   const pass= req.body.pass;
+   if(!email || !pass){
+     return res.status(422).json({ error: "Please fill both the fields!" });
+   }
+   try{
+    const admin= await Admin.findOne({ email: email });
+   
+    if(admin.pass== pass){
+      res.status(201).redirect("/admin");
+      console.log("Logged In Successfully.");
+    }else{
+      res.status(422).send("Invalid Email/Password.");
+    }
+  }catch(error){
+    res.status(422).send("Invalid Email/Password.");
+  }
+});
 
 //student login post request
 router.post("/studentlogin", (req, res) => {
