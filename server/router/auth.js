@@ -5,24 +5,22 @@ const User = require("../db/userSchema");
 const path = require("path");
 const Faculty = require("../db/editfaculty");
 
-
-
 // router.get("/", (req, res) => {
 //   console.log(req.url);
 //   res.send(`Home Page`);
 // });
 router.get("/register", (req, res) => {
-  if(req.query.user =="student")
-  {
-    res.sendFile(path.join(__dirname+'../../../public/html/student.html'))
+  if (req.query.user == "student") {
+    res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
   }
-  if(req.query.user =="admin")
-  {
-    res.sendFile(path.join(__dirname+'../../../public/html/admin_login.html'))
+  if (req.query.user == "admin") {
+    res.sendFile(
+      path.join(__dirname + "../../../public/html/admin_login.html")
+    );
   }
 });
 router.get("/feedback", (req, res) => {
-    res.render('feedback');
+  res.render("feedback");
 });
 router.get("/result", (req, res) => {
   res.send(`Result Page`);
@@ -53,48 +51,49 @@ router.post("/studentlogin", (req, res) => {
     user
       .save()
       .then(() => {
-        res.redirect('/feedback')
-        res.status(201).json({ message: "User Registered Sucessfully" })
-        
+        res.redirect("/feedback");
+        res.status(201).json({ message: "User Registered Sucessfully" });
       })
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
-        console.log("error posting data :" + err)
+        console.log("error posting data :" + err);
       });
   });
 });
 
-// router.post("/feedback", (req, res) => {
-//   const { name, feedbackBy } = req.body;
-//   // console.log(req.body.name);
-//   // console.log(req.body);
-//   console.log(typeof req.body.feedbackBy);
+router.post("/feedback", (req, res) => {
+  console.log(req.body);
+  //   const { name, feedbackBy } = req.body;
+  //   // console.log(req.body.name);
+  //   // console.log(req.body);
+  //   console.log(typeof req.body.feedbackBy);
 
-//   if (!name || !feedbackBy) {
-//     return res.status(422).json({ error: "Please Fill all the field" });
-//   }
+  //   if (!name || !feedbackBy) {
+  //     return res.status(422).json({ error: "Please Fill all the field" });
+  //   }
 
-//   // Teacher.findOne({ name: name }).then((teacherExist) => {});
-// });
+  //   // Teacher.findOne({ name: name }).then((teacherExist) => {});
+});
 
-router.post('/addfaculty' , (req,res) => {
+router.post("/addfaculty", (req, res) => {
   // crud faculty details code
+  console.log("/editfaculty called");
   const { department, faculty } = req.body;
 
-  if (!department || !faculty || ) {
+  if (!department || !faculty) {
     return res.status(422).json({ error: "Please Fill all the fields" });
   }
 
-  User.findOne({ faculty: faculty }).then((userExist) => {
+  Faculty.findOne({ faculty: faculty }).then((userExist) => {
     if (userExist) {
       return res.status(422).json({ error: "User Already Exist" });
     }
 
-    const faculty = new Faculty({
+    const facultylist = new Faculty({
       department: req.body.department,
       faculty: req.body.faculty,
     });
-    faculty
+    facultylist
       .save()
       .then(() => {
         res.redirect("/feedback");
@@ -105,5 +104,5 @@ router.post('/addfaculty' , (req,res) => {
         console.log("error posting data :" + err);
       });
   });
-})
+});
 module.exports = router;
