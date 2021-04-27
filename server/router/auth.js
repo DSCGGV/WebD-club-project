@@ -94,7 +94,7 @@ router.post('/addfaculty' , (req,res) => {
       department: req.body.department,
       faculty: req.body.faculty,
     });
-    user
+    faculty
       .save()
       .then(() => {
         res.redirect("/feedback");
