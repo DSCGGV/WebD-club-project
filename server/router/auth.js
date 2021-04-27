@@ -3,7 +3,7 @@ const router = express.Router();
 require("../db/connection");
 const User = require("../db/userSchema");
 const path = require("path");
-const faculty = require("../db/editfaculty");
+const faculty = require("../db/facultySchema");
 
 
 
@@ -79,5 +79,14 @@ router.post("/studentlogin", (req, res) => {
 
 router.post('/addfaculty' , (req,res) => {
   // crud faculty details code
-})
+});
+
+// feedback post request
+router.get('/send' , (req,res) => {
+  // res.send("accessing get")
+  const feed = req.body
+  console.log(feed)
+  res.end()
+  
+});
 module.exports = router;

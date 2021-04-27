@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 // -------faculty feedback schema---------
 const facultyfeedback = new mongoose.Schema({
   name :String,
+  count : Number,
   q1 :{
     type:Number,
     required : true

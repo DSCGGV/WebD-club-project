@@ -31,8 +31,11 @@ app
     .post('/studentlogin' , auth)
     .get('/feedback' , auth)
     .post('/addfaculty', auth)
+    .post('/feedback', auth)
+    .get('/send', auth)
 
-    const PORT =4000;
+
+const PORT = 4000;
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);

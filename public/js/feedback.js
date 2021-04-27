@@ -11,26 +11,26 @@ function make_options(i, name)
     let options = `<div class="options"> 
                         <span>
                             <label for="one${i}">Very Good</label>
-                            <input type="radio" id="one${i}" name="${name}" value="5">
+                            <input type="radio" id="one${i}" name="${name}" value="4">
                         </span>
                         <span>
                             <label for="two${i}">Good</label>
-                            <input type="radio" id="two${i}" name="${name}" value="4">
+                            <input type="radio" id="two${i}" name="${name}" value="3">
                         </span>
                         <span>
                             <label for="three${i}">Satisfactory</label>
-                            <input type="radio" id="three${i}" name="${name}" value="3">
+                            <input type="radio" id="three${i}" name="${name}" value="2">
                         </span>
                         <span>
                             <label for="four${i}">Unsatisfactory</label>
-                            <input type="radio" id="four${i}" name="${name}" value="0">
+                            <input type="radio" id="four${i}" name="${name}" value="1">
                         </span>
                     </div>`;
 
     return options;
 }
 
-$(function()
+$(function(body)
 {
 
     $('form').hide();

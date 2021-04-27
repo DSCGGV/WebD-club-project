@@ -7,7 +7,11 @@ const faculty = new mongoose.Schema({
       type: String,
       required : true
     },
-    faculty: [String]
+    faculty:[
+      {name: String,
+        id:Number,
+      }
+    ]
   })
   
   const list = mongoose.model("facultylist", faculty);
