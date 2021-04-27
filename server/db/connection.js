@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const PORT =4000;
-const DB = process.env.DATABASE || PORT;
+const DB = "mongodb+srv://shreyas:admin@cluster0.qtn96.mongodb.net/users?retryWrites=true&w=majority";
 console.log(`Database URI String ${DB}`);
 
 mongoose
@@ -14,3 +14,22 @@ mongoose
     console.log(`connnection successful`);
   })
   .catch((err) => console.log(`connection error: ${err}`));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
