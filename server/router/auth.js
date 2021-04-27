@@ -3,7 +3,7 @@ const router = express.Router();
 require("../db/connection");
 const User = require("../db/userSchema");
 const path = require("path");
-const faculty = require("../db/editfaculty");
+const Faculty = require("../db/editfaculty");
 
 
 
@@ -79,5 +79,31 @@ router.post("/studentlogin", (req, res) => {
 
 router.post('/addfaculty' , (req,res) => {
   // crud faculty details code
+  const { department, faculty } = req.body;
+
+  if (!department || !faculty || ) {
+    return res.status(422).json({ error: "Please Fill all the fields" });
+  }
+
+  User.findOne({ faculty: faculty }).then((userExist) => {
+    if (userExist) {
+      return res.status(422).json({ error: "User Already Exist" });
+    }
+
+    const faculty = new Faculty({
+      department: req.body.department,
+      faculty: req.body.faculty,
+    });
+    user
+      .save()
+      .then(() => {
+        res.redirect("/feedback");
+        res.status(201).json({ message: "Faculty added Sucessfully" });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: "Failed To add Faculty" });
+        console.log("error posting data :" + err);
+      });
+  });
 })
 module.exports = router;
