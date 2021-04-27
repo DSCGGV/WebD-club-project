@@ -29,7 +29,9 @@ app
   .get("/register", auth)
   .post("/studentlogin", auth)
   .get("/feedback", auth)
-  .post("/addfaculty", auth);
+  .post("/addfaculty", auth)
+  .post("/adminlogin",auth)
+  .get("/admin",auth);
 
 const PORT = process.env.PORT;
 
