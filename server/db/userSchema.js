@@ -11,7 +11,7 @@ const userSchema = new mongooose.Schema({
     required: true,
   },
   semester: {
-    type: String,
+    type: Number,
     required: true,
   },
   time: {
