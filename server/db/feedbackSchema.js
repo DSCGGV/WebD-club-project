@@ -49,17 +49,6 @@ const facultyfeedback = new mongoose.Schema({
   },  
 });
 
-// -----------faculty list schema--------------
-
-const facultylist = new mongoose.Schema({
-  department :{
-    type: String,
-    required : true
-  },
-  faculty: [{
-    name : String,
-  }]
-})
-
 const Teacher = mongoose.model("feedback", facultyfeedback);
+
 module.exports = Teacher;
