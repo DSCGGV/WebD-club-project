@@ -5,6 +5,8 @@ const User = require("../db/userSchema");
 const path = require("path");
 const Faculty = require("../db/editfaculty");
 const Admin = require("../db/adminSchema");
+const sessionStorage = require('node-sessionstorage')
+
 
 // router.get("/", (req, res) => {
 //   console.log(req.url);
@@ -20,8 +22,35 @@ router.get("/register", (req, res) => {
     );
   }
 });
-router.get("/feedback", (req, res) => {
+router.get("/feedback", async(req, res) => {
   res.render("feedback");
+  //console.log(sessionStorage.getItem('enrollment'));
+  var enrollment=sessionStorage.getItem('enrollment');
+  const user=await User.findOne({enrollment : enrollment});
+  const department= user.department;
+  const semester= user.semester;
+  const faculties=await Faculty.findOne({ department: department,semester: semester});
+  const facultyList= faculties.faculty;
+  console.log(facultyList);
+  /*Faculty.insertMany(
+    [
+      {
+        department: "CSE",
+        semester: 4,
+        faculty: ["Thakur Vaibhav Kant Singh","Nishi Yadav","Satish Kumar Negi","Nikita Kashyap","Chandrashekhar"]
+      },
+      {
+        department: "CSE",
+        semester: 6,
+        faculty: ["Nishi Yadav","Manjit Jaiswal","Amit Baghel","Devendra Kumar Singh","Raksha Pandey","Thakur Vaibhav Kant Singh"]
+      },
+      {
+        department: "CSE",
+        semester: 8,
+        faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
+      }
+    ]
+  );*/
 });
 router.get("/result", (req, res) => {
   res.send(`Result Page`);
@@ -75,6 +104,7 @@ router.post("/studentlogin", (req, res) => {
       .save()
       .then(() => {
         res.redirect("/feedback");
+        sessionStorage.setItem('enrollment',req.body.enrollment);
         res.status(201).json({ message: "User Registered Sucessfully" });
       })
       .catch((err) => {
