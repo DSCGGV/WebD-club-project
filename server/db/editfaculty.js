@@ -7,6 +7,10 @@ const faculty = new mongoose.Schema({
     type: String,
     required: true,
   },
+  semester: {
+    type: Number,
+    require: true,
+  },
   faculty: [String],
 });
 
