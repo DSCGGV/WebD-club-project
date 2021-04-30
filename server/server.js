@@ -3,18 +3,40 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const path = require("path");
+const ejs = require("ejs");
 
-dotenv.config({ path: "./config.env" });
+app.set("view engine", "ejs");
+
+dotenv.config({ path: "../config.env" });
 
 require("./db/connection");
-const User = require("./db/userSchema");
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// loading static assets
+app.use("/css", express.static(path.resolve(__dirname, "../public/css")));
+app.use("/images", express.static(path.resolve(__dirname, "../public/images")));
+app.use("/js", express.static(path.resolve(__dirname, "../public/js")));
 
 // we link the router files to make our route easy
-app.use(require("./router/auth"));
+const auth = require("./router/auth");
 
-const PORT = process.env.PORT || 3000;
+
+app
+  .get("/", (req, res) => {
+    res.sendFile(path.join(__dirname + "../../public/html/index.html"));
+  })
+  .get("/register", auth)
+  .post("/studentlogin", auth)
+  .get("/feedback", auth)
+  .post("/addfaculty", auth)
+  .post("/adminlogin",auth)
+  .get("/admin",auth);
+
+
+
+  const PORT = 5000;
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);

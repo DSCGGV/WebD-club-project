@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-const DB = process.env.DATABASE || "mongodb://localhost:27017/test";
+const PORT = process.env.PORT || 8000;
+const DB = process.env.DATABASE || "mongodb://localhost:27017/feedback";
 console.log(`Database URI String ${DB}`);
 
 mongoose
@@ -13,4 +13,4 @@ mongoose
   .then(() => {
     console.log(`connnection successful`);
   })
-  .catch((err) => console.log(`no connection`));
+  .catch((err) => console.log(`connection error: ${err}`));
