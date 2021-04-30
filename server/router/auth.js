@@ -1,3 +1,5 @@
+// -----routing and post/get api-------
+
 const express = require("express");
 const router = express.Router();
 require("../db/connection");
@@ -23,15 +25,26 @@ router.get("/register", (req, res) => {
   }
 });
 router.get("/feedback", async(req, res) => {
-  res.render("feedback");
-  //console.log(sessionStorage.getItem('enrollment'));
-  var enrollment=sessionStorage.getItem('enrollment');
-  const user=await User.findOne({enrollment : enrollment});
-  const department= user.department;
-  const semester= user.semester;
-  const faculties=await Faculty.findOne({ department: department,semester: semester});
-  const facultyList= faculties.faculty;
-  console.log(facultyList);
+  
+  var facultydata = User.find({ semester: "6"})//testing with "User" data
+        facultydata.exec( function(err,data){
+        if(err) throw err;
+
+        res.render('feedback' ,{record : data});
+        })
+  
+  
+  // res.render('feedback')
+  // console.log(sessionStorage.getItem('enrollment'));
+
+  //   var enrollment=sessionStorage.getItem('enrollment');
+  //   const user=await User.findOne({enrollment : enrollment});
+  //   const department= user.department;
+  //   const semester= user.semester;
+  //   const faculties=await Faculty.findOne({ department: department,semester: semester});
+  //   const facultyList= faculties.faculty;
+  //   console.log(facultyList);
+    
   /*Faculty.insertMany(
     [
       {
@@ -52,9 +65,13 @@ router.get("/feedback", async(req, res) => {
     ]
   );*/
 });
+
+
 router.get("/result", (req, res) => {
   res.send(`Result Page`);
 });
+
+
 router.get("/admin", (req, res) => {
    res.sendFile(
      path.join(__dirname+"../../../public/html/dashboard.html")
@@ -92,7 +109,8 @@ router.post("/studentlogin", (req, res) => {
 
   User.findOne({ enrollment: enrollment }).then((userExist) => {
     if (userExist) {
-      return res.status(422).json({ error: "User Already Exist" });
+      res.status(422).json({ error: "User Already Exist" });
+      return;
     }
 
     const user = new User({
@@ -106,6 +124,7 @@ router.post("/studentlogin", (req, res) => {
         res.redirect("/feedback");
         sessionStorage.setItem('enrollment',req.body.enrollment);
         res.status(201).json({ message: "User Registered Sucessfully" });
+        res.redirect('/feedback')
       })
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
@@ -130,18 +149,6 @@ router.post("/feedback", (req, res) => {
 
 router.post("/addfaculty", (req, res) => {
   // crud faculty details code
-});
-
-// feedback post request
-router.get('/send' , (req,res) => {
-  // res.send("accessing get")
-  const feed = req.body
-  console.log(feed)
-  res.end()
-});  
-
-
-router.post('/editfaculty' , (req,res) => {
   console.log("/editfaculty called");
   const { department, faculty } = req.body;
 

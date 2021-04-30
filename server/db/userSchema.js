@@ -6,6 +6,7 @@ const userSchema = new mongooose.Schema({
     type: Number,
     required: true,
   },
+  
   department: {
     type: String,
     required: true,
@@ -14,6 +15,7 @@ const userSchema = new mongooose.Schema({
     type: Number,
     required: true,
   },
+  
   time: {
     type: Date,
     default: Date.now,
