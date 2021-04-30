@@ -20,43 +20,241 @@
 
         <h1>Online Feedback Form</h1>
 
-        <% record.forEach(function(list){%>
+        
             <div class="teacher-box">
-                <h2><%= list.enrollment%></h2>
+                <h2>teacher</h2>
         
                 <form action="/feedback" method="POST" class="feedback-form-2">
                     <div class="feedback-form-box">
                         <h2>Voice Modulation</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="voice4">Very Good</label>
+                                <input type="radio" id="voice4" name="voice" value="4">
+                            </span>
+                            <span>
+                                <label for="voice3">Good</label>
+                                <input type="radio" id="voice3" name="voice" value="3">
+                            </span>
+                            <span>
+                                <label for="voice2">Satisfactory</label>
+                                <input type="radio" id="voice2" name="voice" value="2">
+                            </span>
+                            <span>
+                                <label for="voice1">Unsatisfactory</label>
+                                <input type="radio" id="voice1" name="voice" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Speed Of Delivery</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="speed4">Very Good</label>
+                                <input type="radio" id="speed4" name="speed" value="4">
+                            </span>
+                            <span>
+                                <label for="speed3">Good</label>
+                                <input type="radio" id="speed3" name="speed" value="3">
+                            </span>
+                            <span>
+                                <label for="speed2">Satisfactory</label>
+                                <input type="radio" id="speed2" name="speed" value="2">
+                            </span>
+                            <span>
+                                <label for="speed1">Unsatisfactory</label>
+                                <input type="radio" id="speed1" name="speed" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Presentation</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="Presentation4">Very Good</label>
+                                <input type="radio" id="Presentation4" name="Presentation" value="4">
+                            </span>
+                            <span>
+                                <label for="Presentation3">Good</label>
+                                <input type="radio" id="Presentation3" name="Presentation" value="3">
+                            </span>
+                            <span>
+                                <label for="Presentation2">Satisfactory</label>
+                                <input type="radio" id="Presentation2" name="Presentation" value="2">
+                            </span>
+                            <span>
+                                <label for="Presentation1">Unsatisfactory</label>
+                                <input type="radio" id="Presentation1" name="Presentation" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Communication Skill</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="Communication4">Very Good</label>
+                                <input type="radio" id="Communication4" name="Communication" value="4">
+                            </span>
+                            <span>
+                                <label for="Communication3">Good</label>
+                                <input type="radio" id="Communication3" name="Communication" value="3">
+                            </span>
+                            <span>
+                                <label for="Communication2">Satisfactory</label>
+                                <input type="radio" id="Communication2" name="Communication" value="2">
+                            </span>
+                            <span>
+                                <label for="Communication1">Unsatisfactory</label>
+                                <input type="radio" id="Communication1" name="Communication" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Interest/Motivation Generated By Teacher</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="Interest4">Very Good</label>
+                                <input type="radio" id="Interest4" name="Interest" value="4">
+                            </span>
+                            <span>
+                                <label for="Interest3">Good</label>
+                                <input type="radio" id="Interest3" name="Interest" value="3">
+                            </span>
+                            <span>
+                                <label for="Interest2">Satisfactory</label>
+                                <input type="radio" id="Interest2" name="Interest" value="2">
+                            </span>
+                            <span>
+                                <label for="Interest1">Unsatisfactory</label>
+                                <input type="radio" id="Interest1" name="Interest" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Knowledge Base Of The Teacher As You Received</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="knowledge4">Very Good</label>
+                                <input type="radio" id="knowledge4" name="knowledge" value="4">
+                            </span>
+                            <span>
+                                <label for="knowledge3">Good</label>
+                                <input type="radio" id="knowledge3" name="knowledge" value="3">
+                            </span>
+                            <span>
+                                <label for="knowledge2">Satisfactory</label>
+                                <input type="radio" id="knowledge2" name="knowledge" value="2">
+                            </span>
+                            <span>
+                                <label for="knowledge1">Unsatisfactory</label>
+                                <input type="radio" id="knowledge1" name="knowledge" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Assessibility Of The Teacher In And Out Of The Class</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="assessible4">Very Good</label>
+                                <input type="radio" id="assessible4" name="assessible" value="4">
+                            </span>
+                            <span>
+                                <label for="assessible3">Good</label>
+                                <input type="radio" id="assessible3" name="assessible" value="3">
+                            </span>
+                            <span>
+                                <label for="assessible2">Satisfactory</label>
+                                <input type="radio" id="assessible2" name="assessible" value="2">
+                            </span>
+                            <span>
+                                <label for="assessible1">Unsatisfactory</label>
+                                <input type="radio" id="assessible1" name="assessible" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>How Simulating The Lectures Are</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="simulation4">Very Good</label>
+                                <input type="radio" id="simulation4" name="simulation" value="4">
+                            </span>
+                            <span>
+                                <label for="simulation3">Good</label>
+                                <input type="radio" id="simulation3" name="simulation" value="3">
+                            </span>
+                            <span>
+                                <label for="simulation2">Satisfactory</label>
+                                <input type="radio" id="simulation2" name="simulation" value="2">
+                            </span>
+                            <span>
+                                <label for="simulation1">Unsatisfactory</label>
+                                <input type="radio" id="simulation1" name="simulation" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Temperament For The Encouraging Question To The Class</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="encourage4">Very Good</label>
+                                <input type="radio" id="encourage4" name="encourage" value="4">
+                            </span>
+                            <span>
+                                <label for="encourage3">Good</label>
+                                <input type="radio" id="encourage3" name="encourage" value="3">
+                            </span>
+                            <span>
+                                <label for="encourage2">Satisfactory</label>
+                                <input type="radio" id="encourage2" name="encourage" value="2">
+                            </span>
+                            <span>
+                                <label for="encourage1">Unsatisfactory</label>
+                                <input type="radio" id="encourage1" name="encourage" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Regularity And Punctuality</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="puntual4">Very Good</label>
+                                <input type="radio" id="puntual4" name="puntual" value="4">
+                            </span>
+                            <span>
+                                <label for="puntual3">Good</label>
+                                <input type="radio" id="puntual3" name="puntual" value="3">
+                            </span>
+                            <span>
+                                <label for="puntual2">Satisfactory</label>
+                                <input type="radio" id="puntual2" name="puntual" value="2">
+                            </span>
+                            <span>
+                                <label for="puntual1">Unsatisfactory</label>
+                                <input type="radio" id="puntual1" name="puntual" value="1">
+                            </span>
+                        </div>
                     </div>
                     <div class="feedback-form-box">
                         <h2>Overall Rating</h2>
+                        <div class="options"> 
+                            <span>
+                                <label for="overall4">Very Good</label>
+                                <input type="radio" id="overall4" name="overall" value="4">
+                            </span>
+                            <span>
+                                <label for="overall3">Good</label>
+                                <input type="radio" id="overall3" name="overall" value="3">
+                            </span>
+                            <span>
+                                <label for="overall2">Satisfactory</label>
+                                <input type="radio" id="overall2" name="overall" value="2">
+                            </span>
+                            <span>
+                                <label for="overall1">Unsatisfactory</label>
+                                <input type="radio" id="overall1" name="overall" value="1">
+                            </span>
+                        </div>
                     </div>
 
                     <div class="suggestion">
@@ -71,11 +269,24 @@
 
                 </form>
             </div>
-        <%})%>
-       
-        
+     
+    <script>
+            
+        $(function(body)
+        {
+
+            $('form').hide();
+
+            $('.teacher-box>h2').before().click(function()
+            {
+                console.log("This is clicked");
+                $(this).parent().children('form').slideToggle();
+            })
+
+        })
+    </script>
     </main>
-    <script src="../js/feedback.js"></script>
+    
 </body>
 
 </html>
