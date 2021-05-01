@@ -25,23 +25,26 @@ router.get("/register", (req, res) => {
   }
 });
 router.get("/feedback", async (req, res) => {
-  var facultydata = User.find({ semester: "6" }); //testing with "User" data
-  facultydata.exec(function (err, data) {
-    if (err) throw err;
+  // var facultydata = User.find({ semester: "6" }); //testing with "User" data
+  // facultydata.exec(function (err, data) {
+  //   if (err) throw err;
 
-    res.render("feedback", { record: data });
-  });
+  //   res.render("feedback", { record: data });
+  // });
 
   // res.render('feedback')
   // console.log(sessionStorage.getItem('enrollment'));
 
-  //   var enrollment=sessionStorage.getItem('enrollment');
-  //   const user=await User.findOne({enrollment : enrollment});
-  //   const department= user.department;
-  //   const semester= user.semester;
-  //   const faculties=await Faculty.findOne({ department: department,semester: semester});
-  //   const facultyList= faculties.faculty;
-  //   console.log(facultyList);
+  var enrollment = sessionStorage.getItem("enrollment");
+  const user = await User.findOne({ enrollment: enrollment });
+  const department = user.department;
+  const semester = user.semester;
+  const faculties = await Faculty.findOne({
+    department: department,
+    semester: semester,
+  });
+  const facultyList = faculties.faculty;
+  console.log(facultyList);
 
   /*Faculty.insertMany(
     [
