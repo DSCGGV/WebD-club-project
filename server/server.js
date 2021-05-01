@@ -29,13 +29,12 @@ app
   .get("/register", auth)
   .post("/studentlogin", auth)
   .get("/feedback", auth)
+  .post("/feedback", auth)
   .post("/addfaculty", auth)
-  .post("/adminlogin",auth)
-  .get("/admin",auth);
+  .post("/adminlogin", auth)
+  .get("/admin", auth);
 
-
-
-  const PORT = 5000;
+const PORT = 5000;
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);
