@@ -5,7 +5,7 @@ const router = express.Router();
 require("../db/connection");
 const User = require("../db/userSchema");
 const path = require("path");
-const Faculty = require("../db/editfaculty");
+const Faculty = require("../db/facultySchema");
 const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
@@ -40,7 +40,7 @@ router.get("/feedback", async (req, res) => {
   });
   const facultyList = faculties.faculty;
   console.log(facultyList);
-  var facultydata = User.find({ semester }); //testing with "User" data
+  var facultydata =await Faculty.findOne({ department:"CSE",semester:"4" }); //testing with "User" data
   facultydata.exec(function (err, data) {
     if (err) throw err;
 
