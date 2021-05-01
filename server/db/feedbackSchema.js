@@ -2,75 +2,75 @@ const mongoose = require("mongoose");
 
 // -------faculty feedback schema---------
 const facultyfeedback = new mongoose.Schema({
-  name: {
+  voice: {
     type: String,
     required: true,
   },
-  q1: {
+  speed: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q2: {
+  Presentation: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q3: {
+  Communication: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q4: {
+  Interest: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q5: {
+  knowledge: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q6: {
+  assessible: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q7: {
+  simulation: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q8: {
+  encourage: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q9: {
+  puntual: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q10: {
+  overall: {
     type: Number,
     required: true,
     min: 0,
     max: 5,
   },
-  q11: {
-    type: Number,
+  suggestion: {
+    type: String,
     required: true,
     min: 0,
-    max: 5,
+    max: 500,
   },
 });
 
