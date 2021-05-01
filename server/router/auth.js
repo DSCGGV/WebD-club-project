@@ -25,12 +25,7 @@ router.get("/register", (req, res) => {
   }
 });
 router.get("/feedback", async (req, res) => {
-  // var facultydata = User.find({ semester: "6" }); //testing with "User" data
-  // facultydata.exec(function (err, data) {
-  //   if (err) throw err;
-
-  //   res.render("feedback", { record: data });
-  // });
+  
 
   // res.render('feedback')
   // console.log(sessionStorage.getItem('enrollment'));
@@ -45,7 +40,12 @@ router.get("/feedback", async (req, res) => {
   });
   const facultyList = faculties.faculty;
   console.log(facultyList);
+  var facultydata = User.find({ semester }); //testing with "User" data
+  facultydata.exec(function (err, data) {
+    if (err) throw err;
 
+    res.render("feedback", { record: data });
+  });
   /*Faculty.insertMany(
     [
       {
