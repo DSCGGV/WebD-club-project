@@ -34,37 +34,41 @@ router.get("/feedback", async (req, res) => {
   const user = await User.findOne({ enrollment: enrollment });
   const department = user.department;
   const semester = user.semester;
-  const faculties = await Faculty.findOne({
-    department: department,
-    semester: semester,
-  });
-  const facultyList = faculties.faculty;
-  console.log(facultyList);
-  var facultydata = User.find({ semester }); //testing with "User" data
+  // const faculties = await Faculty.findOne({
+  //   department: department,
+  //   semester: semester,
+  // });
+  // const facultyList = faculties.faculty;
+  // console.log(facultyList);
+  var facultydata = Faculty.find({department:department, semester:semester }); //testing with "User" data
   facultydata.exec(function (err, data) {
     if (err) throw err;
-
+    
     res.render("feedback", { record: data });
+    console.log(data)
   });
-  /*Faculty.insertMany(
-    [
-      {
-        department: "CSE",
-        semester: 4,
-        faculty: ["Thakur Vaibhav Kant Singh","Nishi Yadav","Satish Kumar Negi","Nikita Kashyap","Chandrashekhar"]
-      },
-      {
-        department: "CSE",
-        semester: 6,
-        faculty: ["Nishi Yadav","Manjit Jaiswal","Amit Baghel","Devendra Kumar Singh","Raksha Pandey","Thakur Vaibhav Kant Singh"]
-      },
-      {
-        department: "CSE",
-        semester: 8,
-        faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
-      }
-    ]
-  );*/
+  // Faculty.insert(
+    
+  //     {
+  //       department: "CSE",
+  //       semester: 4,
+  //       faculty1: "Thakur Vaibhav Kant Singh",
+  //       faculty2: "satish negi",
+  //       faculty3: "amit baghel",
+  //       faculty4: "Pushpendra chandra",
+  //     }
+  //     // {
+  //     //   department: "CSE",
+  //     //   semester: 6,
+  //     //   faculty: ["Nishi Yadav","Manjit Jaiswal","Amit Baghel","Devendra Kumar Singh","Raksha Pandey","Thakur Vaibhav Kant Singh"]
+  //     // },
+  //     // {
+  //     //   department: "CSE",
+  //     //   semester: 8,
+  //     //   faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
+  //     // }
+    
+  // );
 });
 
 router.get("/result", (req, res) => {
@@ -147,34 +151,13 @@ router.post("/feedback", (req, res) => {
   } = req.body;
 
   if (
-    !voice ||
-    !speed ||
-    !Presentation ||
-    !Communication ||
-    !Interest ||
-    !knowledge ||
-    !assessible ||
-    !simulation ||
-    !encourage ||
-    !puntual ||
-    !overall
+    !voice || !speed || !Presentation || !Communication || !Interest || !knowledge || !assessible || !simulation || !encourage || !puntual ||!overall
   ) {
     return res.status(422).json({ error: "Please Fill all the fields" });
   }
 
   const feedback = new Feedback({
-    voice,
-    speed,
-    Presentation,
-    Communication,
-    Interest,
-    knowledge,
-    assessible,
-    simulation,
-    encourage,
-    puntual,
-    overall,
-    suggestion,
+    voice,speed,Presentation,Communication,Interest,knowledge,assessible,simulation,encourage,puntual,overall,suggestion,
   });
 
   feedback
