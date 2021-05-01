@@ -11,10 +11,7 @@ const facultySchema = new mongoose.Schema({
     type: Number,
     require: true,
   },
-  faculty1: String,
-  faculty2: String,
-  faculty3: String,
-  faculty4: String,
+  faculty: [String],
 });
 
 const Faculty = mongoose.model("facultylist", facultySchema);

@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 // -------faculty feedback schema---------
 const facultyfeedback = new mongoose.Schema({
+  name: String,
+  
   voice: {
     type: String,
     required: true,
@@ -65,13 +67,7 @@ const facultyfeedback = new mongoose.Schema({
     required: true,
     min: 0,
     max: 5,
-  },
-  suggestion: {
-    type: String,
-    required: true,
-    min: 0,
-    max: 500,
-  },
+  }
 });
 
 const Feedback = mongoose.model("feedback", facultyfeedback);

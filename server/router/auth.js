@@ -135,71 +135,58 @@ router.post("/studentlogin", (req, res) => {
 });
 
 router.post("/feedback", (req, res) => {
-  const {
-    voice,
-    speed,
-    Presentation,
-    Communication,
-    Interest,
-    knowledge,
-    assessible,
-    simulation,
-    encourage,
-    puntual,
-    overall,
-    suggestion,
-  } = req.body;
+      const {voice, speed, Presentation, Communication, Interest,knowledge, assessible, simulation, encourage, puntual, overall } = req.body;
 
-  if (
-    !voice || !speed || !Presentation || !Communication || !Interest || !knowledge || !assessible || !simulation || !encourage || !puntual ||!overall
-  ) {
-    return res.status(422).json({ error: "Please Fill all the fields" });
-  }
+      if (
+        !voice || !speed || !Presentation || !Communication || !Interest || !knowledge || !assessible || !simulation || !encourage || !puntual ||!overall
+      ) {
+        return res.status(422).json({ error: "Please Fill all the fields" });
+      }
 
-  const feedback = new Feedback({
-    voice,speed,Presentation,Communication,Interest,knowledge,assessible,simulation,encourage,puntual,overall,suggestion,
-  });
-
-  feedback
-    .save()
-    .then(() => {
-      res.redirect("/feedback");
-      res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: "Failed To Register feedback" });
-      console.log("error posting data :" + err);
-    });
-});
-
-router.post("/addfaculty", (req, res) => {
-  // crud faculty details code
-  console.log("/editfaculty called");
-  const { department, faculty } = req.body;
-
-  if (!department || !faculty) {
-    return res.status(422).json({ error: "Please Fill all the fields" });
-  }
-
-  Faculty.findOne({ faculty: faculty }).then((userExist) => {
-    if (userExist) {
-      return res.status(422).json({ error: "User Already Exist" });
-    }
-
-    const facultylist = new Faculty({
-      department: req.body.department,
-      faculty: req.body.faculty,
-    });
-    facultylist
-      .save()
-      .then(() => {
-        res.redirect("/feedback");
-        res.status(201).json({ message: "Faculty added Sucessfully" });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: "Failed To add Faculty" });
-        console.log("error posting data :" + err);
+      const feedback = new Feedback({
+        voice,speed,Presentation,Communication,Interest,knowledge,assessible,simulation,encourage,puntual,overall
       });
-  });
+
+      feedback
+        .save()
+        .then(() => {
+          res.redirect("/");
+          res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
+        })
+        .catch((err) => {
+          res.status(500).json({ error: "Failed To Register feedback" });
+          console.log("error posting data :" + err);
+        });
 });
+
+// router.post("/addfaculty", (req, res) => {
+//   // crud faculty details code
+//   console.log("/editfaculty called");
+//   const { department, faculty } = req.body;
+
+//   if (!department || !faculty) {
+//     return res.status(422).json({ error: "Please Fill all the fields" });
+//   }
+
+//   Faculty.findOne({ faculty: faculty }).then((userExist) => {
+//     if (userExist) {
+//       return res.status(422).json({ error: "User Already Exist" });
+//     }
+
+//     const facultylist = new Faculty({
+//       department: req.body.department,
+//       faculty: req.body.faculty,
+//     });
+//     facultylist
+//       .save()
+//       .then(() => {
+//         res.redirect("/feedback");
+//         res.status(201).json({ message: "Faculty added Sucessfully" });
+//       })
+//       .catch((err) => {
+//         res.status(500).json({ error: "Failed To add Faculty" });
+//         console.log("error posting data :" + err);
+//       });
+//   });
+// });
 module.exports = router;
