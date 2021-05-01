@@ -74,6 +74,6 @@ const facultyfeedback = new mongoose.Schema({
   },
 });
 
-const Teacher = mongoose.model("feedback", facultyfeedback);
+const Feedback = mongoose.model("feedback", facultyfeedback);
 
-module.exports = Teacher;
+module.exports = Feedback;

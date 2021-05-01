@@ -7,8 +7,8 @@ const User = require("../db/userSchema");
 const path = require("path");
 const Faculty = require("../db/editfaculty");
 const Admin = require("../db/adminSchema");
-const sessionStorage = require('node-sessionstorage')
-
+const Feedback = require("../db/feedbackSchema");
+const sessionStorage = require("node-sessionstorage");
 
 // router.get("/", (req, res) => {
 //   console.log(req.url);
@@ -24,16 +24,14 @@ router.get("/register", (req, res) => {
     );
   }
 });
-router.get("/feedback", async(req, res) => {
-  
-  var facultydata = User.find({ semester: "6"})//testing with "User" data
-        facultydata.exec( function(err,data){
-        if(err) throw err;
+router.get("/feedback", async (req, res) => {
+  var facultydata = User.find({ semester: "6" }); //testing with "User" data
+  facultydata.exec(function (err, data) {
+    if (err) throw err;
 
-        res.render('feedback' ,{record : data});
-        })
-  
-  
+    res.render("feedback", { record: data });
+  });
+
   // res.render('feedback')
   // console.log(sessionStorage.getItem('enrollment'));
 
@@ -44,7 +42,7 @@ router.get("/feedback", async(req, res) => {
   //   const faculties=await Faculty.findOne({ department: department,semester: semester});
   //   const facultyList= faculties.faculty;
   //   console.log(facultyList);
-    
+
   /*Faculty.insertMany(
     [
       {
@@ -66,35 +64,31 @@ router.get("/feedback", async(req, res) => {
   );*/
 });
 
-
 router.get("/result", (req, res) => {
   res.send(`Result Page`);
 });
 
-
 router.get("/admin", (req, res) => {
-   res.sendFile(
-     path.join(__dirname+"../../../public/html/dashboard.html")
-   );
+  res.sendFile(path.join(__dirname + "../../../public/html/dashboard.html"));
 });
 
 //admin login post request
-router.post("/adminlogin", async(req,res) => {
-   const email= req.body.email;
-   const pass= req.body.pass;
-   if(!email || !pass){
-     return res.status(422).json({ error: "Please fill both the fields!" });
-   }
-   try{
-    const admin= await Admin.findOne({ email: email });
-   
-    if(admin.pass== pass){
+router.post("/adminlogin", async (req, res) => {
+  const email = req.body.email;
+  const pass = req.body.pass;
+  if (!email || !pass) {
+    return res.status(422).json({ error: "Please fill both the fields!" });
+  }
+  try {
+    const admin = await Admin.findOne({ email: email });
+
+    if (admin.pass == pass) {
       res.status(201).redirect("/admin");
       console.log("Logged In Successfully.");
-    }else{
+    } else {
       res.status(422).send("Invalid Email/Password.");
     }
-  }catch(error){
+  } catch (error) {
     res.status(422).send("Invalid Email/Password.");
   }
 });
@@ -122,9 +116,9 @@ router.post("/studentlogin", (req, res) => {
       .save()
       .then(() => {
         res.redirect("/feedback");
-        sessionStorage.setItem('enrollment',req.body.enrollment);
+        sessionStorage.setItem("enrollment", req.body.enrollment);
         res.status(201).json({ message: "User Registered Sucessfully" });
-        res.redirect('/feedback')
+        res.redirect("/feedback");
       })
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
@@ -134,17 +128,62 @@ router.post("/studentlogin", (req, res) => {
 });
 
 router.post("/feedback", (req, res) => {
-  console.log(req.body);
-  //   const { name, feedbackBy } = req.body;
-  //   // console.log(req.body.name);
-  //   // console.log(req.body);
-  //   console.log(typeof req.body.feedbackBy);
+  const {
+    voice,
+    speed,
+    Presentation,
+    Communication,
+    Interest,
+    knowledge,
+    assessible,
+    simulation,
+    encourage,
+    puntual,
+    overall,
+    suggestion,
+  } = req.body;
 
-  //   if (!name || !feedbackBy) {
-  //     return res.status(422).json({ error: "Please Fill all the field" });
-  //   }
+  if (
+    !voice ||
+    !speed ||
+    !Presentation ||
+    !Communication ||
+    !Interest ||
+    !knowledge ||
+    !assessible ||
+    !simulation ||
+    !encourage ||
+    !puntual ||
+    !overall
+  ) {
+    return res.status(422).json({ error: "Please Fill all the fields" });
+  }
 
-  //   // Teacher.findOne({ name: name }).then((teacherExist) => {});
+  const feedback = new Feedback({
+    voice,
+    speed,
+    Presentation,
+    Communication,
+    Interest,
+    knowledge,
+    assessible,
+    simulation,
+    encourage,
+    puntual,
+    overall,
+    suggestion,
+  });
+
+  feedback
+    .save()
+    .then(() => {
+      res.redirect("/feedback");
+      res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Failed To Register feedback" });
+      console.log("error posting data :" + err);
+    });
 });
 
 router.post("/addfaculty", (req, res) => {
