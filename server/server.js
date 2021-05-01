@@ -10,6 +10,7 @@ app.set("view engine", "ejs");
 dotenv.config({ path: "../config.env" });
 
 require("./db/connection");
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,8 +34,6 @@ app
   .post("/addfaculty", auth)
   .post("/adminlogin", auth)
   .get("/admin", auth);
-
-const PORT = 5000;
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);
