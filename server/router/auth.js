@@ -47,28 +47,25 @@ router.get("/feedback", async (req, res) => {
     res.render("feedback", { record: data });
     console.log(data)
   });
-  // Faculty.insert(
-    
-  //     {
-  //       department: "CSE",
-  //       semester: 4,
-  //       faculty1: "Thakur Vaibhav Kant Singh",
-  //       faculty2: "satish negi",
-  //       faculty3: "amit baghel",
-  //       faculty4: "Pushpendra chandra",
-  //     }
-  //     // {
-  //     //   department: "CSE",
-  //     //   semester: 6,
-  //     //   faculty: ["Nishi Yadav","Manjit Jaiswal","Amit Baghel","Devendra Kumar Singh","Raksha Pandey","Thakur Vaibhav Kant Singh"]
-  //     // },
-  //     // {
-  //     //   department: "CSE",
-  //     //   semester: 8,
-  //     //   faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
-  //     // }
-    
-  // );
+  /* Faculty.insertMany(
+       [
+        {
+          department: "CSE",
+          semester: 4,
+          faculty: ["Thakur Vaibhav Kant Singh", "Nishi Yadav","Satish Negi", "Nikita Kashyap","Chandrashekhar"]
+        },
+        {
+           department: "CSE",
+           semester: 6,
+           faculty: ["Nishi Yadav","Manjit Jaiswal","Amit Baghel","Devendra Kumar Singh","Raksha Pandey","Thakur Vaibhav Kant Singh"]
+         },
+         {
+           department: "CSE",
+           semester: 8,
+           faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
+         }
+       ]
+   );*/
 });
 
 router.get("/result", (req, res) => {
