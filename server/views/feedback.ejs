@@ -27,6 +27,7 @@
         
                 <form action="/feedback" method="POST" class="feedback-form-2">
                     <div class="feedback-form-box">
+                        <input type="hidden" name= "Professor" value= <%=list.faculty[i]%>  >
                         <h2>Voice Modulation</h2>
                         <div class="options"> 
                             <span>
@@ -264,7 +265,6 @@
 
                     <footer class="buttons">
                         <input type="submit" class="btn-hover color-9" value="SUBMIT">
-                        
                         <input type="reset" class="btn-hover color-9" value="RESET">
                     </footer>
 
@@ -281,7 +281,6 @@
 
             $('.teacher-box>h2').before().click(function()
             {
-                console.log("This is clicked");
                 $(this).parent().children('form').slideToggle();
             })
 

@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 
 // -------faculty feedback schema---------
 const facultyfeedback = new mongoose.Schema({
-  name: String,
-  
+  Professor: {
+    type: String,
+    require: true,
+  },
   voice: {
     type: String,
     required: true,

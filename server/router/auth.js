@@ -5,7 +5,7 @@ const router = express.Router();
 require("../db/connection");
 const User = require("../db/userSchema");
 const path = require("path");
-const Faculty = require("../db/editfaculty");
+const Faculty = require("../db/facultySchema");
 const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
@@ -25,8 +25,6 @@ router.get("/register", (req, res) => {
   }
 });
 router.get("/feedback", async (req, res) => {
-  
-
   // res.render('feedback')
   // console.log(sessionStorage.getItem('enrollment'));
 
@@ -40,15 +38,18 @@ router.get("/feedback", async (req, res) => {
   // });
   // const facultyList = faculties.faculty;
   // console.log(facultyList);
-  var facultydata = Faculty.find({department:department, semester:semester }); //testing with "User" data
+  var facultydata = Faculty.find({
+    department: department,
+    semester: semester,
+  }); //testing with "User" data
   facultydata.exec(function (err, data) {
     if (err) throw err;
-    
+
     res.render("feedback", { record: data });
-    console.log(data)
+    console.log(data);
   });
   // Faculty.insert(
-    
+
   //     {
   //       department: "CSE",
   //       semester: 4,
@@ -67,7 +68,7 @@ router.get("/feedback", async (req, res) => {
   //     //   semester: 8,
   //     //   faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
   //     // }
-    
+
   // );
 });
 
@@ -135,7 +136,66 @@ router.post("/studentlogin", (req, res) => {
 });
 
 router.post("/feedback", (req, res) => {
-      const {voice, speed, Presentation, Communication, Interest,knowledge, assessible, simulation, encourage, puntual, overall } = req.body;
+  console.log(req.body);
+  const {
+    Professor,
+    voice,
+    speed,
+    Presentation,
+    Communication,
+    Interest,
+    knowledge,
+    assessible,
+    simulation,
+    encourage,
+    puntual,
+    overall,
+    suggestion,
+  } = req.body;
+
+  if (
+    !voice ||
+    !speed ||
+    !Presentation ||
+    !Communication ||
+    !Interest ||
+    !knowledge ||
+    !assessible ||
+    !simulation ||
+    !encourage ||
+    !puntual ||
+    !overall
+  ) {
+    return res.status(422).json({ error: "Please Fill all the fields" });
+  }
+
+  const feedback = new Feedback({
+    Professor,
+    voice,
+    speed,
+    Presentation,
+    Communication,
+    Interest,
+    knowledge,
+    assessible,
+    simulation,
+    encourage,
+    puntual,
+    overall,
+    suggestion,
+  });
+
+  feedback
+    .save()
+    .then(() => {
+      res.redirect("/feedback");
+      res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "Failed To Register feedback" });
+      console.log("error posting data :" + err);
+    });
+});
 
       if (
         !voice || !speed || !Presentation || !Communication || !Interest || !knowledge || !assessible || !simulation || !encourage || !puntual ||!overall
