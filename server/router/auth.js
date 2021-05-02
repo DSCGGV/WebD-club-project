@@ -138,6 +138,7 @@ router.post("/studentlogin", (req, res) => {
 router.post("/feedback", (req, res) => {
   console.log(req.body);
   const {
+    Professor,
     voice,
     speed,
     Presentation,
@@ -169,6 +170,7 @@ router.post("/feedback", (req, res) => {
   }
 
   const feedback = new Feedback({
+    Professor,
     voice,
     speed,
     Presentation,

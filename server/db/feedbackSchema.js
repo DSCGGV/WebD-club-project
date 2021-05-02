@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 
 // -------faculty feedback schema---------
 const facultyfeedback = new mongoose.Schema({
-
   Professor: {
     type: String,
     require: true,
-  }
+  },
   voice: {
     type: String,
     required: true,
@@ -73,7 +72,6 @@ const facultyfeedback = new mongoose.Schema({
   },
   suggestion: {
     type: String,
-    required: true,
     min: 0,
     max: 500,
   },
