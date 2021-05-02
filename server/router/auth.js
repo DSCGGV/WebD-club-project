@@ -41,12 +41,12 @@ router.get("/feedback", async (req, res) => {
   var facultydata = Faculty.find({
     department: department,
     semester: semester,
-  }); //testing with "User" data
+  }); 
   facultydata.exec(function (err, data) {
     if (err) throw err;
 
     res.render("feedback", { record: data });
-    console.log(data);
+    // console.log(data);
   });
   // Faculty.insert(
 
@@ -197,27 +197,6 @@ router.post("/feedback", (req, res) => {
     });
 });
 
-      if (
-        !voice || !speed || !Presentation || !Communication || !Interest || !knowledge || !assessible || !simulation || !encourage || !puntual ||!overall
-      ) {
-        return res.status(422).json({ error: "Please Fill all the fields" });
-      }
-
-      const feedback = new Feedback({
-        voice,speed,Presentation,Communication,Interest,knowledge,assessible,simulation,encourage,puntual,overall
-      });
-
-      feedback
-        .save()
-        .then(() => {
-          res.redirect("/");
-          res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
-        })
-        .catch((err) => {
-          res.status(500).json({ error: "Failed To Register feedback" });
-          console.log("error posting data :" + err);
-        });
-});
 
 // router.post("/addfaculty", (req, res) => {
 //   // crud faculty details code

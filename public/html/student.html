@@ -77,14 +77,17 @@
                 
                 <div class="box">
                     <h3>Session</h3>
-                    <input type="text" name="session" id="session" list="sessions" placeholder="Enter Your Session"
-                        required>
-                    <datalist id="sessions">
-                        <option value="2017-18"></option>
-                        <option value="2018-19"></option>
-                        <option value="2019-20"></option>
-                        <option value="2020-21"></option>
-                    </datalist>
+                    
+                    <select name="session" id="session" class="form-control">
+                                     
+                        <datalist id="sessions">
+                            <option selected="true" disabled="disabled">Enter your session</option>
+                            <option value="2017-18">2017-18</option>
+                            <option value="2018-19">2018-19</option>
+                            <option value="2019-20">2019-20</option>
+                            <option value="2020-21">2020-21</option>
+                        </datalist>
+                    </select>
                 </div>
             </div>
 
