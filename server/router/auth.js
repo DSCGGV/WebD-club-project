@@ -25,8 +25,6 @@ router.get("/register", (req, res) => {
   }
 });
 router.get("/feedback", async (req, res) => {
-  
-
   // res.render('feedback')
   // console.log(sessionStorage.getItem('enrollment'));
 
@@ -40,15 +38,18 @@ router.get("/feedback", async (req, res) => {
   // });
   // const facultyList = faculties.faculty;
   // console.log(facultyList);
-  var facultydata = Faculty.find({department:department, semester:semester }); //testing with "User" data
+  var facultydata = Faculty.find({
+    department: department,
+    semester: semester,
+  }); //testing with "User" data
   facultydata.exec(function (err, data) {
     if (err) throw err;
-    
+
     res.render("feedback", { record: data });
-    console.log(data)
+    console.log(data);
   });
   // Faculty.insert(
-    
+
   //     {
   //       department: "CSE",
   //       semester: 4,
@@ -67,7 +68,7 @@ router.get("/feedback", async (req, res) => {
   //     //   semester: 8,
   //     //   faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
   //     // }
-    
+
   // );
 });
 
@@ -135,6 +136,7 @@ router.post("/studentlogin", (req, res) => {
 });
 
 router.post("/feedback", (req, res) => {
+  console.log(req.body);
   const {
     voice,
     speed,
@@ -151,13 +153,34 @@ router.post("/feedback", (req, res) => {
   } = req.body;
 
   if (
-    !voice || !speed || !Presentation || !Communication || !Interest || !knowledge || !assessible || !simulation || !encourage || !puntual ||!overall
+    !voice ||
+    !speed ||
+    !Presentation ||
+    !Communication ||
+    !Interest ||
+    !knowledge ||
+    !assessible ||
+    !simulation ||
+    !encourage ||
+    !puntual ||
+    !overall
   ) {
     return res.status(422).json({ error: "Please Fill all the fields" });
   }
 
   const feedback = new Feedback({
-    voice,speed,Presentation,Communication,Interest,knowledge,assessible,simulation,encourage,puntual,overall,suggestion,
+    voice,
+    speed,
+    Presentation,
+    Communication,
+    Interest,
+    knowledge,
+    assessible,
+    simulation,
+    encourage,
+    puntual,
+    overall,
+    suggestion,
   });
 
   feedback
