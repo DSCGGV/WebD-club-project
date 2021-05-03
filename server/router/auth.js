@@ -48,23 +48,40 @@ router.get("/feedback", async (req, res) => {
     res.render("feedback", { record: data });
     console.log(data);
   });
-  /* Faculty.insertMany(
+  /*Faculty.insertMany(
        [
         {
-          department: "CSE",
-          semester: 4,
-          faculty: ["Thakur Vaibhav Kant Singh", "Nishi Yadav","Satish Negi", "Nikita Kashyap","Chandrashekhar"]
+          department: "ECE",
+          semester: 6,
+          faculty: 
+          [
+             
+          ]
         },
         {
-           department: "CSE",
-           semester: 6,
-           faculty: ["Nishi Yadav","Manjit Jaiswal","Amit Baghel","Devendra Kumar Singh","Raksha Pandey","Thakur Vaibhav Kant Singh"]
+           department: "ECE",
+           semester: 8,
+           faculty: 
+           [
+             
+           ]
          },
          {
-           department: "CSE",
-           semester: 8,
-           faculty: ["Princy Matlani","Manish Shrivastava","Nishant Behar"]
-         }
+          department: "IPE",
+          semester: 6,
+          faculty:
+           [
+              
+           ]
+        },
+        {
+          department: "IPE",
+          semester: 8,
+          faculty: 
+          [
+             
+          ]
+        },
        ]
    );*/
 });
