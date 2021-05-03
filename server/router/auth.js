@@ -10,6 +10,8 @@ const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
 
+
+
 // router.get("/", (req, res) => {
 //   console.log(req.url);
 //   res.send(`Home Page`);
@@ -76,9 +78,25 @@ router.get("/result", (req, res) => {
   res.send(`Result Page`);
 });
 
+
 router.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname + "../../../public/html/dashboard.html"));
+  res.render('dashboard')
 });
+
+router.get("/editFaculty", (req, res) => {
+  res.render('edit_faculty')
+});
+
+router.get("/departmentreport", (req, res) => {
+  res.render('dept_wise')
+});
+
+router.get("/facultyreport", (req, res) => {
+  res.render('faculty_wise')
+});
+
+
+
 
 //admin login post request
 router.post("/adminlogin", async (req, res) => {

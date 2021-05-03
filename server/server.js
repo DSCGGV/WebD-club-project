@@ -7,6 +7,7 @@ const ejs = require("ejs");
 
 app.set("view engine", "ejs");
 
+
 dotenv.config({ path: "../config.env" });
 
 require("./db/connection");
@@ -33,7 +34,12 @@ app
   .post("/feedback", auth)
   .post("/addfaculty", auth)
   .post("/adminlogin", auth)
-  .get("/admin", auth);
+  .get("/admin", auth)
+  .get("/departmentreport",auth)
+  .get("/facultyreport",auth)
+  .get("/dashboard", auth)
+  .get("/editFaculty", auth);
+  
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);
