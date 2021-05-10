@@ -147,7 +147,6 @@ router.post("/feedback", (req, res) => {
     encourage,
     puntual,
     overall,
-    suggestion,
   } = req.body;
 
   if (
@@ -162,40 +161,62 @@ router.post("/feedback", (req, res) => {
     !encourage ||
     !puntual ||
     !overall
-  ) {
+  ){
     return res.status(422).json({ error: "Please Fill all the fields" });
   }
+  
+  Feedback.updateOne(
+    { Professor : req.body.Professor },
+    { $inc:{ count:1,
+      voice_total:req.body.voice,
+      speed_total:req.body.speed,
+      Presentation_total:req.body.Presentation,
+      Communication_total:req.body.Communication,
+      Interest_total:req.body.Interest,
+      knowledge_total:req.body.knowledge,
+      assessible_total:req.body.assessible,
+      simulation_total:req.body.simulation,
+      encourage_total:req.body.encourage,
+      punctual_total:req.body.puntual,
+      overall_total:req.body.overall,
+    },
+    // voice_avg : {$divide:["voice_total" , "count"]  }
+  
+  }).then(()=> {
+    console.log("data updated  successfully!!")
+  })            
+  
+  // const feedback = new Feedback({
+  //   Professor,
+  //   voice,
+  //   speed,
+  //   Presentation,
+  //   Communication,
+  //   Interest,
+  //   knowledge,
+  //   assessible,
+  //   simulation,
+  //   encourage,
+  //   puntual,
+  //   overall
+  // });
 
-  const feedback = new Feedback({
-    Professor,
-    voice,
-    speed,
-    Presentation,
-    Communication,
-    Interest,
-    knowledge,
-    assessible,
-    simulation,
-    encourage,
-    puntual,
-    overall,
-    suggestion,
+  // feedback
+  //   .save()
+  //   .then(() => {
+  //     res.redirect("/feedback");
+  //     res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
+  //     alert("Feedback  Registered  Sucessfully")
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).json({ error: "Failed To Register feedback" });
+  //     console.log("error posting data :" + err);
+  //   });   
+  
   });
 
-  feedback
-    .save()
-    .then(() => {
-      res.redirect("/feedback");
-      res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: "Failed To Register feedback" });
-      console.log("error posting data :" + err);
-    });
-});
 
-
-// router.post("/addfaculty", (req, res) => {
+//  router.post("/addfaculty", (req, res) => {
 //   // crud faculty details code
 //   console.log("/editfaculty called");
 //   const { department, faculty } = req.body;

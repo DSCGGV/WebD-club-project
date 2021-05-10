@@ -1,77 +1,91 @@
 const mongoose = require("mongoose");
 
 // -------faculty feedback schema---------
-const facultyfeedback = new mongoose.Schema({
+var facultyfeedback = new mongoose.Schema({
   Professor: {
     type: String,
-    require: true,
   },
-  voice: {
-    type: String,
-    required: true,
-  },
-  speed: {
+  
+  count :{ type:Number},
+  
+  voice_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+    
   },
-  Presentation: {
+  
+  voice_avg:{ type:Number},
+  
+  speed_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+    
   },
-  Communication: {
+  
+  speed_avg:{ type:Number},
+  
+  Presentation_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+    
   },
-  Interest: {
+
+  Presentation_avg:{ type:Number},
+  
+  Communication_total: {
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+
   },
-  knowledge: {
+
+  Communication_avg:{ type:Number},
+  
+  Interest_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
   },
-  assessible: {
+
+  Interest_avg:{ type:Number},
+  
+  knowledge_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+
   },
-  simulation: {
+
+  kowledge_avg:{ type:Number},
+  
+  assessible_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+
   },
-  encourage: {
+  
+  assessible_avg:{ type:Number},
+  
+  simulation_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+    
   },
-  puntual: {
+
+  simulation_avg:{ type:Number},
+  
+  encourage_total:{
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+
   },
-  overall: {
+
+  encourage_avg:{ type:Number},
+  
+  punctual_total: {
     type: Number,
-    required: true,
-    min: 0,
-    max: 5,
-  }
+
+  },
+
+  punctual_avg:{ type:Number},
+  
+  overall_total: {
+    type: Number,
+  },
+
+  overall_avg:{ type:Number},
+
+  
 });
 
-const Feedback = mongoose.model("feedback", facultyfeedback);
+var Feedback = mongoose.model("feedback", facultyfeedback);
 
 module.exports = Feedback;
