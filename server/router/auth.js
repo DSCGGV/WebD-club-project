@@ -9,6 +9,7 @@ const Faculty = require("../db/facultySchema");
 const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
+const { find, count } = require("../db/feedbackSchema");
 
 
 
@@ -165,55 +166,86 @@ router.post("/feedback", (req, res) => {
     return res.status(422).json({ error: "Please Fill all the fields" });
   }
   
-  Feedback.updateOne(
-    { Professor : req.body.Professor },
-    { $inc:{ count:1,
-      voice_total:req.body.voice,
-      speed_total:req.body.speed,
-      Presentation_total:req.body.Presentation,
-      Communication_total:req.body.Communication,
-      Interest_total:req.body.Interest,
-      knowledge_total:req.body.knowledge,
-      assessible_total:req.body.assessible,
-      simulation_total:req.body.simulation,
-      encourage_total:req.body.encourage,
-      punctual_total:req.body.puntual,
-      overall_total:req.body.overall,
-    },
-    // voice_avg : {$divide:["voice_total" , "count"]  }
-  
-  }).then(()=> {
-    console.log("data updated  successfully!!")
-  })            
-  
-  // const feedback = new Feedback({
-  //   Professor,
-  //   voice,
-  //   speed,
-  //   Presentation,
-  //   Communication,
-  //   Interest,
-  //   knowledge,
-  //   assessible,
-  //   simulation,
-  //   encourage,
-  //   puntual,
-  //   overall
-  // });
+  Feedback.exists({Professor: req.body.Professor} , function(err,exist){
+    if(exist==true){   
+      
+      Feedback.updateOne(
+        { Professor : req.body.Professor },
+        { 
+            $inc:{ count:1,
+            voice_total:req.body.voice,
+            speed_total:req.body.speed,
+            Presentation_total:req.body.Presentation,
+            Communication_total:req.body.Communication,
+            Interest_total:req.body.Interest,
+            knowledge_total:req.body.knowledge,
+            assessible_total:req.body.assessible,
+            simulation_total:req.body.simulation,
+            encourage_total:req.body.encourage,
+            punctual_total:req.body.puntual,
+            overall_total:req.body.overall
+            },
+            $set: {voice_avg : {$divide : [ "$voice_total" , "$count"]}}
+           
+          }
+      )
+      
+           
+      // Feedback.updateOne(
+      //   { Professor : req.body.Professor },
+      //   {
+      //     $set:{ voice_avg: voice_total/count}
+      //   }
 
-  // feedback
-  //   .save()
-  //   .then(() => {
-  //     res.redirect("/feedback");
-  //     res.status(201).json({ message: "Feedback  Registered  Sucessfully" });
-  //     alert("Feedback  Registered  Sucessfully")
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).json({ error: "Failed To Register feedback" });
-  //     console.log("error posting data :" + err);
-  //   });   
+      // )
+      // .then(()=> {
+      //   console.log("data updated successfully!!")
+      // }).catch((err) => {
+      //   res.status(500).json({ error: "Failed To Register feedback" });
+      //   console.log("error posting data :" + err);
+      // });
+    
+    }else{
+      Feedback.create(
+        { 
+          Professor : req.body.Professor,
+          count :1,
+          voice_total:req.body.voice,
+          speed_total:req.body.speed,
+          Presentation_total:req.body.Presentation,
+          Communication_total:req.body.Communication,
+          Interest_total:req.body.Interest,
+          knowledge_total:req.body.knowledge,
+          assessible_total:req.body.assessible,
+          simulation_total:req.body.simulation,
+          encourage_total:req.body.encourage,
+          punctual_total:req.body.puntual,
+          overall_total:req.body.overall,
+          
+          voice_avg:req.body.voice,
+          speed_avg:req.body.speed,
+          Presentation_avg:req.body.Presentation,
+          Communication_avg:req.body.Communication,
+          Interest_avg:req.body.Interest,
+          knowledge_avg:req.body.knowledge,
+          assessible_avg:req.body.assessible,
+          simulation_avg:req.body.simulation,
+          encourage_avg:req.body.encourage,
+          punctual_avg:req.body.puntual,
+          overall_avg:req.body.overall,
+        }
+      ).then(()=> {
+            console.log("data inserted  successfully!!")
+      }).catch((err) => {
+            res.status(500).json({ error: "Failed To Register feedback" });
+            console.log("error posting data :" + err);
+        });
+
+    }
+  })
   
-  });
+  
+});
 
 
 //  router.post("/addfaculty", (req, res) => {
