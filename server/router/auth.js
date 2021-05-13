@@ -168,8 +168,6 @@ router.post("/feedback", (req, res,) => {
   
   Feedback.exists({Professor: req.body.Professor} , function(err,exist){
     if(exist==true){   
-      
-      Feedback.findOne({Professor : req.body.Professor}, function(err,data){
         
       Feedback.updateOne(
         { Professor : req.body.Professor },
@@ -189,20 +187,30 @@ router.post("/feedback", (req, res,) => {
             },
             
           }
-      )
-      var avg_voice = data.voice_total/data.count
-      var avg_speed = data.speed_total/data.count
-      var avg_Presentation = data.Presentation_total/data.count
-      var avg_Communication = data.Communication_total/data.count
-      var avg_Interest = data.Interest_total/data.count
-      var avg_knowledge = data.knowledge_total/data.count
-      var avg_assessible = data.assessible_total/data.count
-      var avg_simulation = data.simulation_total/data.count
-      var avg_encourage = data.encourage_total/data.count
-      var avg_punctual = data.punctual_total/data.count
-      var avg_overall = data.overall_total/data.count
-      // console.log(avg)    
-      Feedback.updateOne(
+      ).then(()=> {
+        console.log("data incremented successfully!!")
+        
+        }).catch((err) => {
+        res.status(500).json({ error: "Failed To increment data" });
+        console.log("error incrementing data :" + err);
+        });
+
+      Feedback.findOne({Professor : req.body.Professor}, function(err,data){
+      
+          var avg_voice = data.voice_total/data.count
+          var avg_speed = data.speed_total/data.count
+          var avg_Presentation = data.Presentation_total/data.count
+          var avg_Communication = data.Communication_total/data.count
+          var avg_Interest = data.Interest_total/data.count
+          var avg_knowledge = data.knowledge_total/data.count
+          var avg_assessible = data.assessible_total/data.count
+          var avg_simulation = data.simulation_total/data.count
+          var avg_encourage = data.encourage_total/data.count
+          var avg_punctual = data.punctual_total/data.count
+          var avg_overall = data.overall_total/data.count
+           
+          
+        Feedback.updateOne(
         { Professor : req.body.Professor },
         {
           $set : {
@@ -222,10 +230,10 @@ router.post("/feedback", (req, res,) => {
         }  
       )
       .then(()=> {
-        console.log("data incremented successfully!!")
+        console.log("data avg successfully!!")
         
         }).catch((err) => {
-        res.status(500).json({ error: "Failed To increment data" });
+        res.status(500).json({ error: "Failed To avg data" });
         console.log("error incrementing data :" + err);
         });
       
@@ -263,7 +271,7 @@ router.post("/feedback", (req, res,) => {
           overall_avg:req.body.overall,
         }
       ).then(()=> {
-            console.log("data inserted  successfully!!")
+            console.log("data added successfully!!")
       }).catch((err) => {
             res.status(500).json({ error: "Failed To Register feedback" });
             console.log("error posting data :" + err);
@@ -272,19 +280,6 @@ router.post("/feedback", (req, res,) => {
     }
   })
   
- 
-  // Feedback.find({ Professor : req.body.Professor}).forEach(
-  //     function(elem){
-  //       Feedback.updateOne(
-  //           { Professor : req.body.Professor},
-  //           {
-  //             $set: { voice_avg : voice_total/count}
-  //           }
-  //       )
-  //     }
-  //   )
-    
-return;
 });
 
 
