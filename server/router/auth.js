@@ -72,7 +72,17 @@ router.get("/departmentreport", (req, res) => {
 });
 
 router.get("/facultyreport", (req, res) => {
-  res.render('faculty_wise')
+  
+  Feedback.findOne({Professor:"Ms. Raksha Pandey"}, function(err, result){
+    res.render('faculty_wise' , {record :result})
+    console.log(result)
+  })
+ 
+  // Feedback.findOne({Professor :"Ms. Raksha Pandey"} , function(err, data ){
+
+  //   res.render('faculty_wise' , {chartData: data})
+  // })
+  
 });
 
 
