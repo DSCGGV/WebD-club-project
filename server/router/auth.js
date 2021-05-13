@@ -133,7 +133,7 @@ router.post("/studentlogin", (req, res) => {
   });
 });
 
-router.post("/feedback", (req, res) => {
+router.post("/feedback", (req, res,) => {
   console.log(req.body);
   const {
     Professor,
@@ -169,6 +169,8 @@ router.post("/feedback", (req, res) => {
   Feedback.exists({Professor: req.body.Professor} , function(err,exist){
     if(exist==true){   
       
+      Feedback.findOne({Professor : req.body.Professor}, function(err,data){
+        
       Feedback.updateOne(
         { Professor : req.body.Professor },
         { 
@@ -185,26 +187,52 @@ router.post("/feedback", (req, res) => {
             punctual_total:req.body.puntual,
             overall_total:req.body.overall
             },
-            $set: {voice_avg : {$divide : [ "$voice_total" , "$count"]}}
-           
+            
           }
       )
+      var avg_voice = data.voice_total/data.count
+      var avg_speed = data.speed_total/data.count
+      var avg_Presentation = data.Presentation_total/data.count
+      var avg_Communication = data.Communication_total/data.count
+      var avg_Interest = data.Interest_total/data.count
+      var avg_knowledge = data.knowledge_total/data.count
+      var avg_assessible = data.assessible_total/data.count
+      var avg_simulation = data.simulation_total/data.count
+      var avg_encourage = data.encourage_total/data.count
+      var avg_punctual = data.punctual_total/data.count
+      var avg_overall = data.overall_total/data.count
+      // console.log(avg)    
+      Feedback.updateOne(
+        { Professor : req.body.Professor },
+        {
+          $set : {
+                   voice_avg : avg_voice.toFixed(1),
+                   speed_avg : avg_speed.toFixed(1),
+                   Presentation_avg : avg_Presentation.toFixed(1),
+                   Communication_avg : avg_Communication.toFixed(1),
+                   Interest_avg : avg_Interest.toFixed(1),
+                   knowledge_avg : avg_knowledge.toFixed(1),
+                   assessible_avg : avg_assessible.toFixed(1),
+                   simulation_avg : avg_simulation.toFixed(1),
+                   encourage_avg : avg_encourage.toFixed(1),
+                   punctual_avg : avg_punctual.toFixed(1),
+                   overall_avg : avg_overall.toFixed(1),
+                  
+                  }
+        }  
+      )
+      .then(()=> {
+        console.log("data incremented successfully!!")
+        
+        }).catch((err) => {
+        res.status(500).json({ error: "Failed To increment data" });
+        console.log("error incrementing data :" + err);
+        });
       
-           
-      // Feedback.updateOne(
-      //   { Professor : req.body.Professor },
-      //   {
-      //     $set:{ voice_avg: voice_total/count}
-      //   }
+      })
 
-      // )
-      // .then(()=> {
-      //   console.log("data updated successfully!!")
-      // }).catch((err) => {
-      //   res.status(500).json({ error: "Failed To Register feedback" });
-      //   console.log("error posting data :" + err);
-      // });
-    
+      
+      
     }else{
       Feedback.create(
         { 
@@ -244,7 +272,19 @@ router.post("/feedback", (req, res) => {
     }
   })
   
-  
+ 
+  // Feedback.find({ Professor : req.body.Professor}).forEach(
+  //     function(elem){
+  //       Feedback.updateOne(
+  //           { Professor : req.body.Professor},
+  //           {
+  //             $set: { voice_avg : voice_total/count}
+  //           }
+  //       )
+  //     }
+  //   )
+    
+return;
 });
 
 
