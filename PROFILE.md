@@ -18,3 +18,8 @@
 * Email: singh.yuvraj1047@gmail.com
 * Github: [Yuvraj Singh](@yuvraj-2503)
 * LinkedIn: [Yuvraj Singh](https://www.linkedin.com/in/yuvraj-2503/)
+
+## Prayas Kumar
+* Email: prayas.prithvirajpratap7@gmail.com
+* Mobile: 6281044986
+* Github: [Prayas Kumar](https://github.com/prayas7102)
