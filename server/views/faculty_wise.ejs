@@ -1,113 +1,142 @@
-
 <!DOCTYPE html>
 <html lang="zxx">
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="vendors/themefy_icon/themify-icons.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"
+      integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg=="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <link rel="stylesheet" href="../css/main.css" />
 
     <script src="../test.js"></script>
     <style>
-      #myChart{
+      #myChart {
         width: 60%;
         height: 100px;
       }
     </style>
-</head>
-<body class="crm_body_bg">
-
+  </head>
+  <body class="crm_body_bg">
     <nav class="sidebar">
-        <div class="logo d-flex justify-content-between">
-            <a ><img src="../images/logo.jpeg" alt=""></a>
-            <div class="sidebar_close_icon d-lg-none">
-                <i class="ti-close"></i>
-            </div>
+      <div class="logo d-flex justify-content-between">
+        <a><img src="../images/logo.jpeg" alt="" /></a>
+        <div class="sidebar_close_icon d-lg-none">
+          <i class="ti-close"></i>
         </div>
-        <ul id="sidebar_menu">
-            <li class="">
-              <a href="/admin" aria-expanded="false">
-              <img src="../images/dashboard.svg" alt="">
-                <span>Dashboard</span>
-              </a>
-            </li>
-    
-            <li class="">
-              <a  href="#" aria-expanded="false">
-                <img src="../images/9.svg" alt="">
-                <span>Students Responses</span>
-              </a>
-            </li>
-            
-    
-            <li class="">
-              <a  href="/editFaculty" aria-expanded="false">
-                <img src="../images/10.svg" alt="">
-                <span>Add Faculty Details</span>
-              </a>
-            </li>
-            
-    
-            <li class="mm-active">
-              <a href="/facultyreport"  aria-expanded="false">
-                <img src="../images/001-teacher.svg" alt="">
-                <span>Generate Report for Faculties</span>
-              </a>
-            </li>
-    
-            <li class="">
-                <a href="/departmentreport" aria-expanded="false">
-                  <img src="../images/department.svg" alt="">
-                  <span>Generate Report for Department</span>
-                </a>
-              </li>
-    
-              <li class="">
-                <a href="#" aria-expanded="false">
-                  <img src="../images/002-logout.svg" alt="">
-                  <span>Logout</span>
-                </a>
-              </li>
-    
-          </ul>
+      </div>
+      <ul id="sidebar_menu">
+        <li class="">
+          <a href="/admin" aria-expanded="false">
+            <img src="../images/dashboard.svg" alt="" />
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="#" aria-expanded="false">
+            <img src="../images/9.svg" alt="" />
+            <span>Students Responses</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="/editFaculty" aria-expanded="false">
+            <img src="../images/10.svg" alt="" />
+            <span>Add Faculty Details</span>
+          </a>
+        </li>
+
+        <li class="mm-active">
+          <a href="/facultyreport" aria-expanded="false">
+            <img src="../images/001-teacher.svg" alt="" />
+            <span>Generate Report for Faculties</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="/departmentreport" aria-expanded="false">
+            <img src="../images/department.svg" alt="" />
+            <span>Generate Report for Department</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="#" aria-expanded="false">
+            <img src="../images/002-logout.svg" alt="" />
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
     </nav>
 
     <section class="container main_content dashboard_part">
-        
-        <h1>Faculty-wise charts</h1>
-        <canvas id="myChart"></canvas>
-
+      <h1>Faculty-wise charts</h1>
+      <canvas id="myChart"></canvas>
     </section>
-   <script>
-     var ctx = document.getElementById("myChart");
-     var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: ["Voice", "Speed", "Presentation", "Communication", "Interest", "Knowledge" , "Assessible" , "Simulation" , "Encourage" , "Overall"],
-          datasets: [{
-              label: '<%= record.Professor%>',
-              data: [<%= record.voice_avg %> , <%= record.speed_avg%>,<%= record.Presentation_avg%>,<%= record.Communication_avg%>,<%= record.Interest_avg%>,<%= record.knowledge_avg%>,<%= record.assessible_avg%>,<%= record.simulation_avg%>,<%= record.encourage_avg%>,<%= record.overall_avg%>]
-          }]
-      },
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Voice",
+            "Speed",
+            "Presentation",
+            "Communication",
+            "Interest",
+            "Knowledge",
+            "Assessible",
+            "Simulation",
+            "Encourage",
+            "Overall",
+          ],
+          datasets: [
+            {
+              label: "<%= record.Professor%>",
+              data: [
+                "<%= record.voice_avg %>",
+                "<%= record.speed_avg%>",
+                "<%= record.Presentation_avg%>",
+                "<%= record.Communication_avg%>",
+                "<%= record.Interest_avg%>",
+                "<%= record.knowledge_avg%>",
+                "<%= record.assessible_avg%>",
+                "<%= record.simulation_avg%>",
+                "<%= record.encourage_avg%>",
+                "<%= record.overall_avg%>",
+              ],
+            },
+          ],
+        },
       });
-   </script>
-    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
-<!-- <script src="../js/apex_realestate.js"></script> -->
+    </script>
 
-<script src="../js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+    <!-- <script src="../js/apex_realestate.js"></script> -->
 
-
-
-</body>
+    <script src="../js/custom.js"></script>
+  </body>
 </html>
