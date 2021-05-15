@@ -72,17 +72,62 @@ router.get("/departmentreport", (req, res) => {
 });
 
 router.get("/facultyreport", (req, res) => {
-  
-  Feedback.findOne({Professor:"Ms. Raksha Pandey"}, function(err, result){
-    res.render('faculty_wise' , {record :result})
-    console.log(result)
-  })
- 
-  // Feedback.findOne({Professor :"Ms. Raksha Pandey"} , function(err, data ){
+    res.render('faculty_wise_report/faculty_wise')
+});
 
-  //   res.render('faculty_wise' , {chartData: data})
-  // })
+router.post("/facultyreport", (req, res)=>{
+  console.log(req.body.department)
+  if(req.body.department == "CSE"){
+    Feedback.find({department: "CSE"}, function(err, result){
+      console.log(result)
+      res.render('../views/faculty_wise_report/CSE.ejs' , {record: result})
+    })
+  }
+
+  if(req.body.department == "MECH"){
+    Feedback.find({department: "MECH"}, function(err, result){
+      console.log(result)
+      res.render('../views/faculty_wise_report/mechanical.ejs' , {record: result})
+    })
+  }
   
+  if(req.body.department == "it"){
+    Feedback.find({department: "IT"}, function(err, result){
+      console.log(result)
+      res.render('../views/faculty_wise_report/IT.ejs' , {record: result})
+    })
+  }
+  
+  if(req.body.department == "electronics"){
+    Feedback.find({department: "ECE"}, function(err, result){
+      console.log(result)
+      res.render('../views/faculty_wise_report/electronics.ejs' , {record: result})
+    })
+  }
+
+  
+  if(req.body.department == "chemical"){
+    Feedback.find({department: "CHEM"}, function(err, result){
+      console.log(result)
+      res.render('../views/faculty_wise_report/chemical.ejs' , {record: result})
+    })
+  }
+
+  
+  if(req.body.department == "civil"){
+    Feedback.find({department: "CIVIL"}, function(err, result){
+      console.log(result)
+      res.render('../views/faculty_wise_report/civil.ejs' , {record: result})
+    })
+  }
+
+  
+  if(req.body.department == "ipe"){
+    Feedback.find({department: "IPE"}, function(err, result){
+      console.log(result)
+      res.render('../views/faculty_wise_report/IP.ejs' , {record: result})
+    })
+  }
 });
 
 
@@ -133,18 +178,24 @@ router.post("/studentlogin", (req, res) => {
       .then(() => {
         res.redirect("/feedback");
         sessionStorage.setItem("enrollment", req.body.enrollment);
+        sessionStorage.setItem("Department", department);
+        // console.log(sessionStorage.getItem("Department"))
         res.status(201).json({ message: "User Registered Sucessfully" });
         res.redirect("/feedback");
       })
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
         console.log("error posting data :" + err);
+        
       });
+      console.log(sessionStorage.getItem("Department"))
   });
+  
 });
 
 router.post("/feedback", (req, res,) => {
-  console.log(req.body);
+  var faculty_department = sessionStorage.getItem("Department")
+  // console.log(req.body);
   const {
     Professor,
     voice,
@@ -235,12 +286,13 @@ router.post("/feedback", (req, res,) => {
                    encourage_avg : avg_encourage.toFixed(1),
                    punctual_avg : avg_punctual.toFixed(1),
                    overall_avg : avg_overall.toFixed(1),
-                  
+        
                   }
         }  
       )
       .then(()=> {
         console.log("data avg successfully!!")
+        // console.log(department)
         
         }).catch((err) => {
         res.status(500).json({ error: "Failed To avg data" });
@@ -255,6 +307,7 @@ router.post("/feedback", (req, res,) => {
       Feedback.create(
         { 
           Professor : req.body.Professor,
+          department :faculty_department,
           count :1,
           voice_total:req.body.voice,
           speed_total:req.body.speed,

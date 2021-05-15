@@ -16,6 +16,10 @@
       #myChart{
         width: 60%;
         height: 100px;
+        
+      }
+      .chart_div{
+        margin:40px 30px;
       }
     </style>
 </head>
@@ -79,22 +83,28 @@
     <section class="container main_content dashboard_part">
         
         <h1>Faculty-wise charts</h1>
-        <canvas id="myChart"></canvas>
-
+        <%for(list of record){%>
+        <%for(i=0 ; i<record.length ; i++){%>
+        <div class="chart_div">
+          <canvas id="myChart<%=i%>"></canvas>
+        </div>
+        <script>
+                var ctx = document.getElementById("myChart<%=i%>");
+                var myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels: ["Voice", "Speed", "Presentation", "Communication", "Interest", "Knowledge" , "Assessible" , "Simulation" , "Encourage" , "Overall"],
+                      datasets: [{
+                          label: '<%= record[i].Professor%>',
+                          data: [<%= record[i].voice_avg %> , <%= record[i].speed_avg%>,<%= record[i].Presentation_avg%>,<%= record[i].Communication_avg%>,<%= record[i].Interest_avg%>,<%= record[i].knowledge_avg%>,<%= record[i].assessible_avg%>,<%= record[i].simulation_avg%>,<%= record[i].encourage_avg%>,<%= record[i].overall_avg%>]
+                      }]
+                  },
+                  });
+        </script>
+        <%}%>
+        <%}%>
     </section>
-   <script>
-     var ctx = document.getElementById("myChart");
-     var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: ["Voice", "Speed", "Presentation", "Communication", "Interest", "Knowledge" , "Assessible" , "Simulation" , "Encourage" , "Overall"],
-          datasets: [{
-              label: '<%= record.Professor%>',
-              data: [<%= record.voice_avg %> , <%= record.speed_avg%>,<%= record.Presentation_avg%>,<%= record.Communication_avg%>,<%= record.Interest_avg%>,<%= record.knowledge_avg%>,<%= record.assessible_avg%>,<%= record.simulation_avg%>,<%= record.encourage_avg%>,<%= record.overall_avg%>]
-          }]
-      },
-      });
-   </script>
+   
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
