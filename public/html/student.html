@@ -81,7 +81,7 @@
                     <select name="session" id="session" class="form-control">
                                      
                         <datalist id="sessions">
-                            <option selected="true" disabled="disabled">Enter your session</option>
+                            <option selected="true" disabled="disabled">Choose your session</option>
                             <option value="2017-18">2017-18</option>
                             <option value="2018-19">2018-19</option>
                             <option value="2019-20">2019-20</option>
@@ -94,36 +94,43 @@
             <div class="teacher">
                 <div class="box">
                     <h3>Course</h3>
-                    <input type="text" name="course" id="course" list="courses" placeholder="Enter Your Course" required>
-                    <datalist id="courses">
-                        <option value="B.Tech"></option>
-                        <option value="M.Tech"></option>
-                        <option value="Ph.D"></option>
-                    </datalist>
+                    <select name="course" id="course" class="form-control">
+                        <datalist id="courses">
+                            <option selected="true" disabled="disabled">Choose your Course</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="M.Tech">M.Tech</option>
+                            <option value="Ph.D">Ph.D</option>
+                        </datalist>
+                    </select>
                 </div>
                 <div class="box">
                     <h3>Semester</h3>
-                    <input type="text" name="semester" id="semester" list="semesters" placeholder="Enter Your semester"
-                        size="3" required>
-                    <datalist id="semesters">
-                        <option value="4"></option>
-                        <option value="6"></option>
-                        <option value="8"></option>
-                    </datalist>
+                    <select name="semester" id="semester" class="form-control">
+                        <datalist id="semesters">
+                            <option selected="true" disabled="disabled">Choose your Semester</option>
+                            <option value="1">1</option>
+                            <option value="4">4</option>
+                            <option value="6">6</option>
+                            <option value="8">8</option>
+                        </datalist>
+                    </select>
                 </div>
                 
                 <div class="box">
                     <h3>Department</h3>
-                    <input type="text" name="department" id="department" list="departments" placeholder="Enter Your department" required>
-                    <datalist id="departments">
-                        <option value="CSE"></option>
-                        <option value="IT"></option>
-                        <option value="ECE"></option>
-                        <option value="MECH"></option>
-                        <option value="CIVIL"></option>
-                        <option value="CHEM"></option>
-                        <option value="IPE"></option>
-                    </datalist>
+                    
+                    <select name="department" id="department" class="form-control">
+                        <datalist id="departments">
+                            <option selected="true" disabled="disabled">Choose your department</option>
+                            <option value="CSE">CSE</option>
+                            <option value="IT">IT</option>
+                            <option value="ECE">ECE</option>
+                            <option value="MECH">MECH</option>
+                            <option value="CIVIL">CIVIL</option>
+                            <option value="CHEM">CHEM</option>
+                            <option value="IPE">IPE</option>
+                        </datalist>
+                    </select>
                 </div>
             </div>
         </div>
