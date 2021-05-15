@@ -37,6 +37,7 @@ app
   .get("/admin", auth)
   .get("/departmentreport",auth)
   .get("/facultyreport",auth)
+  .post("/facultyreport",auth)
   .get("/dashboard", auth)
   .get("/editFaculty", auth);
   
