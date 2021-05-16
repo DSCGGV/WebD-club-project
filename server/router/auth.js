@@ -74,7 +74,7 @@ router.get("/editFaculty", (req, res) => {
       const sem = e.semester;
       const dep = e.department;
       e.faculty.map((teacher) =>
-        console.log(`${teacher}  ||  ${sem}  ||  ${dep}`)
+        console.log(`${teacher}\t\t\t${sem}\t\t${dep}`)
       );
     });
   });
