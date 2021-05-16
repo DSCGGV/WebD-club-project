@@ -63,36 +63,65 @@ router.get("/departmentreport", (req, res) => {
   const DepartmentList = ["IT", "CSE", "MECH", "ECE", "IPE", "CHEM", "CIVIL"];
   res.render("dept_wise");
 
+  const departmentWiseData = [];
   DepartmentList.map((department) => {
-    const departmentWiseData = [];
-    const element = {
-      department: "",
-      count: 0,
-      voice_total: 0,
-      speed_total: 0,
-      Presentation_total: 0,
-      Communication_total: 0,
-      Interest_total: 0,
-      knowledge_total: 0,
-      assessible_total: 0,
-      simulation_total: 0,
-      encourage_total: 0,
-      overall_total: 0,
-      voice_avg: 0,
-      speed_avg: 0,
-      Presentation_avg: 0,
-      Communication_avg: 0,
-      Interest_avg: 0,
-      knowledge_avg: 0,
-      assessible_avg: 0,
-      simulation_avg: 0,
-      encourage_avg: 0,
-      overall_avg: 0,
-    };
     Feedback.find({ department }, (err, data) => {
-      if (data) console.log(data.length);
+      const element = {
+        department: "",
+        count: 0,
+        voice_total: 0,
+        speed_total: 0,
+        Presentation_total: 0,
+        Communication_total: 0,
+        Interest_total: 0,
+        knowledge_total: 0,
+        assessible_total: 0,
+        simulation_total: 0,
+        encourage_total: 0,
+        overall_total: 0,
+        voice_avg: 0,
+        speed_avg: 0,
+        Presentation_avg: 0,
+        Communication_avg: 0,
+        Interest_avg: 0,
+        knowledge_avg: 0,
+        assessible_avg: 0,
+        simulation_avg: 0,
+        encourage_avg: 0,
+        overall_avg: 0,
+      };
+      data.map((teacherDetails) => {
+        element.department = teacherDetails.department;
+        if (teacherDetails) {
+          element.count += teacherDetails.count;
+          element.voice_total += teacherDetails.voice_total;
+          element.speed_total += teacherDetails.voice_avg;
+          element.Presentation_total += teacherDetails.Presentation_total;
+          element.Communication_total += teacherDetails.Communication_total;
+          element.Interest_total += teacherDetails.Interest_total;
+          element.knowledge_total += teacherDetails.knowledge_total;
+          element.assessible_total += teacherDetails.assessible_total;
+          element.simulation_total += teacherDetails.simulation_total;
+          element.encourage_total += teacherDetails.encourage_total;
+          element.overall_total += teacherDetails.overall_total;
+          element.voice_avg += teacherDetails.voice_avg;
+          element.speed_avg += teacherDetails.speed_avg;
+          element.Presentation_avg += teacherDetails.Presentation_avg;
+          element.Communication_avg += teacherDetails.Communication_avg;
+          element.Interest_avg += teacherDetails.Interest_avg;
+          element.knowledge_avg += teacherDetails.knowledge_avg;
+          element.assessible_avg += teacherDetails.assessible_avg;
+          element.simulation_avg += teacherDetails.simulation_avg;
+          element.encourage_avg += teacherDetails.encourage_avg;
+          element.overall_avg += teacherDetails.overall_avg;
+        }
+      });
+      // Push Calculated Data To Resuld array
+      console.log(element);
+      departmentWiseData.push(element);
     });
   });
+  console.log(departmentWiseData);
 });
 
 router.get("/facultyreport", (req, res) => {
