@@ -60,7 +60,39 @@ router.get("/admin", (req, res) => {
 });
 
 router.get("/departmentreport", (req, res) => {
+  const DepartmentList = ["IT", "CSE", "MECH", "ECE", "IPE", "CHEM", "CIVIL"];
   res.render("dept_wise");
+
+  DepartmentList.map((department) => {
+    const departmentWiseData = [];
+    const element = {
+      department: "",
+      count: 0,
+      voice_total: 0,
+      speed_total: 0,
+      Presentation_total: 0,
+      Communication_total: 0,
+      Interest_total: 0,
+      knowledge_total: 0,
+      assessible_total: 0,
+      simulation_total: 0,
+      encourage_total: 0,
+      overall_total: 0,
+      voice_avg: 0,
+      speed_avg: 0,
+      Presentation_avg: 0,
+      Communication_avg: 0,
+      Interest_avg: 0,
+      knowledge_avg: 0,
+      assessible_avg: 0,
+      simulation_avg: 0,
+      encourage_avg: 0,
+      overall_avg: 0,
+    };
+    Feedback.find({ department }, (err, data) => {
+      if (data) console.log(data.length);
+    });
+  });
 });
 
 router.get("/facultyreport", (req, res) => {

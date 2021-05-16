@@ -35,6 +35,7 @@ app
   .post("/adminlogin", auth)
   .get("/admin", auth)
   .get("/departmentreport", auth)
+  .post("/departmentreport", auth)
   .get("/facultyreport", auth)
   .post("/facultyreport", auth)
   .get("/dashboard", auth)
