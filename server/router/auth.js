@@ -100,17 +100,24 @@ router.get("/facultyreport", (req, res) => {
 });
 
 router.get("/editFaculty", (req, res) => {
-  res.render("edit_faculty");
-  Faculty.find({}, function (err, result) {
+  res.render("edit_faculty/edit_faculty");
+  
+});
+
+// to display list of faculty for edit
+router.get("/facultylist" , (req,res) => {
+  const {semester , department} = req.query
+  console.log(req.query)
+  Faculty.find({department : req.query.department , semester : req.query.semester}, function (err, result) {
+    console.log(result)
     result.map((e) => {
-      const sem = e.semester;
-      const dep = e.department;
       e.faculty.map((teacher) =>
-        console.log(`${teacher}\t\t\t${sem}\t\t${dep}`)
+        console.log(`${teacher}`)
       );
     });
+    res.render('edit_faculty/facultylist' , {record : result})
   });
-});
+})
 
 router.post("/facultyreport", (req, res) => {
   console.log(req.body.department);

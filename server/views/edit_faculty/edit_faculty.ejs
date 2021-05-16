@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="vendors/themefy_icon/themify-icons.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="../css/edit_faculty.css" />
+
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body class="crm_body_bg">
+    <nav class="sidebar">
+      <div class="logo d-flex justify-content-between">
+        <a><img src="../images/logo.jpeg" alt="" /></a>
+        <div class="sidebar_close_icon d-lg-none">
+          <i class="ti-close"></i>
+        </div>
+      </div>
+      <ul id="sidebar_menu">
+        <li class="">
+          <a href="/admin" aria-expanded="false">
+            <img src="../images/dashboard.svg" alt="" />
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="#" aria-expanded="false">
+            <img src="../images/9.svg" alt="" />
+            <span>Students Responses</span>
+          </a>
+        </li>
+
+        <li class="mm-active">
+          <a href="/editFaculty" aria-expanded="false">
+            <img src="../images/10.svg" alt="" />
+            <span>Add Faculty Details</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="/facultyreport" aria-expanded="false">
+            <img src="../images/001-teacher.svg" alt="" />
+            <span>Generate Report for Faculties</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="/departmentreport" aria-expanded="false">
+            <img src="../images/department.svg" alt="" />
+            <span>Generate Report for Department</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="#" aria-expanded="false">
+            <img src="../images/002-logout.svg" alt="" />
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="main_content dashboard_part">
+      <!-- dropdown Options for course and department -->
+      <%- include('../partials/editfaculty_dropdown.ejs')%>
+      
+    </section>
+
+    <script>
+          
+      function populate(s1,s2)
+      {
+        var s1 = document.getElementById(s1)
+        var s2 = document.getElementById(s2)
+      
+        s2.innerHTML = "";
+        if(s1.value == "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8"){
+          var optionArray =  ['CSE|Computer Science and Engineering' ,
+                              'MECH|Mechanical Engineering' ,
+                              'civil|Civil Engineering' ,
+                              'electronics|Electronics and Communication Engineering',
+                              'ipe|Industrial and Production Engineering',
+                              'chemical|Chemical Engineering',
+                              'it|Information and Technology',
+                              ];
+        }
+        for(var option in optionArray)
+        {
+          var pair = optionArray[option].split("|");
+          var newoption = document.createElement("option");
+
+          newoption.value = pair[0];
+          newoption.innerHTML = pair[1];
+
+          s2.options.add(newoption);
+        }
+      }
+
+    </script>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../js/apex_realestate.js"></script>
+
+    <script src="../js/custom.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Select/Deselect checkboxes
+        var checkbox = $('table tbody input[type="checkbox"]');
+        $("#selectAll").click(function () {
+          if (this.checked) {
+            checkbox.each(function () {
+              this.checked = true;
+            });
+          } else {
+            checkbox.each(function () {
+              this.checked = false;
+            });
+          }
+        });
+        checkbox.click(function () {
+          if (!this.checked) {
+            $("#selectAll").prop("checked", false);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
