@@ -59,16 +59,25 @@ router.get("/admin", (req, res) => {
   res.render("dashboard");
 });
 
-router.get("/editFaculty", (req, res) => {
-  res.render("edit_faculty");
-});
-
 router.get("/departmentreport", (req, res) => {
   res.render("dept_wise");
 });
 
 router.get("/facultyreport", (req, res) => {
   res.render("faculty_wise_report/faculty_wise");
+});
+
+router.get("/editFaculty", (req, res) => {
+  res.render("edit_faculty");
+  Faculty.find({ department: "IT" }, function (err, result) {
+    result.map((e) => {
+      const sem = e.semester;
+      const dep = e.department;
+      e.faculty.map((teacher) =>
+        console.log(`${teacher}  ||  ${sem}  ||  ${dep}`)
+      );
+    });
+  });
 });
 
 router.post("/facultyreport", (req, res) => {
@@ -349,7 +358,14 @@ router.post("/feedback", (req, res) => {
   });
 });
 
-//  router.post("/addfaculty", (req, res) => {
+// Post Request for /editFaculty
+
+// router.post("/editFaculty", (req, res) => {
+//   //Post Request According to Edit form
+//   console.log(req.body);
+// });
+
+// router.post("/addfaculty", (req, res) => {
 //   // crud faculty details code
 //   console.log("/editfaculty called");
 //   const { department, faculty } = req.body;
