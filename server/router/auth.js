@@ -68,61 +68,64 @@ router.get("/departmentreport", (req, res) => {
 });
 
 router.get("/facultyreport", (req, res) => {
-    res.render('faculty_wise_report/faculty_wise')
+  res.render("faculty_wise_report/faculty_wise");
 });
 
-router.post("/facultyreport", (req, res)=>{
-  console.log(req.body.department)
-  if(req.body.department == "CSE"){
-    Feedback.find({department: "CSE"}, function(err, result){
-      console.log(result)
-      res.render('../views/faculty_wise_report/CSE.ejs' , {record: result})
-    })
+router.post("/facultyreport", (req, res) => {
+  console.log(req.body.department);
+  if (req.body.department == "CSE") {
+    Feedback.find({ department: "CSE" }, function (err, result) {
+      console.log(result);
+      res.render("../views/faculty_wise_report/CSE.ejs", { record: result });
+    });
   }
 
-  if(req.body.department == "MECH"){
-    Feedback.find({department: "MECH"}, function(err, result){
-      console.log(result)
-      res.render('../views/faculty_wise_report/mechanical.ejs' , {record: result})
-    })
-  }
-  
-  if(req.body.department == "it"){
-    Feedback.find({department: "IT"}, function(err, result){
-      console.log(result)
-      res.render('../views/faculty_wise_report/IT.ejs' , {record: result})
-    })
-  }
-  
-  if(req.body.department == "electronics"){
-    Feedback.find({department: "ECE"}, function(err, result){
-      console.log(result)
-      res.render('../views/faculty_wise_report/electronics.ejs' , {record: result})
-    })
+  if (req.body.department == "MECH") {
+    Feedback.find({ department: "MECH" }, function (err, result) {
+      console.log(result);
+      res.render("../views/faculty_wise_report/mechanical.ejs", {
+        record: result,
+      });
+    });
   }
 
-  
-  if(req.body.department == "chemical"){
-    Feedback.find({department: "CHEM"}, function(err, result){
-      console.log(result)
-      res.render('../views/faculty_wise_report/chemical.ejs' , {record: result})
-    })
+  if (req.body.department == "it") {
+    Feedback.find({ department: "IT" }, function (err, result) {
+      console.log(result);
+      res.render("../views/faculty_wise_report/IT.ejs", { record: result });
+    });
   }
 
-  
-  if(req.body.department == "civil"){
-    Feedback.find({department: "CIVIL"}, function(err, result){
-      console.log(result)
-      res.render('../views/faculty_wise_report/civil.ejs' , {record: result})
-    })
+  if (req.body.department == "electronics") {
+    Feedback.find({ department: "ECE" }, function (err, result) {
+      console.log(result);
+      res.render("../views/faculty_wise_report/electronics.ejs", {
+        record: result,
+      });
+    });
   }
 
-  
-  if(req.body.department == "ipe"){
-    Feedback.find({department: "IPE"}, function(err, result){
-      console.log(result)
-      res.render('../views/faculty_wise_report/IP.ejs' , {record: result})
-    })
+  if (req.body.department == "chemical") {
+    Feedback.find({ department: "CHEM" }, function (err, result) {
+      console.log(result);
+      res.render("../views/faculty_wise_report/chemical.ejs", {
+        record: result,
+      });
+    });
+  }
+
+  if (req.body.department == "civil") {
+    Feedback.find({ department: "CIVIL" }, function (err, result) {
+      console.log(result);
+      res.render("../views/faculty_wise_report/civil.ejs", { record: result });
+    });
+  }
+
+  if (req.body.department == "ipe") {
+    Feedback.find({ department: "IPE" }, function (err, result) {
+      console.log(result);
+      res.render("../views/faculty_wise_report/IP.ejs", { record: result });
+    });
   }
 });
 
@@ -179,15 +182,13 @@ router.post("/studentlogin", (req, res) => {
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
         console.log("error posting data :" + err);
-        
       });
-      console.log(sessionStorage.getItem("Department"))
+    console.log(sessionStorage.getItem("Department"));
   });
-  
 });
 
-router.post("/feedback", (req, res,) => {
-  var faculty_department = sessionStorage.getItem("Department")
+router.post("/feedback", (req, res) => {
+  var faculty_department = sessionStorage.getItem("Department");
   // console.log(req.body);
   const {
     Professor,
@@ -225,97 +226,92 @@ router.post("/feedback", (req, res,) => {
       Feedback.updateOne(
         { Professor: req.body.Professor },
         {
-          $set : {
-                   voice_avg : avg_voice.toFixed(1),
-                   speed_avg : avg_speed.toFixed(1),
-                   Presentation_avg : avg_Presentation.toFixed(1),
-                   Communication_avg : avg_Communication.toFixed(1),
-                   Interest_avg : avg_Interest.toFixed(1),
-                   knowledge_avg : avg_knowledge.toFixed(1),
-                   assessible_avg : avg_assessible.toFixed(1),
-                   simulation_avg : avg_simulation.toFixed(1),
-                   encourage_avg : avg_encourage.toFixed(1),
-                   punctual_avg : avg_punctual.toFixed(1),
-                   overall_avg : avg_overall.toFixed(1),
-        
-                  }
-        }  
-      )
-      .then(()=> {
-        console.log("data avg successfully!!")
-        // console.log(department)
-        
-        }).catch((err) => {
-        res.status(500).json({ error: "Failed To avg data" });
-        console.log("error incrementing data :" + err);
-        });
-
-      
-      
-    }else{
-      Feedback.create(
-        { 
-          Professor : req.body.Professor,
-          department :faculty_department,
-          count :1,
-          voice_total:req.body.voice,
-          speed_total:req.body.speed,
-          Presentation_total:req.body.Presentation,
-          Communication_total:req.body.Communication,
-          Interest_total:req.body.Interest,
-          knowledge_total:req.body.knowledge,
-          assessible_total:req.body.assessible,
-          simulation_total:req.body.simulation,
-          encourage_total:req.body.encourage,
-          punctual_total:req.body.puntual,
-          overall_total:req.body.overall,
-          
-          voice_avg:req.body.voice,
-          speed_avg:req.body.speed,
-          Presentation_avg:req.body.Presentation,
-          Communication_avg:req.body.Communication,
-          Interest_avg:req.body.Interest,
-          knowledge_avg:req.body.knowledge,
-          assessible_avg:req.body.assessible,
-          simulation_avg:req.body.simulation,
-          encourage_avg:req.body.encourage,
-          punctual_avg:req.body.puntual,
-          overall_avg:req.body.overall,
+          $set: {
+            voice_avg: avg_voice.toFixed(1),
+            speed_avg: avg_speed.toFixed(1),
+            Presentation_avg: avg_Presentation.toFixed(1),
+            Communication_avg: avg_Communication.toFixed(1),
+            Interest_avg: avg_Interest.toFixed(1),
+            knowledge_avg: avg_knowledge.toFixed(1),
+            assessible_avg: avg_assessible.toFixed(1),
+            simulation_avg: avg_simulation.toFixed(1),
+            encourage_avg: avg_encourage.toFixed(1),
+            punctual_avg: avg_punctual.toFixed(1),
+            overall_avg: avg_overall.toFixed(1),
+          },
         }
-      ).then(()=> {
-            console.log("data added successfully!!")
-      }).catch((err) => {
-            res.status(500).json({ error: "Failed To Register feedback" });
-            console.log("error posting data :" + err);
+      )
+        .then(() => {
+          console.log("data avg successfully!!");
+          // console.log(department)
+        })
+        .catch((err) => {
+          res.status(500).json({ error: "Failed To avg data" });
+          console.log("error incrementing data :" + err);
+        });
+    } else {
+      Feedback.create({
+        Professor: req.body.Professor,
+        department: faculty_department,
+        count: 1,
+        voice_total: req.body.voice,
+        speed_total: req.body.speed,
+        Presentation_total: req.body.Presentation,
+        Communication_total: req.body.Communication,
+        Interest_total: req.body.Interest,
+        knowledge_total: req.body.knowledge,
+        assessible_total: req.body.assessible,
+        simulation_total: req.body.simulation,
+        encourage_total: req.body.encourage,
+        punctual_total: req.body.puntual,
+        overall_total: req.body.overall,
+
+        voice_avg: req.body.voice,
+        speed_avg: req.body.speed,
+        Presentation_avg: req.body.Presentation,
+        Communication_avg: req.body.Communication,
+        Interest_avg: req.body.Interest,
+        knowledge_avg: req.body.knowledge,
+        assessible_avg: req.body.assessible,
+        simulation_avg: req.body.simulation,
+        encourage_avg: req.body.encourage,
+        punctual_avg: req.body.puntual,
+        overall_avg: req.body.overall,
+      })
+        .then(() => {
+          console.log("data added successfully!!");
+        })
+        .catch((err) => {
+          res.status(500).json({ error: "Failed To Register feedback" });
+          console.log("error posting data :" + err);
         });
 
-        Feedback.updateOne(
-          { Professor: req.body.Professor },
-          {
-            $set: {
-              voice_avg: avg_voice.toFixed(1),
-              speed_avg: avg_speed.toFixed(1),
-              Presentation_avg: avg_Presentation.toFixed(1),
-              Communication_avg: avg_Communication.toFixed(1),
-              Interest_avg: avg_Interest.toFixed(1),
-              knowledge_avg: avg_knowledge.toFixed(1),
-              assessible_avg: avg_assessible.toFixed(1),
-              simulation_avg: avg_simulation.toFixed(1),
-              encourage_avg: avg_encourage.toFixed(1),
-              punctual_avg: avg_punctual.toFixed(1),
-              overall_avg: avg_overall.toFixed(1),
-            },
-          }
-        )
-          .then(() => {
-            console.log("data avg successfully!!");
-          })
-          .catch((err) => {
-            res.status(500).json({ error: "Failed To avg data" });
-            console.log("error incrementing data :" + err);
-          });
-      });
-    } else {
+      Feedback.updateOne(
+        { Professor: req.body.Professor },
+        {
+          $set: {
+            voice_avg: avg_voice.toFixed(1),
+            speed_avg: avg_speed.toFixed(1),
+            Presentation_avg: avg_Presentation.toFixed(1),
+            Communication_avg: avg_Communication.toFixed(1),
+            Interest_avg: avg_Interest.toFixed(1),
+            knowledge_avg: avg_knowledge.toFixed(1),
+            assessible_avg: avg_assessible.toFixed(1),
+            simulation_avg: avg_simulation.toFixed(1),
+            encourage_avg: avg_encourage.toFixed(1),
+            punctual_avg: avg_punctual.toFixed(1),
+            overall_avg: avg_overall.toFixed(1),
+          },
+        }
+      )
+        .then(() => {
+          console.log("data avg successfully!!");
+        })
+        .catch((err) => {
+          res.status(500).json({ error: "Failed To avg data" });
+          console.log("error incrementing data :" + err);
+        });
+
       Feedback.create({
         Professor: req.body.Professor,
         count: 1,
