@@ -69,7 +69,7 @@ router.get("/facultyreport", (req, res) => {
 
 router.get("/editFaculty", (req, res) => {
   res.render("edit_faculty");
-  Faculty.find({ department: "IT" }, function (err, result) {
+  Faculty.find({}, function (err, result) {
     result.map((e) => {
       const sem = e.semester;
       const dep = e.department;
