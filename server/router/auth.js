@@ -61,6 +61,9 @@ router.get("/admin", (req, res) => {
 
 router.get("/editFaculty", (req, res) => {
   res.render("edit_faculty");
+  Faculty.find({ department: "IT" }, function (err, result) {
+    console.log(result);
+  });
 });
 
 router.get("/departmentreport", (req, res) => {
@@ -349,7 +352,14 @@ router.post("/feedback", (req, res) => {
   });
 });
 
-//  router.post("/addfaculty", (req, res) => {
+// Post Request for /editFaculty
+
+router.post("/editFaculty", (req, res) => {
+  //Post Request According to Edit form
+  console.log(req.body);
+});
+
+// router.post("/addfaculty", (req, res) => {
 //   // crud faculty details code
 //   console.log("/editfaculty called");
 //   const { department, faculty } = req.body;
