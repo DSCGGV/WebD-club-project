@@ -36,6 +36,7 @@ This repo will contain webD projects made by our awesome club members. This proj
     │   └── server.js
     ├── .gitignore
     ├── config.env
-    ├── CONTRIBUTION.md
+    ├── CONTRIBUTING.md
+    ├── LICENSE
     ├── PROFILE.md
     └── README.md
