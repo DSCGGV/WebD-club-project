@@ -131,23 +131,24 @@ router.get("/facultyreport", (req, res) => {
 
 router.get("/editFaculty", (req, res) => {
   res.render("edit_faculty/edit_faculty");
-  
 });
 
 // to display list of faculty for edit
-router.get("/facultylist" , (req,res) => {
-  const {semester , department} = req.query
-  console.log(req.query)
-  Faculty.find({department : req.query.department , semester : req.query.semester}, function (err, result) {
-    console.log(result)
-    result.map((e) => {
-      e.faculty.map((teacher) =>
-        console.log(`${teacher}`)
-      );
-    });
-    res.render('edit_faculty/facultylist' , {record : result})
+router.get("/facultylist", (req, res) => {
+  const { semester, department } = req.query;
+  console.log(req.query);
+  Faculty.find({ department, semester }, function (err, result) {
+    console.log(result);
+    if (result.length !== 0) {
+      result.map((e) => {
+        e.faculty.map((teacher) => console.log(`${teacher}`));
+      });
+      res.render("edit_faculty/facultylist", { record: result });
+    } else {
+      return res.status(422).json({ error: "Teacher List Not Available!" });
+    }
   });
-})
+});
 
 router.post("/facultyreport", (req, res) => {
   console.log(req.body.department);
