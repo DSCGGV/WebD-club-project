@@ -138,8 +138,8 @@ router.get("/facultylist", (req, res) => {
   const { semester, department } = req.query;
   console.log(req.query);
   Faculty.find({ department, semester }, function (err, result) {
-    console.log(result);
-    if (result.length !== 0) {
+    console.log(result + "\n" + err);
+    if (result.length) {
       result.map((e) => {
         e.faculty.map((teacher) => console.log(`${teacher}`));
       });
