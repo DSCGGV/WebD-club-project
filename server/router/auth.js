@@ -134,20 +134,45 @@ router.get("/editFaculty", (req, res) => {
 });
 
 // to display list of faculty for edit
-router.get("/facultylist", (req, res) => {
-  const { semester, department } = req.query;
-  console.log(req.query);
-  Faculty.find({ department, semester }, function (err, result) {
-    console.log(result + "\n" + err);
-    if (result.length) {
-      result.map((e) => {
-        e.faculty.map((teacher) => console.log(`${teacher}`));
+router.post("/editFaculty", (req, res) => {
+  const { name, semester, department } = req.body;
+  console.log(req.body);
+  if (!name) {
+    Faculty.find({ department, semester }, function (err, result) {
+      // console.log(result);
+      if (result.length) {
+        result.map((e) => {
+          e.faculty.map((teacher) => console.log(`${teacher}`));
+        });
+        res.render("edit_faculty/facultylist", { record: result });
+      } else {
+        return res.status(422).json({ error: "Teacher List Not Available!" });
+      }
+    });
+  } else {
+    // Faculty.find({ semester, department }, (err, result) => {
+    //   result.map((e) => {
+    //     e.updateOne(
+    //       { faculty },
+    //       {
+    //         $set: {
+    //           faculty: [...faculty, name],
+    //         },
+    //       }
+    //     );
+    //   });
+    // });
+
+    Faculty.updateOne({ department, semester }, { $push: { faculty: name } })
+      .then(() => {
+        console.log("data avg successfully!!");
+        // console.log(department)
+      })
+      .catch((err) => {
+        res.status(500).json({ error: "Failed To avg data" });
+        console.log("error incrementing data :" + err);
       });
-      res.render("edit_faculty/facultylist", { record: result });
-    } else {
-      return res.status(422).json({ error: "Teacher List Not Available!" });
-    }
-  });
+  }
 });
 
 router.post("/facultyreport", (req, res) => {
@@ -386,7 +411,6 @@ router.post("/feedback", (req, res) => {
         encourage_total: req.body.encourage,
         punctual_total: req.body.puntual,
         overall_total: req.body.overall,
-
         voice_avg: req.body.voice,
         speed_avg: req.body.speed,
         Presentation_avg: req.body.Presentation,
