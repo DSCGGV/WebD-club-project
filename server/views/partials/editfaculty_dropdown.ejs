@@ -1,23 +1,32 @@
 <div class="jumbotron jumbotron-fluid">
-    <form action="/facultylist" method="GET">
-      <div class="container row">
-        <div class="col-md-4">
-          <select name="semester" id="semester" class="custom-select" onclick="populate(this.id, 'department')">
-            <option value="" class="default" selected disabled>-- Choose Semester --</option>
-            <option value="1">1</option>
-            <option value="4">4</option>
-            <option value="6">6</option>
-            <option value="8">8</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <select name="department" id="department" class="custom-select">
-
-          </select>
-        </div>
-        <div class="col-md-4">
-          <button type="submit" class="btn btn-info">Show report</button>
-        </div>
+  <form action="/editFaculty" method="POST">
+    <div class="container row">
+      <div class="col-md-4">
+        <select
+          name="semester"
+          id="semester"
+          class="custom-select"
+          onclick="populate(this.id, 'department')"
+        >
+          <option value="" class="default" selected disabled>
+            -- Choose Semester --
+          </option>
+          <option value="1">1</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
       </div>
-    </form>
-  </div>
+      <div class="col-md-4">
+        <select name="department" id="department" class="custom-select">
+          <option value="" class="default" selected disabled>
+            -- Choose Department --
+          </option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-info">Show report</button>
+      </div>
+    </div>
+  </form>
+</div>

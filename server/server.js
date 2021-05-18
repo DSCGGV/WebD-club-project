@@ -41,7 +41,8 @@ app
   .get("/dashboard", auth)
   .get("/editFaculty", auth)
   .post("/editFaculty", auth)
-  .get("/facultylist", auth);
+  .get("/editFaculty/delete", auth)
+  .post("/facultylist", auth);
 
 app.listen(PORT, () => {
   console.log(`server is runnig at port no ${PORT}`);
