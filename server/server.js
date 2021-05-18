@@ -41,6 +41,7 @@ app
   .get("/dashboard", auth)
   .get("/editFaculty", auth)
   .post("/editFaculty", auth)
+  .get("/editFaculty/delete", auth)
   .post("/facultylist", auth);
 
 app.listen(PORT, () => {

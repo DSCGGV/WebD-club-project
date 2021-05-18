@@ -29,7 +29,7 @@ router.get("/feedback", async (req, res) => {
   // res.render('feedback')
   // console.log(sessionStorage.getItem('enrollment'));
 
-  var enrollment = sessionStorage.getItem("enrollment");
+  var enrollment = sessionStorage.getItem("studentEnrollment");
   const user = await User.findOne({ enrollment: enrollment });
   const department = user.department;
   const semester = user.semester;
@@ -136,15 +136,21 @@ router.get("/editFaculty", (req, res) => {
 // to display list of faculty for edit
 router.post("/editFaculty", (req, res) => {
   const { name, semester, department } = req.body;
-  console.log(req.body);
+  
+  
+  
   if (!name) {
     Faculty.find({ department, semester }, function (err, result) {
+
       // console.log(result);
       if (result.length) {
         result.map((e) => {
           e.faculty.map((teacher) => console.log(`${teacher}`));
         });
         res.render("edit_faculty/facultylist", { record: result });
+        sessionStorage.setItem("deleteFaculty_department" , req.body.department)//using in deletefaculty route
+        sessionStorage.setItem("deleteFaculty_semester" , req.body.semester)//using in deletefaculty route
+
       } else {
         return res.status(422).json({ error: "Teacher List Not Available!" });
       }
@@ -165,14 +171,22 @@ router.post("/editFaculty", (req, res) => {
 
     Faculty.updateOne({ department, semester }, { $push: { faculty: name } })
       .then(() => {
-        console.log("data avg successfully!!");
+        console.log("faculty added successfully!!");
         // console.log(department)
       })
       .catch((err) => {
-        res.status(500).json({ error: "Failed To avg data" });
-        console.log("error incrementing data :" + err);
+        res.status(500).json({ error: "Failed To add faculty" });
+        console.log("error adding faculty :" + err);
       });
   }
+});
+
+router.get("/editFaculty/delete", (req,res) => {
+  var facultyDepartment = sessionStorage.getItem("deleteFaculty_department")
+  var facultysemester = sessionStorage.getItem("deleteFaculty_semester")
+  console.log(facultysemester)
+  console.log(facultyDepartment)
+  console.log(req.query.delete)
 });
 
 router.post("/facultyreport", (req, res) => {
@@ -277,8 +291,8 @@ router.post("/studentlogin", (req, res) => {
       .save()
       .then(() => {
         res.redirect("/feedback");
-        sessionStorage.setItem("enrollment", req.body.enrollment);
-        sessionStorage.setItem("Department", department);
+        sessionStorage.setItem("studentEnrollment", req.body.enrollment);
+        sessionStorage.setItem("studentDepartment", department);
         // console.log(sessionStorage.getItem("Department"))
         res.status(201).json({ message: "User Registered Sucessfully" });
         res.redirect("/feedback");
@@ -287,7 +301,6 @@ router.post("/studentlogin", (req, res) => {
         res.status(500).json({ error: "Failed To Register User" });
         console.log("error posting data :" + err);
       });
-    console.log(sessionStorage.getItem("Department"));
   });
 });
 
