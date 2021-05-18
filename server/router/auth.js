@@ -182,62 +182,62 @@ router.get("/editFaculty/delete", (req,res) => {
   console.log(req.query.delete)
 });
 
-router.post("/facultyreport", (req, res) => {
+router.post("/facultyreport/facultycharts", (req, res) => {
   console.log(req.body.department);
-  if (req.body.department == "CSE") {
-    Feedback.find({ department: "CSE" }, function (err, result) {
+  // if (req.body.department == "CSE") {
+    Feedback.find({ department: req.body.department }, function (err, result) {
       console.log(result);
-      res.render("../views/faculty_wise_report/CSE.ejs", { record: result });
+      res.render("../views/faculty_wise_report/facultyCharts.ejs", { record: result });
     });
-  }
+  
 
-  if (req.body.department == "MECH") {
-    Feedback.find({ department: "MECH" }, function (err, result) {
-      console.log(result);
-      res.render("../views/faculty_wise_report/mechanical.ejs", {
-        record: result,
-      });
-    });
-  }
+  // if (req.body.department == "MECH") {
+  //   Feedback.find({ department: "MECH" }, function (err, result) {
+  //     console.log(result);
+  //     res.render("../views/faculty_wise_report/mechanical.ejs", {
+  //       record: result,
+  //     });
+  //   });
+  // }
 
-  if (req.body.department == "it") {
-    Feedback.find({ department: "IT" }, function (err, result) {
-      console.log(result);
-      res.render("../views/faculty_wise_report/IT.ejs", { record: result });
-    });
-  }
+  // if (req.body.department == "it") {
+  //   Feedback.find({ department: "IT" }, function (err, result) {
+  //     console.log(result);
+  //     res.render("../views/faculty_wise_report/IT.ejs", { record: result });
+  //   });
+  // }
 
-  if (req.body.department == "electronics") {
-    Feedback.find({ department: "ECE" }, function (err, result) {
-      console.log(result);
-      res.render("../views/faculty_wise_report/electronics.ejs", {
-        record: result,
-      });
-    });
-  }
+  // if (req.body.department == "electronics") {
+  //   Feedback.find({ department: "ECE" }, function (err, result) {
+  //     console.log(result);
+  //     res.render("../views/faculty_wise_report/electronics.ejs", {
+  //       record: result,
+  //     });
+  //   });
+  // }
 
-  if (req.body.department == "chemical") {
-    Feedback.find({ department: "CHEM" }, function (err, result) {
-      console.log(result);
-      res.render("../views/faculty_wise_report/chemical.ejs", {
-        record: result,
-      });
-    });
-  }
+  // if (req.body.department == "chemical") {
+  //   Feedback.find({ department: "CHEM" }, function (err, result) {
+  //     console.log(result);
+  //     res.render("../views/faculty_wise_report/chemical.ejs", {
+  //       record: result,
+  //     });
+  //   });
+  // }
 
-  if (req.body.department == "civil") {
-    Feedback.find({ department: "CIVIL" }, function (err, result) {
-      console.log(result);
-      res.render("../views/faculty_wise_report/civil.ejs", { record: result });
-    });
-  }
+  // if (req.body.department == "civil") {
+  //   Feedback.find({ department: "CIVIL" }, function (err, result) {
+  //     console.log(result);
+  //     res.render("../views/faculty_wise_report/civil.ejs", { record: result });
+  //   });
+  // }
 
-  if (req.body.department == "ipe") {
-    Feedback.find({ department: "IPE" }, function (err, result) {
-      console.log(result);
-      res.render("../views/faculty_wise_report/IP.ejs", { record: result });
-    });
-  }
+  // if (req.body.department == "ipe") {
+  //   Feedback.find({ department: "IPE" }, function (err, result) {
+  //     console.log(result);
+  //     res.render("../views/faculty_wise_report/IP.ejs", { record: result });
+  //   });
+  // }
 });
 
 //admin login post request
@@ -283,12 +283,12 @@ router.post("/studentlogin", (req, res) => {
     user
       .save()
       .then(() => {
-        res.redirect("/feedback");
+        
         sessionStorage.setItem("studentEnrollment", req.body.enrollment);
         sessionStorage.setItem("studentDepartment", department);
-        // console.log(sessionStorage.getItem("Department"))
-        res.status(201).json({ message: "User Registered Sucessfully" });
-        res.redirect("/feedback");
+        console.log(department)
+        res.status(201).redirect("/feedback");
+        
       })
       .catch((err) => {
         res.status(500).json({ error: "Failed To Register User" });
@@ -299,8 +299,8 @@ router.post("/studentlogin", (req, res) => {
 
 // feedback post api for feedback page
 router.post("/feedback", (req, res) => {
-  var faculty_department = sessionStorage.getItem("Department");
-  // console.log(req.body);
+  var faculty_department = sessionStorage.getItem("studentDepartment");
+  console.log(faculty_department);
   const {
     Professor,
     voice,

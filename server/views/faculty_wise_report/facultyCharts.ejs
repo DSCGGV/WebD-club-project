@@ -91,8 +91,9 @@
     </nav>
 
     <section class="container main_content dashboard_part">
-        
+      <%- include('../partials/facultyreport_dropdown.ejs')%>
         <h1>Faculty-wise charts</h1>
+        
         <%for(list of record){%>
         <%for(i=0 ; i<record.length ; i++){%>
         <div class="chart_div">
