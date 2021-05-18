@@ -141,36 +141,29 @@ router.post("/editFaculty", (req, res) => {
     Faculty.find({ department, semester }, function (err, result) {
       // console.log(result);
       if (result.length) {
-        result.map((e) => {
-          e.faculty.map((teacher) => console.log(`${teacher}`));
-        });
         res.render("edit_faculty/facultylist", { record: result });
       } else {
         return res.status(422).json({ error: "Teacher List Not Available!" });
       }
     });
   } else {
-    // Faculty.find({ semester, department }, (err, result) => {
-    //   result.map((e) => {
-    //     e.updateOne(
-    //       { faculty },
-    //       {
-    //         $set: {
-    //           faculty: [...faculty, name],
-    //         },
-    //       }
-    //     );
-    //   });
-    // });
-
     Faculty.updateOne({ department, semester }, { $push: { faculty: name } })
       .then(() => {
-        console.log("data avg successfully!!");
-        // console.log(department)
+        console.log(
+          `${name}'s Details Has been Successfully Added To The Database.`
+        );
+        Faculty.find({ department, semester }, (err, result) => {
+          if (result.length) {
+            res.render("edit_faculty/facultylist", { record: result });
+          } else {
+            return res
+              .status(422)
+              .json({ error: "Teacher List Not Available!" });
+          }
+        });
       })
       .catch((err) => {
-        res.status(500).json({ error: "Failed To avg data" });
-        console.log("error incrementing data :" + err);
+        res.status(500).json({ error: `Failed To Add User ${name}` });
       });
   }
 });
