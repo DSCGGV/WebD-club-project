@@ -104,7 +104,9 @@ router.get("/departmentreport", (req, res) => {
           element.simulation_total += teacherDetails.simulation_total;
           element.encourage_total += teacherDetails.encourage_total;
           element.overall_total += teacherDetails.overall_total;
-          element.voice_avg += teacherDetails.voice_avg;
+          
+        }
+          element.voice_avg = element.voice_total;
           element.speed_avg += teacherDetails.speed_avg;
           element.Presentation_avg += teacherDetails.Presentation_avg;
           element.Communication_avg += teacherDetails.Communication_avg;
@@ -114,7 +116,6 @@ router.get("/departmentreport", (req, res) => {
           element.simulation_avg += teacherDetails.simulation_avg;
           element.encourage_avg += teacherDetails.encourage_avg;
           element.overall_avg += teacherDetails.overall_avg;
-        }
       });
       // Push Calculated Data To Resuld array
       departmentWiseData.push(element);

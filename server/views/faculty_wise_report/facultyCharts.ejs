@@ -102,9 +102,9 @@
         <%for(list of record){%>
         <%for(i=0 ; i<record.length ; i++){%>
         <div class="chart_div">
-          <canvas id="myChart<%=i%>"></canvas>
+          <canvas id="myChart<%= i%>" width="500" height="500" role="img"></canvas>
         </div>
-        <script src="..../js/chartdoc.js"></script>
+        
         <script>
                 var ctx = document.getElementById("myChart<%=i%>");
                 var myChart = new Chart(ctx, {
@@ -160,17 +160,8 @@
         <%}%>
     </section>
    
-    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
-<!-- <script src="../js/apex_realestate.js"></script> -->
 
-<script src="../js/custom.js"></script>
+    <script src="../js/custom.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -179,8 +170,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
-    <!-- <script src="../js/apex_realestate.js"></script> -->
+
 
     <script src="../js/custom.js"></script>
   </body>
