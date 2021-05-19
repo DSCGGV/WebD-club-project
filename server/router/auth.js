@@ -20,9 +20,7 @@ router.get("/register", (req, res) => {
     res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
   }
   if (req.query.user == "admin") {
-    res.sendFile(
-      path.join(__dirname + "../../../public/html/admin_login.html")
-    );
+    res.redirect("/adminlogin")
   }
 });
 router.get("/feedback", async (req, res) => {
@@ -51,11 +49,15 @@ router.get("/feedback", async (req, res) => {
   });
 });
 
-router.get("/result", (req, res) => {
-  res.send(`Result Page`);
-});
+// to display admin login page
+router.get("/adminlogin", (req,res) => {
+  res.sendFile(
+    path.join(__dirname + "../../../public/html/admin_login.html")
+  );
+})
 
-router.get("/admin", (req, res) => {
+// to display admin dashboard after login
+router.get("/admin_dashboard", (req, res) => {
   res.render("dashboard");
 });
 
@@ -212,17 +214,16 @@ router.post("/adminlogin", async (req, res) => {
   try{
     
     const admin = await Admin.findOne({ email: email });
-    console.log(admin.password);
+    
     const Match = await bcrypt.compare(pass , admin.password)
 
     if (Match) {
-      res.status(201).redirect("/admin");
+      req.session.isAuth = true;//create session
+      res.status(201).redirect("/admin_dashboard");
       console.log("Logged In Successfully.");
     } else {
       console.log("wrong password")
-      res.sendFile(
-        path.join(__dirname + "../../../public/html/admin_login.html")
-      );
+      res.redirect("/adminlogin")
     }
   }catch(error) {
     res.status(422).send("Invalid Email/Password.");
@@ -445,4 +446,11 @@ router.post("/feedback", (req, res) => {
 //       });
 //   });
 // });
+
+router.get("/logout" , (req,res) => {
+  req.session.destroy((err) => {
+    if(err) throw err;
+    res.redirect("/");
+  })
+})
 module.exports = router;
