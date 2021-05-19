@@ -1,5 +1,4 @@
 // -----routing and post/get api-------
-
 const express = require("express");
 const router = express.Router();
 require("../db/connection");
@@ -9,6 +8,7 @@ const Faculty = require("../db/facultySchema");
 const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
+const bcrypt = require("bcryptjs");
 const { find, count } = require("../db/feedbackSchema");
 
 // router.get("/", (req, res) => {
@@ -136,9 +136,6 @@ router.get("/editFaculty", (req, res) => {
 // to display list of faculty for edit
 router.post("/editFaculty", (req, res) => {
   const { name, semester, department } = req.body;
-  
-  
-  
   if (!name) {
     Faculty.find({ department, semester }, function (err, result) {
 
@@ -173,7 +170,7 @@ router.post("/editFaculty", (req, res) => {
       });
   }
 });
-
+// for delete option on faculty edit page
 router.get("/editFaculty/delete", (req,res) => {
   var facultyDepartment = sessionStorage.getItem("deleteFaculty_department")
   var facultysemester = sessionStorage.getItem("deleteFaculty_semester")
@@ -189,74 +186,44 @@ router.post("/facultyreport/facultycharts", (req, res) => {
       console.log(result);
       res.render("../views/faculty_wise_report/facultyCharts.ejs", { record: result });
     });
-  
+});
 
-  // if (req.body.department == "MECH") {
-  //   Feedback.find({ department: "MECH" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/mechanical.ejs", {
-  //       record: result,
-  //     });
-  //   });
-  // }
-
-  // if (req.body.department == "it") {
-  //   Feedback.find({ department: "IT" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/IT.ejs", { record: result });
-  //   });
-  // }
-
-  // if (req.body.department == "electronics") {
-  //   Feedback.find({ department: "ECE" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/electronics.ejs", {
-  //       record: result,
-  //     });
-  //   });
-  // }
-
-  // if (req.body.department == "chemical") {
-  //   Feedback.find({ department: "CHEM" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/chemical.ejs", {
-  //       record: result,
-  //     });
-  //   });
-  // }
-
-  // if (req.body.department == "civil") {
-  //   Feedback.find({ department: "CIVIL" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/civil.ejs", { record: result });
-  //   });
-  // }
-
-  // if (req.body.department == "ipe") {
-  //   Feedback.find({ department: "IPE" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/IP.ejs", { record: result });
-  //   });
-  // }
+router.post("/adminRegistration",async (req,res) => {
+  const email = req.body.email;
+  const pass = req.body.pass;
+  const admin = new Admin({
+    email : email,
+    password : pass
+  })
+  // hashing password
+  const registered = await admin.save()
+  console.log("admin registered")
 });
 
 //admin login post request
 router.post("/adminlogin", async (req, res) => {
   const email = req.body.email;
   const pass = req.body.pass;
+
   if (!email || !pass) {
     return res.status(422).json({ error: "Please fill both the fields!" });
   }
-  try {
+  try{
+    
     const admin = await Admin.findOne({ email: email });
+    console.log(admin.password);
+    const Match = await bcrypt.compare(pass , admin.password)
 
-    if (admin.pass == pass) {
+    if (Match) {
       res.status(201).redirect("/admin");
       console.log("Logged In Successfully.");
     } else {
-      res.status(422).send("Invalid Email/Password.");
+      console.log("wrong password")
+      res.sendFile(
+        path.join(__dirname + "../../../public/html/admin_login.html")
+      );
     }
-  } catch (error) {
+  }catch(error) {
     res.status(422).send("Invalid Email/Password.");
   }
 });
