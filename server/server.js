@@ -37,7 +37,7 @@ app
   .get("/departmentreport", auth)
   .post("/departmentreport", auth)
   .get("/facultyreport", auth)
-  .post("/facultyreport", auth)
+  .post("/facultyreport/facultycharts", auth)
   .get("/dashboard", auth)
   .get("/editFaculty", auth)
   .post("/editFaculty", auth)

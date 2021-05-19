@@ -8,6 +8,11 @@
     />
     <title>Dashboard</title>
     <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="/public/images/favicon.png"
+    />
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -91,8 +96,9 @@
     </nav>
 
     <section class="container main_content dashboard_part">
-        
+      <%- include('../partials/facultyreport_dropdown.ejs')%>
         <h1>Faculty-wise charts</h1>
+        
         <%for(list of record){%>
         <%for(i=0 ; i<record.length ; i++){%>
         <div class="chart_div">
@@ -106,7 +112,7 @@
                       labels: ["Voice", "Speed", "Presentation", "Communication", "Interest", "Knowledge" , "Assessible" , "Simulation" , "Encourage" , "Overall"],
                       datasets: [{
                           label: '<%= record[i].Professor%>',
-                          data: [<%= record[i].voice_avg %> , <%= record[i].speed_avg%>,<%= record[i].Presentation_avg%>,<%= record[i].Communication_avg%>,<%= record[i].Interest_avg%>,<%= record[i].knowledge_avg%>,<%= record[i].assessible_avg%>,<%= record[i].simulation_avg%>,<%= record[i].encourage_avg%>,<%= record[i].overall_avg%>]
+                          data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>']
                       }]
                   },
                   });
