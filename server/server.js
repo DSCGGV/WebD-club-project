@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 // session store in database
 const store = new MongoDBSession({
   uri : process.env.DATABASE,
-  collection : "admins",
+  collection : "admins",//storing session in "admin" collection
 })
 
 app.use(express.json());
@@ -38,7 +38,7 @@ app.use(
     saveUninitialized : false,
     store : store,
     cookie:{
-      maxAge:1000*40,//maxage:1day
+      maxAge:24*60*60*1000,//maxage:1day
     }
       
   })

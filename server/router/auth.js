@@ -124,7 +124,7 @@ router.get("/departmentreport", (req, res) => {
     });
   });
   setTimeout(() => {
-    console.log(departmentWiseData);
+    // console.log(departmentWiseData);
   }, 2000);
 });
 
