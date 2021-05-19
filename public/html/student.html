@@ -1,145 +1,176 @@
 <!DOCTYPE html>
 <html lang="en" class="form1">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Login Form</title>
-    <link rel="stylesheet" href="../css/main.css">
+
+    <link rel="shortcut icon" type="image/jpg" href="../images/favicon.png" />
+    <link rel="stylesheet" href="../css/main.css" />
     <style>
-        .buttons {
-            margin: 0%;
-            text-align: center;
-        }
+      .buttons {
+        margin: 0%;
+        text-align: center;
+      }
 
-        .btn-hover {
-            width: 200px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #fff;
-            cursor: pointer;
-            margin: 20px;
-            height: 55px;
-            text-align: center;
-            border: none;
-            background-size: 300% 100%;
+      .btn-hover {
+        width: 200px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        margin: 20px;
+        height: 55px;
+        text-align: center;
+        border: none;
+        background-size: 300% 100%;
 
-            border-radius: 50px;
-            moz-transition: all .4s ease-in-out;
-            -o-transition: all .4s ease-in-out;
-            -webkit-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
-        }
+        border-radius: 50px;
+        moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+      }
 
-        .btn-hover:hover {
-            background-position: 100% 0;
-            moz-transition: all .4s ease-in-out;
-            -o-transition: all .4s ease-in-out;
-            -webkit-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
-        }
+      .btn-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+      }
 
-        .btn-hover:focus {
-            outline: none;
-        }
+      .btn-hover:focus {
+        outline: none;
+      }
 
-        .btn-hover.color-9 {
-            background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-        }
+      .btn-hover.color-9 {
+        background-image: linear-gradient(
+          to right,
+          #25aae1,
+          #4481eb,
+          #04befe,
+          #3f86ed
+        );
+        box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+      }
     </style>
-</head>
+  </head>
 
-<body class="feedback-form-1" style="height : auto;">
-
+  <body class="feedback-form-1" style="height: auto">
     <form action="/studentlogin" class="form" method="POST">
-        <header>
-            <h1>Online Feedback Form</h1>
-        </header>
+      <header>
+        <h1>Online Feedback Form</h1>
+      </header>
 
-        <div class="main">
+      <div class="main">
+        <div class="self">
+          <div class="box">
+            <h3>Name</h3>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div class="box">
+            <h3>Enrollment Number</h3>
+            <input
+              type="text"
+              name="enrollment"
+              id="enrollment"
+              placeholder="Enter your Enrollment Number"
+              required
+            />
+          </div>
+          <div class="box">
+            <h3>Email ID</h3>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
 
-            <div class="self">
-                <div class="box">
-                    <h3>Name</h3>
-                    <input type="text" name="name" id="name" placeholder="Enter your name" required>
-                </div>
-                <div class="box">
-                    <h3>Enrollment Number</h3>
-                    <input type="text" name="enrollment" id="enrollment" placeholder="Enter your Enrollment Number"
-                        required>
-                </div>
-                <div class="box">
-                    <h3>Email ID</h3>
-                    <input type="email" name="email" id="email" placeholder="Enter your email" required>
-                </div>
-                
-                <div class="box">
-                    <h3>Session</h3>
-                    
-                    <select name="session" id="session" class="form-control">
-                                     
-                        <datalist id="sessions">
-                            <option selected="true" disabled="disabled">Choose your session</option>
-                            <option value="2017-18">2017-18</option>
-                            <option value="2018-19">2018-19</option>
-                            <option value="2019-20">2019-20</option>
-                            <option value="2020-21">2020-21</option>
-                        </datalist>
-                    </select>
-                </div>
-            </div>
+          <div class="box">
+            <h3>Session</h3>
 
-            <div class="teacher">
-                <div class="box">
-                    <h3>Course</h3>
-                    <select name="course" id="course" class="form-control">
-                        <datalist id="courses">
-                            <option selected="true" disabled="disabled">Choose your Course</option>
-                            <option value="B.Tech">B.Tech</option>
-                            <option value="M.Tech">M.Tech</option>
-                            <option value="Ph.D">Ph.D</option>
-                        </datalist>
-                    </select>
-                </div>
-                <div class="box">
-                    <h3>Semester</h3>
-                    <select name="semester" id="semester" class="form-control">
-                        <datalist id="semesters">
-                            <option selected="true" disabled="disabled">Choose your Semester</option>
-                            <option value="1">1</option>
-                            <option value="4">4</option>
-                            <option value="6">6</option>
-                            <option value="8">8</option>
-                        </datalist>
-                    </select>
-                </div>
-                
-                <div class="box">
-                    <h3>Department</h3>
-                    
-                    <select name="department" id="department" class="form-control">
-                        <datalist id="departments">
-                            <option selected="true" disabled="disabled">Choose your department</option>
-                            <option value="CSE">COMPUTER SCIENCE AND ENGINNEERING</option>
-                            <option value="IT">INFORMATION AND TECHNOLOGY</option>
-                            <option value="ECE">ELECTRONICS AND COMMUNICATION ENGINNEERING</option>
-                            <option value="MECHANICAL">MECHANICAL ENGINNEERING</option>
-                            <option value="CIVIL">CIVIL ENGINNEERING</option>
-                            <option value="CHEMICAL">CHEMICAL ENGINNEERING</option>
-                            <option value="IPE">INDUSTRIAL AND PRODUCTION ENGINNEERING</option>
-                        </datalist>
-                    </select>
-                </div>
-            </div>
+            <select name="session" id="session" class="form-control">
+              <datalist id="sessions">
+                <option selected="true" disabled="disabled">
+                  Choose your session
+                </option>
+                <option value="2017-18">2017-18</option>
+                <option value="2018-19">2018-19</option>
+                <option value="2019-20">2019-20</option>
+                <option value="2020-21">2020-21</option>
+              </datalist>
+            </select>
+          </div>
         </div>
-        <div class="submit-btn buttons">
-            <input type="reset" class="btn-hover color-9" value="RESET">
-            <input type="submit" class="btn-hover color-9" value="NEXT">
+
+        <div class="teacher">
+          <div class="box">
+            <h3>Course</h3>
+            <select name="course" id="course" class="form-control">
+              <datalist id="courses">
+                <option selected="true" disabled="disabled">
+                  Choose your Course
+                </option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="M.Tech">M.Tech</option>
+                <option value="Ph.D">Ph.D</option>
+              </datalist>
+            </select>
+          </div>
+          <div class="box">
+            <h3>Semester</h3>
+            <select name="semester" id="semester" class="form-control">
+              <datalist id="semesters">
+                <option selected="true" disabled="disabled">
+                  Choose your Semester
+                </option>
+                <option value="1">1</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+              </datalist>
+            </select>
+          </div>
+
+          <div class="box">
+            <h3>Department</h3>
+
+            <select name="department" id="department" class="form-control">
+              <datalist id="departments">
+                <option selected="true" disabled="disabled">
+                  Choose your department
+                </option>
+                <option value="CSE">COMPUTER SCIENCE AND ENGINNEERING</option>
+                <option value="IT">INFORMATION AND TECHNOLOGY</option>
+                <option value="ECE">
+                  ELECTRONICS AND COMMUNICATION ENGINNEERING
+                </option>
+                <option value="MECHANICAL">MECHANICAL ENGINNEERING</option>
+                <option value="CIVIL">CIVIL ENGINNEERING</option>
+                <option value="CHEMICAL">CHEMICAL ENGINNEERING</option>
+                <option value="IPE">
+                  INDUSTRIAL AND PRODUCTION ENGINNEERING
+                </option>
+              </datalist>
+            </select>
+          </div>
         </div>
+      </div>
+      <div class="submit-btn buttons">
+        <input type="reset" class="btn-hover color-9" value="RESET" />
+        <input type="submit" class="btn-hover color-9" value="NEXT" />
+      </div>
     </form>
-
-</body>
-
+  </body>
 </html>
