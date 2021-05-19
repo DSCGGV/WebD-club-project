@@ -8,6 +8,11 @@
     />
     <title>Dashboard</title>
     <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="/public/images/favicon.png"
+    />
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -97,29 +102,26 @@
     <section class="main_content dashboard_part">
       <!-- dropdown Options for course and department -->
       <%- include('../partials/editfaculty_dropdown.ejs')%>
-      
     </section>
 
     <script>
-          
-      function populate(s1,s2)
-      {
-        var s1 = document.getElementById(s1)
-        var s2 = document.getElementById(s2)
-      
+      function populate(s1, s2) {
+        var s1 = document.getElementById(s1);
+        var s2 = document.getElementById(s2);
+
         s2.innerHTML = "";
-        if(s1.value == "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8"){
-          var optionArray =  ['CSE|Computer Science and Engineering' ,
-                              'MECH|Mechanical Engineering' ,
-                              'CIVIL|Civil Engineering' ,
-                              'ECE|Electronics and Communication Engineering',
-                              'IPE|Industrial and Production Engineering',
-                              'CHEM|Chemical Engineering',
-                              'IT|Information and Technology',
-                              ];
+        if (s1.value == "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8") {
+          var optionArray = [
+            "CSE|Computer Science and Engineering",
+            "MECH|Mechanical Engineering",
+            "CIVIL|Civil Engineering",
+            "ECE|Electronics and Communication Engineering",
+            "IPE|Industrial and Production Engineering",
+            "CHEM|Chemical Engineering",
+            "IT|Information and Technology",
+          ];
         }
-        for(var option in optionArray)
-        {
+        for (var option in optionArray) {
           var pair = optionArray[option].split("|");
           var newoption = document.createElement("option");
 
@@ -129,8 +131,7 @@
           s2.options.add(newoption);
         }
       }
-
-    </script>   
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>

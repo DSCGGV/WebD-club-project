@@ -1,107 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="first-page">
-<head>
-<title>Home Page</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/main.css">
-<style>
+  <head>
+    <title>Home Page</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="shortcut icon" type="image/jpg" href="../images/favicon.png" />
+    <style>
+      .buttons {
+        margin: 10%;
+        text-align: center;
+        padding-right: 55px;
+      }
 
-.buttons {
-    margin: 10%;
-    text-align: center;
-    padding-right: 55px;
-}
+      .btn-hover {
+        width: 200px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+        margin: 20px;
+        height: 55px;
+        text-align: center;
+        border: none;
+        background-size: 300% 100%;
 
-.btn-hover {
-    width: 200px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-    margin: 20px;
-    height: 55px;
-    text-align:center;
-    border: none;
-    background-size: 300% 100%;
+        border-radius: 50px;
+        moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+      }
 
-    border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
+      .btn-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+      }
 
-.btn-hover:hover {
-    background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-}
+      .btn-hover:focus {
+        outline: none;
+      }
+      .btn-hover.color-9 {
+        background-image: linear-gradient(
+          to right,
+          #25aae1,
+          #4481eb,
+          #04befe,
+          #3f86ed
+        );
+        box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+      }
+    </style>
+  </head>
+  <body class="main-page">
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center"></div>
+        <div class="row justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="wrap d-md-flex">
+              <div class="img">
+                <img src="../images/logo.jpeg" />
+                <h4>
+                  Guru Ghasidas Vishwavidyalaya,<br />Bilaspur, Chhattisgarh
+                </h4>
+              </div>
+              <div class="login-wrap p-4 p-md-5">
+                <div class="d-flex">
+                  <div class="w-100">
+                    <h3 class="mb-4">Online Feedback System</h3>
+                  </div>
+                </div>
+                <form action="/register" method="GET" class="signin-form">
+                  <div class="form-group mb-3">
+                    <label class="label">Select your designation</label>
+                    <select name="user" id="designation" class="form-control">
+                      <option value="student">Student</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
 
-.btn-hover:focus {
-    outline: none;
-}
-.btn-hover.color-9 {
-    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-}
-</style>
-</head>
-<body class="main-page">
-<section class="ftco-section">
-<div class="container">
-<div class="row justify-content-center">
+                  <div class="buttons">
+                    <button class="btn-hover color-9 pr-3" type="submit">
+                      GET STARTED
+                    </button>
+                  </div>
+                  <div class="form-group d-md-flex"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
-<div class="row justify-content-center">
-<div class="col-md-12 col-lg-10">
-<div class="wrap d-md-flex">
-<div class="img">
-<img src="../images/logo.jpeg">
-<h4>Guru Ghasidas Vishwavidyalaya,<br>Bilaspur, Chhattisgarh</h4>
-</div>
-<div class="login-wrap p-4 p-md-5">
-<div class="d-flex">
-<div class="w-100">
-<h3 class="mb-4">Online Feedback System</h3>
-</div>
-
-</div>
-<form action="/register" method="GET" class="signin-form">
-<div class="form-group mb-3">
-<label class="label">Select your designation</label>
-<select name="user" id="designation" class="form-control">
-    <option value="student">Student</option>
-    <option value="admin">Admin</option>
-  </select>
-</div>
-
-<div class="buttons">
-<button class="btn-hover color-9 pr-3" type="submit" >GET STARTED</button>
-
-
-</div>
-<div class="form-group d-md-flex">
-
-
-</div>
-</form>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<script src="../js/jquery.min.js"></script>
-<script src="../js/popper.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/main.js"></script>
-
-</body>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
 </html>
