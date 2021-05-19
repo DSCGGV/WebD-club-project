@@ -7,28 +7,42 @@ data: {
 	"Assessibility Of The Teacher In And Out Of The Class","How Simulating The Lectures Are","Temperament For The Encouraging Question To The Class" ,
 	"Regularity And Punctuality"],
 	datasets: [{
-		label: 'Analysis',
+		label: 'RESULT',
 		data: [12, 19, 3, 5, 2, 3,10,10,10,10],//yaha required array render hona chahiye
 		backgroundColor: [
-			'rgba(255, 99, 132, 0.2)',
-			'rgba(54, 162, 235, 0.2)',
-			'rgba(255, 206, 86, 0.2)',
-			'rgba(75, 192, 192, 0.2)',
-			'rgba(153, 102, 255, 0.2)',
-			'rgba(255, 159, 64, 0.2)'
+			'rgba(255, 99, 132, 8)',
+			'rgba(54, 162, 235, 10)',
+			'rgba(255, 206, 86, 10)',
+			'rgba(230, 193, 104, 10)',
+			'rgb(0, 226, 250, 10)',
+			'rgba(229, 249, 55, 10)',
+			'rgba(75, 192, 192, 10)',
+			'rgba(203, 166, 248, 5)',
+			'rgba(153, 102, 255, 10)',
+			'rgba(255, 159, 64, 10)'
+			
 		],
 		borderColor: [
-			'rgba(255, 99, 132, 1)',
-			'rgba(54, 162, 235, 1)',
-			'rgba(255, 206, 86, 1)',
-			'rgba(75, 192, 192, 1)',
-			'rgba(153, 102, 255, 1)',
-			'rgba(255, 159, 64, 1)'
+			'rgba(0, 0, 0, 10)',
+			'rgba(0, 0, 0, 10)',
+			'rgba(0, 0, 0, 10)',
+			'rgba(0, 0, 0, 10)',
+			'rgba(0, 0, 0, 10)',
+			'rgba(0, 0, 0, 10)'
 		],
-		borderWidth: 1
+		borderWidth: 1.5
 	}]
 },
 options: {
+	responsive:false,
+	layout:{
+		padding:{
+			left: 50,
+			right: 20,
+			top: 50,
+			bottom: 20
+		},
+	},
 	scales: {
 		y: {
 			beginAtZero: true
