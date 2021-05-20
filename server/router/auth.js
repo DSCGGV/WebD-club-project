@@ -11,10 +11,8 @@ const sessionStorage = require("node-sessionstorage");
 const bcrypt = require("bcryptjs");
 const { find, count } = require("../db/feedbackSchema");
 
-// router.get("/", (req, res) => {
-//   console.log(req.url);
-//   res.send(`Home Page`);
-// });
+
+
 router.get("/register", (req, res) => {
   if (req.query.user == "student") {
     res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
@@ -22,6 +20,7 @@ router.get("/register", (req, res) => {
   if (req.query.user == "admin") {
     res.redirect("/adminlogin")
   }
+  
 });
 router.get("/feedback", async (req, res) => {
   // res.render('feedback')
@@ -224,7 +223,7 @@ router.post("/adminlogin", async (req, res) => {
 
     if (Match) {
       req.session.isAuth = true;//create session
-      res.status(201).redirect("/admin_dashboard");
+      res.status(201).redirect("/adminDashboard");
       console.log("Logged In Successfully.");
     } else {
       console.log("wrong password")
@@ -260,7 +259,7 @@ router.post("/studentlogin", (req, res) => {
         
         sessionStorage.setItem("studentEnrollment", req.body.enrollment);
         sessionStorage.setItem("studentDepartment", department);
-        console.log(department)
+        req.session.isAuth = true;//create session
         res.status(201).redirect("/feedback");
         
       })
