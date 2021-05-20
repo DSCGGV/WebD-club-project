@@ -100,10 +100,48 @@
                       labels: ["Voice", "Speed", "Presentation", "Communication", "Interest", "Knowledge" , "Assessible" , "Simulation" , "Encourage" , "Overall"],
                       datasets: [{
                           label: '<%= record[i].Professor%>',
-                          data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>']
-                      }]
+                          data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>'],
+                          backgroundColor: [
+                          'rgba(255, 99, 132, 8)',
+                          'rgba(54, 162, 235, 10)',
+													'rgba(255, 206, 86, 10)',
+													'rgba(230, 193, 104, 10)',
+			                    'rgb(0, 226, 250, 10)',
+													'rgba(229, 249, 55, 10)',
+													'rgba(75, 192, 192, 10)',
+													'rgba(203, 166, 248, 5)',
+													'rgba(153, 102, 255, 10)',
+													'rgba(255, 159, 64, 10)'
+                        ],
+                        borderColor: [
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)'
+	                      	],
+		                    borderWidth: 1.5
+	                  }]
                   },
-                  });
+                  options: {
+	                    responsive:false,
+                      layout:{
+                      padding:
+                      {
+                        left: 50,
+                        right: 20,
+                        top: 50,
+                        bottom: 20
+                    },
+	                },
+	                    scales: {
+	            	      y: {
+                        beginAtZero: true
+                      }
+                    }
+                  }
+              });
         </script>
         <%}%>
         <%}%>
