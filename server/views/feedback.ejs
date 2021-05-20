@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <link rel="stylesheet" href="/css/main.css">
     <title>Feedback Form</title>
     <link
@@ -30,7 +31,7 @@
             <div class="teacher-box">
                 <h2><%=list.faculty[i]%></h2>
         
-                <form action="/feedback" method="POST" class="feedback-form-2">
+                <form action="/feedback" method="POST" class="feedback-form-2" id="submitFeedback">
                     <div class="feedback-form-box">
                         <input type="hidden" name= "Professor" value= "<%=list.faculty[i]%>"  >
                         <h2>Voice Modulation</h2>
@@ -276,13 +277,26 @@
                 </form>
             </div>
             <%}%>
-     <%}%>
+        <%}%>
      <footer class="buttons">
-        <button type="button" href="" class="btn-hover color-9" value="DONE">DONE</button>
+        <!-- <a id="done"><img src="https://img.icons8.com/nolan/50/checkmark.png"/></a> -->
+        
+            <button id="done" type="button" class="btn-hover color-9" value="DONE">DONE</button>
+        
         
     </footer>
     <script>
-            
+        // alert success message
+        $("#submitFeedback").submit(function(event){
+            alert("Feedback submitted successfully!")
+        })  
+        $("#done").click(function(event){
+            if(confirm("abcd")){
+                window.location.href = "/";
+            }
+        })  
+        
+        // collapse and expand division
         $(function(body)
         {
 

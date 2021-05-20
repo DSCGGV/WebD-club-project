@@ -274,7 +274,7 @@ router.post("/studentlogin", (req, res) => {
 // feedback post api for feedback page
 router.post("/feedback", (req, res) => {
   var faculty_department = sessionStorage.getItem("studentDepartment");
-  console.log(faculty_department);
+
   const {
     Professor,
     voice,
@@ -365,10 +365,9 @@ router.post("/feedback", (req, res) => {
               overall_avg: avg_overall.toFixed(1),
             },
           }
-        )
-          .then(() => {
+        ).then(() => {
             console.log("data avg successfully!!");
-            // console.log(department)
+            
           })
           .catch((err) => {
             res.status(500).json({ error: "Failed To avg data" });
@@ -410,6 +409,9 @@ router.post("/feedback", (req, res) => {
           res.status(500).json({ error: "Failed To Register feedback" });
           console.log("error posting data :" + err);
         });
+    }
+    if(err){
+      console.log(err);
     }
   });
 });
