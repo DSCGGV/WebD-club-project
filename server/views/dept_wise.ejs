@@ -14,12 +14,15 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="vendors/themefy_icon/themify-icons.css" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"
+      integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg=="
+      crossorigin="anonymous"
+    ></script>
     <link
       rel="shortcut icon"
       type="image/jpg"
@@ -75,6 +78,26 @@
 
     <section class="main_content dashboard_part">
       <h1>department-wise charts</h1>
+      <%for(list of record){%>
+        <%for(i=0 ; i<record.length ; i++){%>
+        <div class="chart_div container">
+          <canvas id="myChart<%= i%>" width="500" height="500" role="img"></canvas>
+        </div>
+        <script>
+                var ctx = document.getElementById("myChart<%= i%>");
+                var myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels: ["Voice", "Speed", "Presentation", "Communication", "Interest", "Knowledge" , "Assessible" , "Simulation" , "Encourage" , "Overall"],
+                      datasets: [{
+                          label: '<%= record[i].department%>',
+                          data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>']
+                      }]
+                  },
+                  });
+        </script>
+        <%}%>
+        <%}%>
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -83,8 +106,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="../js/apex_realestate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     <script src="../js/custom.js"></script>
   </body>

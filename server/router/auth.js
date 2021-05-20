@@ -61,9 +61,9 @@ router.get("/admin_dashboard", (req, res) => {
   res.render("dashboard");
 });
 
-router.get("/departmentreport", (req, res) => {
+router.get("/departmentreport",async (req, res) => {
   const DepartmentList = ["IT", "CSE", "MECH", "ECE", "IPE", "CHEM", "CIVIL"];
-  res.render("dept_wise");
+  
   let departmentWiseData = [];
 
   DepartmentList.map((department, i) => {
@@ -121,11 +121,16 @@ router.get("/departmentreport", (req, res) => {
       });
       // Push Calculated Data To Resuld array
       departmentWiseData.push(element);
+      sessionStorage.setItem("departmentWiseData" , departmentWiseData)
     });
   });
-  setTimeout(() => {
-    // console.log(departmentWiseData);
-  }, 2000);
+  const record = await sessionStorage.getItem("departmentWiseData")
+  // console.log(record);
+  res.render("dept_wise" , {record});
+  // setTimeout(() => {
+  //   console.log(departmentWiseData);
+  // }, 2000);
+
 });
 
 router.get("/facultyreport", (req, res) => {
