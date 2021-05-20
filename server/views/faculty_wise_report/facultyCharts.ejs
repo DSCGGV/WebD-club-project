@@ -102,9 +102,8 @@
         <%for(list of record){%>
         <%for(i=0 ; i<record.length ; i++){%>
         <div class="chart_div">
-          <canvas id="myChart<%=i%>"></canvas>
+          <canvas id="myChart" width="500" height="500" role="img"></canvas>
         </div>
-        <script src="..../js/chartdoc.js"></script>
         <script>
                 var ctx = document.getElementById("myChart<%=i%>");
                 var myChart = new Chart(ctx, {
@@ -115,16 +114,16 @@
                           label: '<%= record[i].Professor%>',
                           data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>'],
                           backgroundColor: [
-                          'rgba(255, 99, 132, 8)',
-                          'rgba(54, 162, 235, 10)',
-													'rgba(255, 206, 86, 10)',
-													'rgba(230, 193, 104, 10)',
-			                    'rgb(0, 226, 250, 10)',
-													'rgba(229, 249, 55, 10)',
-													'rgba(75, 192, 192, 10)',
-													'rgba(203, 166, 248, 5)',
-													'rgba(153, 102, 255, 10)',
-													'rgba(255, 159, 64, 10)'
+                          'rgba(121, 224, 0, 8)',
+			                    'rgba(0, 162, 252, 10)',
+			                    'rgba(153, 102, 255, 10)',
+			                    'rgba(240, 133, 61, 3)',
+			                    'rgba(75, 192, 192, 10)',
+			                    'rgba(160, 160, 160, 10)',
+			                    'rgba(203, 166, 248, 5)',
+			                    'rgba(255, 0, 127, 10)',
+			                    'rgba(229, 249, 55, 10)',
+			                    'rgba(255, 102, 178, 10)'
                         ],
                         borderColor: [
 													'rgba(0, 0, 0, 10)',
