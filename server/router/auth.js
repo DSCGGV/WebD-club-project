@@ -1,5 +1,4 @@
 // -----routing and post/get api-------
-
 const express = require("express");
 const router = express.Router();
 require("../db/connection");
@@ -9,6 +8,7 @@ const Faculty = require("../db/facultySchema");
 const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
+const bcrypt = require("bcryptjs");
 const { find, count } = require("../db/feedbackSchema");
 
 // router.get("/", (req, res) => {
@@ -20,9 +20,7 @@ router.get("/register", (req, res) => {
     res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
   }
   if (req.query.user == "admin") {
-    res.sendFile(
-      path.join(__dirname + "../../../public/html/admin_login.html")
-    );
+    res.redirect("/adminlogin")
   }
 });
 router.get("/feedback", async (req, res) => {
@@ -51,17 +49,21 @@ router.get("/feedback", async (req, res) => {
   });
 });
 
-router.get("/result", (req, res) => {
-  res.send(`Result Page`);
-});
+// to display admin login page
+router.get("/adminlogin", (req,res) => {
+  res.sendFile(
+    path.join(__dirname + "../../../public/html/admin_login.html")
+  );
+})
 
-router.get("/admin", (req, res) => {
+// to display admin dashboard after login
+router.get("/admin_dashboard", (req, res) => {
   res.render("dashboard");
 });
 
-router.get("/departmentreport", (req, res) => {
+router.get("/departmentreport",async (req, res) => {
   const DepartmentList = ["IT", "CSE", "MECH", "ECE", "IPE", "CHEM", "CIVIL"];
-  res.render("dept_wise");
+  
   let departmentWiseData = [];
 
   DepartmentList.map((department, i) => {
@@ -104,7 +106,9 @@ router.get("/departmentreport", (req, res) => {
           element.simulation_total += teacherDetails.simulation_total;
           element.encourage_total += teacherDetails.encourage_total;
           element.overall_total += teacherDetails.overall_total;
-          element.voice_avg += teacherDetails.voice_avg;
+          
+        }
+          element.voice_avg = element.voice_total;
           element.speed_avg += teacherDetails.speed_avg;
           element.Presentation_avg += teacherDetails.Presentation_avg;
           element.Communication_avg += teacherDetails.Communication_avg;
@@ -114,15 +118,19 @@ router.get("/departmentreport", (req, res) => {
           element.simulation_avg += teacherDetails.simulation_avg;
           element.encourage_avg += teacherDetails.encourage_avg;
           element.overall_avg += teacherDetails.overall_avg;
-        }
       });
       // Push Calculated Data To Resuld array
       departmentWiseData.push(element);
+      sessionStorage.setItem("departmentWiseData" , departmentWiseData)
     });
   });
-  setTimeout(() => {
-    console.log(departmentWiseData);
-  }, 2000);
+  const record = await sessionStorage.getItem("departmentWiseData")
+  // console.log(record);
+  res.render("dept_wise" , {record});
+  // setTimeout(() => {
+  //   console.log(departmentWiseData);
+  // }, 2000);
+
 });
 
 router.get("/facultyreport", (req, res) => {
@@ -136,9 +144,6 @@ router.get("/editFaculty", (req, res) => {
 // to display list of faculty for edit
 router.post("/editFaculty", (req, res) => {
   const { name, semester, department } = req.body;
-  
-  
-  
   if (!name) {
     Faculty.find({ department, semester }, function (err, result) {
 
@@ -173,7 +178,7 @@ router.post("/editFaculty", (req, res) => {
       });
   }
 });
-
+// for delete option on faculty edit page
 router.get("/editFaculty/delete", (req,res) => {
   var facultyDepartment = sessionStorage.getItem("deleteFaculty_department")
   var facultysemester = sessionStorage.getItem("deleteFaculty_semester")
@@ -189,74 +194,43 @@ router.post("/facultyreport/facultycharts", (req, res) => {
       console.log(result);
       res.render("../views/faculty_wise_report/facultyCharts.ejs", { record: result });
     });
-  
+});
 
-  // if (req.body.department == "MECH") {
-  //   Feedback.find({ department: "MECH" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/mechanical.ejs", {
-  //       record: result,
-  //     });
-  //   });
-  // }
-
-  // if (req.body.department == "it") {
-  //   Feedback.find({ department: "IT" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/IT.ejs", { record: result });
-  //   });
-  // }
-
-  // if (req.body.department == "electronics") {
-  //   Feedback.find({ department: "ECE" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/electronics.ejs", {
-  //       record: result,
-  //     });
-  //   });
-  // }
-
-  // if (req.body.department == "chemical") {
-  //   Feedback.find({ department: "CHEM" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/chemical.ejs", {
-  //       record: result,
-  //     });
-  //   });
-  // }
-
-  // if (req.body.department == "civil") {
-  //   Feedback.find({ department: "CIVIL" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/civil.ejs", { record: result });
-  //   });
-  // }
-
-  // if (req.body.department == "ipe") {
-  //   Feedback.find({ department: "IPE" }, function (err, result) {
-  //     console.log(result);
-  //     res.render("../views/faculty_wise_report/IP.ejs", { record: result });
-  //   });
-  // }
+router.post("/adminRegistration",async (req,res) => {
+  const email = req.body.email;
+  const pass = req.body.pass;
+  const admin = new Admin({
+    email : email,
+    password : pass
+  })
+  // hashing password
+  const registered = await admin.save()
+  console.log("admin registered")
 });
 
 //admin login post request
 router.post("/adminlogin", async (req, res) => {
   const email = req.body.email;
   const pass = req.body.pass;
+
   if (!email || !pass) {
     return res.status(422).json({ error: "Please fill both the fields!" });
   }
-  try {
+  try{
+    
     const admin = await Admin.findOne({ email: email });
+    
+    const Match = await bcrypt.compare(pass , admin.password)
 
-    if (admin.pass == pass) {
-      res.status(201).redirect("/admin");
+    if (Match) {
+      req.session.isAuth = true;//create session
+      res.status(201).redirect("/admin_dashboard");
       console.log("Logged In Successfully.");
     } else {
-      res.status(422).send("Invalid Email/Password.");
+      console.log("wrong password")
+      res.redirect("/adminlogin")
     }
-  } catch (error) {
+  }catch(error) {
     res.status(422).send("Invalid Email/Password.");
   }
 });
@@ -300,7 +274,7 @@ router.post("/studentlogin", (req, res) => {
 // feedback post api for feedback page
 router.post("/feedback", (req, res) => {
   var faculty_department = sessionStorage.getItem("studentDepartment");
-  console.log(faculty_department);
+
   const {
     Professor,
     voice,
@@ -391,10 +365,9 @@ router.post("/feedback", (req, res) => {
               overall_avg: avg_overall.toFixed(1),
             },
           }
-        )
-          .then(() => {
+        ).then(() => {
             console.log("data avg successfully!!");
-            // console.log(department)
+            
           })
           .catch((err) => {
             res.status(500).json({ error: "Failed To avg data" });
@@ -437,6 +410,9 @@ router.post("/feedback", (req, res) => {
           console.log("error posting data :" + err);
         });
     }
+    if(err){
+      console.log(err);
+    }
   });
 });
 
@@ -477,4 +453,11 @@ router.post("/feedback", (req, res) => {
 //       });
 //   });
 // });
+
+router.get("/logout" , (req,res) => {
+  req.session.destroy((err) => {
+    if(err) throw err;
+    res.redirect("/");
+  })
+})
 module.exports = router;

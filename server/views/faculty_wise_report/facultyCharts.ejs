@@ -7,14 +7,9 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>Dashboard</title>
-    <link
-      rel="shortcut icon"
-      type="image/jpg"
-      href="/public/images/favicon.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    <link rel="shortcut icon" type="image/jpg" href="/public/images/favicon.png"/>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
@@ -33,7 +28,7 @@
     <script src="../test.js"></script>
     <style>
       #myChart {
-        width: 60%;
+        width: 91%;
         height: 100px;
         
       }
@@ -52,16 +47,9 @@
       </div>
       <ul id="sidebar_menu">
         <li class="">
-          <a href="/admin" aria-expanded="false">
+          <a href="/admin_dashboard" aria-expanded="false">
             <img src="../images/dashboard.svg" alt="" />
             <span>Dashboard</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a href="#" aria-expanded="false">
-            <img src="../images/9.svg" alt="" />
-            <span>Students Responses</span>
           </a>
         </li>
 
@@ -87,7 +75,7 @@
         </li>
 
         <li class="">
-          <a href="#" aria-expanded="false">
+          <a href="/logout" aria-expanded="false">
             <img src="../images/002-logout.svg" alt="" />
             <span>Logout</span>
           </a>
@@ -102,7 +90,7 @@
         <%for(list of record){%>
         <%for(i=0 ; i<record.length ; i++){%>
         <div class="chart_div">
-          <canvas id="myChart" width="500" height="500" role="img"></canvas>
+          <canvas id="myChart<%= i%>" width="500" height="300" role="img"></canvas>
         </div>
         <script>
                 var ctx = document.getElementById("myChart<%=i%>");
@@ -159,17 +147,8 @@
         <%}%>
     </section>
    
-    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
-<!-- <script src="../js/apex_realestate.js"></script> -->
 
-<script src="../js/custom.js"></script>
+    <script src="../js/custom.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -178,8 +157,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.6/metisMenu.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
-    <!-- <script src="../js/apex_realestate.js"></script> -->
+
 
     <script src="../js/custom.js"></script>
   </body>

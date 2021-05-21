@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const DB = process.env.DATABASE || "mongodb://localhost:27017/feedback";
+const DB = process.env.DATABASE || "<database string here>";
 console.log(`Database URI String ${DB}`);
 
 mongoose

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, { 
 type: 'bar',
@@ -51,6 +52,9 @@ options: {
 });
 
 /*anychart.onDocumentReady(function () {
+=======
+anychart.onDocumentReady(function () {
+>>>>>>> 976900e1ee63d957ee47fc8a650dd99c4cc2744a
 	var data = [
 		["Very Good", 550],
 		["Good", 850],
@@ -213,4 +217,4 @@ anychart.onDocumentReady(function () {
 	chart.title("Item-11, Overall teaching, Avg.Score - 2.7");
 	chart.container("container10");
 	chart.draw();
-});*/
+});
