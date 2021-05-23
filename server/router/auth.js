@@ -24,7 +24,7 @@ router.get("/register", (req, res) => {
 });
 router.get("/feedback", async (req, res) => {
   // res.render('feedback')
-  // console.log(sessionStorage.getItem('enrollment'));
+  // console.log(sessionStorage.getItem('studentEnrollment'));
 
   var enrollment = sessionStorage.getItem("studentEnrollment");
   const user = await User.findOne({ enrollment: enrollment });
@@ -236,7 +236,7 @@ router.post("/adminlogin", async (req, res) => {
 
 //student login post request
 router.post("/studentlogin", (req, res) => {
-  const { enrollment, department, semester } = req.body;
+  const { enrollment, department, semester, name } = req.body;
 
   if (!enrollment || !department || !semester) {
     return res.status(422).json({ error: "Please Fill all the fields" });
@@ -244,7 +244,9 @@ router.post("/studentlogin", (req, res) => {
 
   User.findOne({ enrollment: enrollment }).then((userExist) => {
     if (userExist) {
-      res.status(422).json({ error: "User Already Exist" });
+      // res.status(422).json({ error: "User Already Exist" });
+      res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
+      req.flash("error message" , "user exist")
       return;
     }
 
@@ -256,10 +258,9 @@ router.post("/studentlogin", (req, res) => {
     user
       .save()
       .then(() => {
-        
         sessionStorage.setItem("studentEnrollment", req.body.enrollment);
         sessionStorage.setItem("studentDepartment", department);
-        req.session.isAuth = true;//create session
+        req.session.isAuth = true;//create session cookie max age 1day
         res.status(201).redirect("/feedback");
         
       })
@@ -273,7 +274,6 @@ router.post("/studentlogin", (req, res) => {
 // feedback post api for feedback page
 router.post("/feedback", (req, res) => {
   var faculty_department = sessionStorage.getItem("studentDepartment");
-
   const {
     Professor,
     voice,
@@ -285,10 +285,10 @@ router.post("/feedback", (req, res) => {
     assessible,
     simulation,
     encourage,
-    puntual,
+    punctual,
     overall,
   } = req.body;
-
+  
   if (
     !voice ||
     !speed ||
@@ -299,7 +299,7 @@ router.post("/feedback", (req, res) => {
     !assessible ||
     !simulation ||
     !encourage ||
-    !puntual ||
+    !punctual ||
     !overall
   ) {
     return res.status(422).json({ error: "Please Fill all the fields" });
@@ -321,7 +321,7 @@ router.post("/feedback", (req, res) => {
             assessible_total: req.body.assessible,
             simulation_total: req.body.simulation,
             encourage_total: req.body.encourage,
-            punctual_total: req.body.puntual,
+            punctual_total: req.body.punctual,
             overall_total: req.body.overall,
           },
         }
@@ -387,7 +387,7 @@ router.post("/feedback", (req, res) => {
         assessible_total: req.body.assessible,
         simulation_total: req.body.simulation,
         encourage_total: req.body.encourage,
-        punctual_total: req.body.puntual,
+        punctual_total: req.body.punctual,
         overall_total: req.body.overall,
         voice_avg: req.body.voice,
         speed_avg: req.body.speed,
@@ -398,7 +398,7 @@ router.post("/feedback", (req, res) => {
         assessible_avg: req.body.assessible,
         simulation_avg: req.body.simulation,
         encourage_avg: req.body.encourage,
-        punctual_avg: req.body.puntual,
+        punctual_avg: req.body.punctual,
         overall_avg: req.body.overall,
       })
         .then(() => {
