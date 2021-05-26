@@ -9,7 +9,8 @@ const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
 const bcrypt = require("bcryptjs");
-const { find, count } = require("../db/feedbackSchema");
+const crypto = require("crypto");
+const sgMail = require('@sendgrid/mail');
 
 
 
@@ -22,6 +23,7 @@ router.get("/register", (req, res) => {
   }
   
 });
+
 router.get("/feedback", async (req, res) => {
   // res.render('feedback')
   // console.log(sessionStorage.getItem('studentEnrollment'));
@@ -177,6 +179,7 @@ router.post("/editFaculty", (req, res) => {
       });
   }
 });
+
 // for delete option on faculty edit page
 router.get("/editFaculty/delete", (req,res) => {
   var facultyDepartment = sessionStorage.getItem("deleteFaculty_department")
@@ -223,7 +226,7 @@ router.post("/adminlogin", async (req, res) => {
 
     if (Match) {
       req.session.isAuth = true;//create session
-      res.status(201).redirect("/adminDashboard");
+      res.status(201).redirect("/admin_dashboard");
       console.log("Logged In Successfully.");
     } else {
       console.log("wrong password")
@@ -233,6 +236,78 @@ router.post("/adminlogin", async (req, res) => {
     res.status(422).send("Invalid Email/Password.");
   }
 });
+
+// admin send email confirmation dialog page
+router.get("/admin/adminVerification" , (req,res)=>{
+  
+  res.sendFile(path.join(__dirname + "../../../public/html/adminVerification.html"));
+})
+
+//verification email code
+router.get("/admin/sendEmail" ,async (req,res)=>{
+  
+  var adminEmail = Admin.findOne({})
+  console.log(adminEmail.email);
+  var token = crypto.randomBytes(16).toString('hex')
+  // sending email...
+  
+  await sgMail.setApiKey(process.env.sendGrid_apikey)
+  const msg = {
+    from : 'shreyasthakur099@gmail.com',
+    to :'shreyasthakur099@gmail.com',
+    subject : "Verify your email -GGV",
+    text : `Authenticating your email to reset password.
+    Click on the link below.
+    http://${req.headers.host}/verify-email?token=${token}`,
+    html: `
+    <h3 style="justify-content:center">Click the link to verify email</h3>
+    <a href="http://${req.headers.host}/admin/resetPassword?token=${token}">LINK</a>
+    `
+  }
+  
+  sgMail.send(msg)
+    .then((response) =>{
+      console.log("email sent...")
+      res.redirect("/admin/sentEmail");
+    })
+    .catch((err)=>{console.log("email error :" +err);})
+
+
+  
+})
+
+// admin email sent dialog page
+router.get("/admin/sentEmail" , (req,res)=>{
+  
+  res.sendFile(path.join(__dirname + "../../../public/html/sentEmail.html"));
+})
+
+//admin password reset page
+router.get("/admin/resetPassword" , (req,res)=>{
+  res.sendFile(path.join(__dirname + "../../../public/html/admin_resetPassword.html"));
+})
+
+
+router.post("/admin/resetPassword" ,async (req,res)=>{
+
+  if( req.body.password == req.body.confirmpassword){
+    console.log("old pass:" + req.body.password);
+    var newPassword =await bcrypt.hash(req.body.password,10)
+     console.log(newPassword);
+    Admin.findOneAndUpdate({email : {$exists : true}},
+      {
+        $set : { password : newPassword}
+      }).then(()=>{
+        // flash: password changed succesfully
+        res.redirect("/")
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+  }else{
+    // flash msg: password doesnt match
+  }
+})
 
 //student login post request
 router.post("/studentlogin", (req, res) => {

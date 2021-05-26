@@ -61,6 +61,7 @@ const restrictAccess = (req,res,next) => {
     next();
   }else{
     console.log("User unathorized to access webpage");
+    // flash msg:
   }
 }
 
@@ -82,7 +83,12 @@ app
   .post("/addfaculty",[ restrictAccess ,checkSession ], auth)
   .get("/adminlogin",auth)
   .post("/adminlogin",auth)
-  .get("/adminDashboard",[ restrictAccess ,checkSession ],  auth)
+  .get("/admin/adminVerification", auth)
+  .get("/admin/sendEmail", auth)
+  .get("/admin/sentEmail", auth)
+  .get("/admin/resetPassword" , auth)
+  .post("/admin/resetPassword" , auth)
+  .get("/admin_dashboard",checkSession ,  auth)
   .get("/departmentreport" ,[ restrictAccess ,checkSession ], auth)
   .post("/departmentreport" ,[ restrictAccess ,checkSession ], auth)
   .get("/facultyreport" ,[ restrictAccess ,checkSession ], auth)
