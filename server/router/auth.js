@@ -291,9 +291,7 @@ router.get("/admin/resetPassword" , (req,res)=>{
 router.post("/admin/resetPassword" ,async (req,res)=>{
 
   if( req.body.password == req.body.confirmpassword){
-    console.log("old pass:" + req.body.password);
     var newPassword =await bcrypt.hash(req.body.password,10)
-     console.log(newPassword);
     Admin.findOneAndUpdate({email : {$exists : true}},
       {
         $set : { password : newPassword}
