@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="admin">
   <head>
-    <title>Admin Login</title>
+    <title>Admin Password Reset</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -33,39 +33,54 @@
           </div>
 
           <form
-            action="/adminlogin"
+            action="/admin/changepassword"
             method="POST"
             class="admin-login-form validate-form"
           >
-            <span class="admin-login-form-title"> Admin Login </span>
+            <span class="admin-login-form-title"> Admin Change Password </span>
 
             <div
               class="wrap-input100 validate-input"
-              data-validate="Valid email is required: ex@abc.xyz"
-            >
-              <input
-                class="input100"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-              />
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-              </span>
-            </div>
-
-            <div
-              class="wrap-input100 validate-input"
-              data-validate="Password is required"
             >
               <input
                 class="input100"
                 type="password"
-                id="pass"
-                name="pass"
-                placeholder="Password"
+                id="oldpassword"
+                name="oldpassword"
+                placeholder="Enter Old Password"
+              />
+              <span class="focus-input100"></span>
+              <span class="symbol-input100">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+              </span>
+            </div>
+
+            <div
+            class="wrap-input100 validate-input"
+            data-validate="Password is required"
+            >
+            <input
+              class="input100"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter New Password"
+            />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+          </div>
+
+            <div
+              class="wrap-input100 validate-input"
+            >
+              <input
+                class="input100"
+                type="password"
+                id="confirmpassword"
+                name="confirmpassword"
+                placeholder="Confirm New Password"
               />
               <span class="focus-input100"></span>
               <span class="symbol-input100">
@@ -74,15 +89,10 @@
             </div>
 
             <div class="buttons">
-              <button class="btnfos btnfos-5">Login</button>
+              <button class="btnfos btnfos-5">done</button>
             </div>
 
-            <div class="text-center p-t-12">
-              <span class="txt1"> Forgot </span>
-              <a class="txt2" href="#"> Username / Password? </a>
-            </div>
           </form>
-          <a href="/admin/adminVerification">Forgot Password</a>
         </div>
       </div>
     </div>

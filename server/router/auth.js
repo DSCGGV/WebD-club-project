@@ -9,12 +9,11 @@ const Admin = require("../db/adminSchema");
 const Feedback = require("../db/feedbackSchema");
 const sessionStorage = require("node-sessionstorage");
 const bcrypt = require("bcryptjs");
-const { find, count } = require("../db/feedbackSchema");
+const crypto = require("crypto");
+const sgMail = require('@sendgrid/mail');
 
-// router.get("/", (req, res) => {
-//   console.log(req.url);
-//   res.send(`Home Page`);
-// });
+
+
 router.get("/register", (req, res) => {
   if (req.query.user == "student") {
     res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
@@ -22,10 +21,12 @@ router.get("/register", (req, res) => {
   if (req.query.user == "admin") {
     res.redirect("/adminlogin")
   }
+  
 });
+
 router.get("/feedback", async (req, res) => {
   // res.render('feedback')
-  // console.log(sessionStorage.getItem('enrollment'));
+  // console.log(sessionStorage.getItem('studentEnrollment'));
 
   var enrollment = sessionStorage.getItem("studentEnrollment");
   const user = await User.findOne({ enrollment: enrollment });
@@ -178,6 +179,7 @@ router.post("/editFaculty", (req, res) => {
       });
   }
 });
+
 // for delete option on faculty edit page
 router.get("/editFaculty/delete", (req,res) => {
   var facultyDepartment = sessionStorage.getItem("deleteFaculty_department")
@@ -235,9 +237,79 @@ router.post("/adminlogin", async (req, res) => {
   }
 });
 
+// admin send email confirmation dialog page
+router.get("/admin/adminVerification" , (req,res)=>{
+  
+  res.sendFile(path.join(__dirname + "../../../public/html/adminVerification.html"));
+})
+
+//verification email code
+router.get("/admin/sendEmail" ,async (req,res)=>{
+  
+  var adminEmail = Admin.findOne({})
+  console.log(adminEmail.email);
+  var token = crypto.randomBytes(16).toString('hex')
+  // sending email...
+  
+  await sgMail.setApiKey(process.env.sendGrid_apikey)
+  const msg = {
+    from : 'shreyasthakur099@gmail.com',
+    to :'shreyasthakur099@gmail.com',
+    subject : "Verify your email -GGV",
+    text : `Authenticating your email to reset password.
+    Click on the link below.
+    http://${req.headers.host}/verify-email?token=${token}`,
+    html: `
+    <h3 style="justify-content:center">Click the link to verify email</h3>
+    <a href="http://${req.headers.host}/admin/resetPassword?token=${token}">LINK</a>
+    `
+  }
+  
+  sgMail.send(msg)
+    .then((response) =>{
+      console.log("email sent...")
+      res.redirect("/admin/sentEmail");
+    })
+    .catch((err)=>{console.log("email error :" +err);})
+
+
+  
+})
+
+// admin email sent dialog page
+router.get("/admin/sentEmail" , (req,res)=>{
+  
+  res.sendFile(path.join(__dirname + "../../../public/html/sentEmail.html"));
+})
+
+//admin password reset page
+router.get("/admin/resetPassword" , (req,res)=>{
+  res.sendFile(path.join(__dirname + "../../../public/html/admin_resetPassword.html"));
+})
+
+
+router.post("/admin/resetPassword" ,async (req,res)=>{
+
+  if( req.body.password == req.body.confirmpassword){
+    var newPassword =await bcrypt.hash(req.body.password,10)
+    Admin.findOneAndUpdate({email : {$exists : true}},
+      {
+        $set : { password : newPassword}
+      }).then(()=>{
+        // flash: password changed succesfully
+        res.redirect("/")
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+  }else{
+    // flash msg: password doesnt match
+  }
+})
+
 //student login post request
 router.post("/studentlogin", (req, res) => {
-  const { enrollment, department, semester } = req.body;
+  const { enrollment, department, semester, name } = req.body;
 
   if (!enrollment || !department || !semester) {
     return res.status(422).json({ error: "Please Fill all the fields" });
@@ -245,7 +317,9 @@ router.post("/studentlogin", (req, res) => {
 
   User.findOne({ enrollment: enrollment }).then((userExist) => {
     if (userExist) {
-      res.status(422).json({ error: "User Already Exist" });
+      // res.status(422).json({ error: "User Already Exist" });
+      res.sendFile(path.join(__dirname + "../../../public/html/student.html"));
+      req.flash("error message" , "user exist")
       return;
     }
 
@@ -257,10 +331,9 @@ router.post("/studentlogin", (req, res) => {
     user
       .save()
       .then(() => {
-        
         sessionStorage.setItem("studentEnrollment", req.body.enrollment);
         sessionStorage.setItem("studentDepartment", department);
-        console.log(department)
+        req.session.isAuth = true;//create session cookie max age 1day
         res.status(201).redirect("/feedback");
         
       })
@@ -274,7 +347,6 @@ router.post("/studentlogin", (req, res) => {
 // feedback post api for feedback page
 router.post("/feedback", (req, res) => {
   var faculty_department = sessionStorage.getItem("studentDepartment");
-
   const {
     Professor,
     voice,
@@ -286,10 +358,10 @@ router.post("/feedback", (req, res) => {
     assessible,
     simulation,
     encourage,
-    puntual,
+    punctual,
     overall,
   } = req.body;
-
+  
   if (
     !voice ||
     !speed ||
@@ -300,7 +372,7 @@ router.post("/feedback", (req, res) => {
     !assessible ||
     !simulation ||
     !encourage ||
-    !puntual ||
+    !punctual ||
     !overall
   ) {
     return res.status(422).json({ error: "Please Fill all the fields" });
@@ -322,7 +394,7 @@ router.post("/feedback", (req, res) => {
             assessible_total: req.body.assessible,
             simulation_total: req.body.simulation,
             encourage_total: req.body.encourage,
-            punctual_total: req.body.puntual,
+            punctual_total: req.body.punctual,
             overall_total: req.body.overall,
           },
         }
@@ -388,7 +460,7 @@ router.post("/feedback", (req, res) => {
         assessible_total: req.body.assessible,
         simulation_total: req.body.simulation,
         encourage_total: req.body.encourage,
-        punctual_total: req.body.puntual,
+        punctual_total: req.body.punctual,
         overall_total: req.body.overall,
         voice_avg: req.body.voice,
         speed_avg: req.body.speed,
@@ -399,7 +471,7 @@ router.post("/feedback", (req, res) => {
         assessible_avg: req.body.assessible,
         simulation_avg: req.body.simulation,
         encourage_avg: req.body.encourage,
-        punctual_avg: req.body.puntual,
+        punctual_avg: req.body.punctual,
         overall_avg: req.body.overall,
       })
         .then(() => {

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const session = require("express-session");
 const MongoDBSession = require('connect-mongodb-session')(session);
+const sessionStorage = require("node-sessionstorage");
 const app = express();
 const path = require("path");
 const ejs = require("ejs");
@@ -49,10 +50,20 @@ const checkSession = (req,res,next) => {
       {
         next()
       }else{
-        res.redirect("/adminlogin")
+        res.redirect("/")
       }
     }
 
+// restricting access acc. to user
+const restrictAccess = (req,res,next) => {
+  const userRole = sessionStorage.getItem("userRole")
+  if(userRole == "admin"){
+    next();
+  }else{
+    console.log("User unathorized to access webpage");
+    // flash msg:
+  }
+}
 
 // we link the router files to make our route easy
 const auth = require("./router/auth");
@@ -62,22 +73,30 @@ app
   .get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "../../public/html/index.html"));
   })
-  .get("/register", auth)
+  .get("/register", (req,res,next) =>{
+    sessionStorage.setItem("userRole" , req.query.user)
+    next();
+  }, auth)
   .post("/studentlogin", auth)
   .get("/feedback", auth)
   .post("/feedback", auth)
-  .post("/addfaculty", auth)
+  .post("/addfaculty",[ restrictAccess ,checkSession ], auth)
   .get("/adminlogin",auth)
   .post("/adminlogin",auth)
-  .get("/admin_dashboard",checkSession,  auth)
-  .get("/departmentreport" ,checkSession, auth)
-  .post("/departmentreport" ,checkSession, auth)
-  .get("/facultyreport" ,checkSession, auth)
-  .post("/facultyreport/facultycharts" ,checkSession, auth)
-  .get("/editFaculty" ,checkSession,  auth)
-  .post("/editFaculty" ,checkSession, auth)
-  .get("/editFaculty/delete" ,checkSession, auth)
-  .post("/facultylist" ,checkSession, auth)
+  .get("/admin/adminVerification", auth)
+  .get("/admin/sendEmail", auth)
+  .get("/admin/sentEmail", auth)
+  .get("/admin/resetPassword" , auth)
+  .post("/admin/resetPassword" , auth)
+  .get("/admin_dashboard",checkSession ,  auth)
+  .get("/departmentreport" ,[ restrictAccess ,checkSession ], auth)
+  .post("/departmentreport" ,[ restrictAccess ,checkSession ], auth)
+  .get("/facultyreport" ,[ restrictAccess ,checkSession ], auth)
+  .post("/facultyreport/facultycharts" ,[ restrictAccess ,checkSession ], auth)
+  .get("/editFaculty" ,[ restrictAccess ,checkSession ],  auth)
+  .post("/editFaculty" ,[ restrictAccess ,checkSession ], auth)
+  .get("/editFaculty/delete" ,[ restrictAccess ,checkSession ], auth)
+  .post("/facultylist" ,[ restrictAccess ,checkSession ], auth)
   .get("/logout" , auth);
 
 
