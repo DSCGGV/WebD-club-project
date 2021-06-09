@@ -1559,12 +1559,15 @@ th:focus {
 
 @media (max-width: 991px) {
   .sidebar {
-    left: -280px;
     -webkit-transition: 0.5s;
     transition: 0.5s;
-    top: 0;
     width: 280px;
-    background: #fff;
+  }
+    .sidebar .logo {
+    padding: 30px;
+  }
+  .sidebar .logo img {
+    width: 50%;
   }
 }
 
@@ -1585,11 +1588,6 @@ th:focus {
   width: 100%;
 }
 
-@media (max-width: 991px) {
-  .sidebar .logo {
-    padding: 30px;
-  }
-}
 
 .sidebar_close_icon i {
   width: 40px;
@@ -1753,29 +1751,50 @@ body::-webkit-scrollbar {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .main_content {
-    padding-left: 20%;
+  .main_content_iner {
+    min-height: 68vh;
+    transition: 0.5s;
+    margin-right: 100px;
   }
 }
 
 .main_content .main_content_iner {
   min-height: 68vh;
   transition: 0.5s;
-  margin: 20px 30px 30px 30px;
+  margin-left: 300px;
 }
 
 @media (max-width: 991px) {
-  .main_content .main_content_iner {
-    margin: 0;
+  .main_content_iner {
+    margin: 50px 0px 200px;
   }
 }
-
-@media (max-width: 575.98px) {
-  .main_content .main_content_iner {
-    margin-bottom: 20px;
+@media (max-width: 657px) {
+  .main_content_iner {
+    margin: 50px 0px 200px;
   }
 }
-
+@media (max-width: 615px) {
+  .main_content .main_content_iner {
+    margin: 50px 25px 200px 300px;
+  }
+}
+@media (max-width: 586px) {
+  .main_content .main_content_iner {
+    margin: 50px 0px 200px 250px;
+  }
+}
+@media (max-width: 586px) {
+  .main_content .main_content_iner {
+    margin: 50px 0px 200px 250px;
+  }
+}
+470,369
+@media only screen and (min-width: 369px) and (max-width: 498px) {
+ .main_content_iner {
+    margin-left: 00px;
+  }
+}
 .white_box {
   padding: 30px;
   background-color: #ffffff;
