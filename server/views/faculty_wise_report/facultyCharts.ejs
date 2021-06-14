@@ -38,51 +38,33 @@
     </style>
   </head>
   <body class="crm_body_bg">
-    <nav class="sidebar">
-      <div class="logo d-flex justify-content-between">
-        <a><img src="../images/logo.jpeg" alt="" /></a>
-        <div class="sidebar_close_icon d-lg-none">
-          <i class="ti-close"></i>
+    <div class="container"><nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary" >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/admin_dashboard" >
+         <img src="../images/logo.jpeg" alt="" style="height: 40px; width: 40px;background-color: blue;"/>
+           Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/editFaculty">Add Faculty Details</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/facultyreport">Generate Report for Faculties</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/departmentreport">Generate Report for Department</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout" >Logout</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <ul id="sidebar_menu">
-        <li class="">
-          <a href="/admin_dashboard" aria-expanded="false">
-            <img src="../images/dashboard.svg" alt="" />
-            <span>Dashboard</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a href="/editFaculty" aria-expanded="false">
-            <img src="../images/10.svg" alt="" />
-            <span>Add Faculty Details</span>
-          </a>
-        </li>
-
-        <li class="mm-active">
-          <a href="/facultyreport" aria-expanded="false">
-            <img src="../images/001-teacher.svg" alt="" />
-            <span>Generate Report for Faculties</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a href="/departmentreport" aria-expanded="false">
-            <img src="../images/department.svg" alt="" />
-            <span>Generate Report for Department</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a href="/logout" aria-expanded="false">
-            <img src="../images/002-logout.svg" alt="" />
-            <span>Logout</span>
-          </a>
-        </li>
-      </ul>
     </nav>
-
+    
     <section class="container main_content dashboard_part">
       <%- include('../partials/facultyreport_dropdown.ejs')%>
         <h1>Faculty-wise charts</h1>
@@ -102,16 +84,16 @@
                           label: '<%= record[i].Professor%>',
                           data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>'],
                           backgroundColor: [
-                          'rgba(255, 99, 132, 8)',
-                          'rgba(54, 162, 235, 10)',
-													'rgba(255, 206, 86, 10)',
-													'rgba(230, 193, 104, 10)',
-			                    'rgb(0, 226, 250, 10)',
-													'rgba(229, 249, 55, 10)',
-													'rgba(75, 192, 192, 10)',
-													'rgba(203, 166, 248, 5)',
-													'rgba(153, 102, 255, 10)',
-													'rgba(255, 159, 64, 10)'
+                          'rgba(121, 224, 0, 8)',
+			                    'rgba(0, 162, 252, 10)',
+			                    'rgba(153, 102, 255, 10)',
+			                    'rgba(240, 133, 61, 3)',
+			                    'rgba(75, 192, 192, 10)',
+			                    'rgba(160, 160, 160, 10)',
+			                    'rgba(203, 166, 248, 5)',
+			                    'rgba(255, 0, 127, 10)',
+			                    'rgba(229, 249, 55, 10)',
+			                    'rgba(255, 102, 178, 10)'
                         ],
                         borderColor: [
 													'rgba(0, 0, 0, 10)',

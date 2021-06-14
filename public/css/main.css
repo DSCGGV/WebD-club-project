@@ -1540,7 +1540,13 @@ th:focus {
   vertical-align: top;
   border-top: 0 !important;
 }
-
+.jumbo {
+  margin-top: 30px;
+   margin-left: 200px;
+}
+.jumbotron{
+  padding-left: 38px;
+}
 .sidebar {
   height: 100vh;
   left: 0;
@@ -1559,12 +1565,15 @@ th:focus {
 
 @media (max-width: 991px) {
   .sidebar {
-    left: -280px;
     -webkit-transition: 0.5s;
     transition: 0.5s;
-    top: 0;
     width: 280px;
-    background: #fff;
+  }
+    .sidebar .logo {
+    padding: 30px;
+  }
+  .sidebar .logo img {
+    width: 50%;
   }
 }
 
@@ -1585,11 +1594,6 @@ th:focus {
   width: 100%;
 }
 
-@media (max-width: 991px) {
-  .sidebar .logo {
-    padding: 30px;
-  }
-}
 
 .sidebar_close_icon i {
   width: 40px;
@@ -1719,19 +1723,13 @@ body::-webkit-scrollbar {
 }
 
 .main_content {
-  /* padding-left: 20px; */
+  padding-left: 20px; 
   width: 100%;
   padding-top: 0px !important;
+  padding-right: 400px;
   transition: 0.5s;
-  position: relative;
   min-height: 100vh;
   padding-bottom: 90px;
-}
-
-@media (max-width: 991px) {
-  .main_content {
-    padding: 90px 0 100px 0;
-  }
 }
 
 @media (max-width: 575.98px) {
@@ -1742,40 +1740,61 @@ body::-webkit-scrollbar {
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .main_content {
-    padding: 120px 0 100px 0;
+    padding-left: 300px;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .main_content {
-    padding: 120px 0 100px 0;
+    padding-left: 300px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .main_content {
-    padding-left: 20%;
+  .main_content_iner {
+    min-height: 68vh;
+    transition: 0.5s;
+    margin-right: 100px;
   }
 }
 
 .main_content .main_content_iner {
   min-height: 68vh;
   transition: 0.5s;
-  margin: 20px 30px 30px 30px;
+  margin-left: 300px;
 }
 
 @media (max-width: 991px) {
-  .main_content .main_content_iner {
-    margin: 0;
+  .main_content_iner {
+    margin: 50px 0px 200px;
   }
 }
-
-@media (max-width: 575.98px) {
-  .main_content .main_content_iner {
-    margin-bottom: 20px;
+@media (max-width: 657px) {
+  .main_content_iner {
+    margin: 50px 0px 200px;
   }
 }
-
+@media (max-width: 615px) {
+  .main_content .main_content_iner {
+    margin: 50px 25px 200px 300px;
+  }
+}
+@media (max-width: 586px) {
+  .main_content .main_content_iner {
+    margin: 50px 0px 200px 250px;
+  }
+}
+@media (max-width: 586px) {
+  .main_content .main_content_iner {
+    margin: 50px 0px 200px 250px;
+  }
+}
+470,369
+@media only screen and (min-width: 369px) and (max-width: 498px) {
+ .main_content_iner {
+    margin-left: 00px;
+  }
+}
 .white_box {
   padding: 30px;
   background-color: #ffffff;
