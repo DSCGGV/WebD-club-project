@@ -47,50 +47,33 @@
     <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body class="crm_body_bg">
-    <nav class="sidebar">
-      <div class="logo d-flex justify-content-between">
-        <a><img src="../images/logo.jpeg" alt="" /></a>
-        <div class="sidebar_close_icon d-lg-none">
-          <i class="ti-close"></i>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary" >
+        <a><img src="../images/logo.jpeg" alt="" style="height: 40px; width: 40px;background-color: blue;"/></a>
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/admin_dashboard" >Dashboard</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/editFaculty">Add Faculty Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/facultyreport">Generate Report for Faculties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/departmentreport">Generate Report for Department</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout" >Logout</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <ul id="sidebar_menu">
-        <li class="">
-          <a href="/admin_dashboard" aria-expanded="false">
-            <img src="../images/dashboard.svg" alt="" />
-            <span>Dashboard</span>
-          </a>
-        </li>
-
-        <li class="mm-active">
-          <a href="/editFaculty" aria-expanded="false">
-            <img src="../images/10.svg" alt="" />
-            <span>Add Faculty Details</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a href="/facultyreport" aria-expanded="false">
-            <img src="../images/001-teacher.svg" alt="" />
-            <span>Generate Report for Faculties</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a href="/departmentreport" aria-expanded="false">
-            <img src="../images/department.svg" alt="" />
-            <span>Generate Report for Department</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a href="/logout" aria-expanded="false">
-            <img src="../images/002-logout.svg" alt="" />
-            <span>Logout</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      </nav></div>
+    
 
     <section class="main_content dashboard_part">
       <!-- dropdown Options for course and department -->

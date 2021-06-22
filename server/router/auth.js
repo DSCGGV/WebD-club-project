@@ -126,6 +126,7 @@ router.get("/departmentreport",async (req, res) => {
     });
   });
   const record = await sessionStorage.getItem("departmentWiseData");
+  console.log("log");
   console.log(record);
   res.render("dept_wise" , {record});
   // setTimeout(() => {
