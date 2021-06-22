@@ -1,25 +1,44 @@
   <!-- dropdown Options for course and department -->
-  <div class="container jumbo">
-  <div class="jumbotron jumbotron-fluid ">
+<!--  <div class="jumbotron jumbotron-fluid ">
     <form action="/facultyreport/facultycharts" method="POST">
-      <div class="container row">
-        <div class="col-md- 4">
+      <div >
+        <div class="lead">
           <select name="course" id="course" class="custom-select" onclick="populate(this.id, 'department')">
             <option value="">-- Choose Course --</option>
             <option value="btech">Bachelor of Technology</option>
           </select>
         </div>
-        <div class="col-md-4">
+        <div>
           <select name="department" id="department" class="custom-select">
 
           </select>
         </div>
-        <div class="col-md-4">
+        <div>
           <button type="submit" class="btn btn-info">Show report</button>
         </div>
       </div>
     </form>
   </div>
+-->
+<div class="jumbo border border-3 border-primary">
+  <form action="/facultyreport/facultycharts" method="POST">
+    <div class="mb-3">
+      <div class="lead">
+        <select name="course" id="course" class="custom-select" onclick="populate(this.id, 'department')">
+          <option value="">-- Choose Course --</option>
+          <option value="btech">Bachelor of Technology</option>
+        </select>
+      </div>
+      </div>
+    <div class="mb-3">
+      <select name="department" id="department" class="custom-select">
+        <option value="" class="default" selected disabled>
+          
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
   </div>
   <script>
           

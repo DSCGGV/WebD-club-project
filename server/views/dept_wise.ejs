@@ -29,6 +29,16 @@
       href="/public/images/favicon.png"
     />
     <link rel="stylesheet" href="../css/main.css" />
+    <style>
+      #myChart {
+        width: 80%;
+        height: 100px;
+        
+      }
+      .chart_div{
+        margin:40px 30px;
+      }
+    </style>
   </head>
   <body class="crm_body_bg">
     <div class="container">
@@ -74,9 +84,47 @@
                       labels: ["Voice", "Speed", "Presentation", "Communication", "Interest", "Knowledge" , "Assessible" , "Simulation" , "Encourage" , "Overall"],
                       datasets: [{
                           label: '<%= record[i].department%>',
-                          data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>']
+                          data: ["<%= record[i].voice_avg %>" , '<%= record[i].speed_avg%>',"<%= record[i].Presentation_avg%>",'<%= record[i].Communication_avg%>','<%= record[i].Interest_avg%>','<%= record[i].knowledge_avg%>','<%= record[i].assessible_avg%>','<%= record[i].simulation_avg%>','<%= record[i].encourage_avg%>','<%= record[i].overall_avg%>'],
+                          backgroundColor: [
+                          'rgba(121, 224, 0, 8)',
+			                    'rgba(0, 162, 252, 10)',
+			                    'rgba(153, 102, 255, 10)',
+			                    'rgba(240, 133, 61, 3)',
+			                    'rgba(75, 192, 192, 10)',
+			                    'rgba(160, 160, 160, 10)',
+			                    'rgba(203, 166, 248, 5)',
+			                    'rgba(255, 0, 127, 10)',
+			                    'rgba(229, 249, 55, 10)',
+			                    'rgba(255, 102, 178, 10)'
+                        ],
+                        borderColor: [
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)',
+													'rgba(0, 0, 0, 10)'
+	                      	],
+		                    borderWidth: 1.5  
                       }]
-                  },
+                    },
+                  options: {
+	                    responsive:false,
+                      layout:{
+                      padding:
+                      {
+                        left: 50,
+                        right: 20,
+                        top: 50,
+                        bottom: 20
+                    }
+	                },
+	                    scales: {
+	            	      y: {
+                        beginAtZero: true
+                      }
+                    }
+                  }
                   });
         </script>
         <%}%>

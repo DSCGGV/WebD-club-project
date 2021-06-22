@@ -1,7 +1,4 @@
-<html>
-  <head><link rel="stylesheet" href="../../../public/css/main.css" /></head>
-</html>
-<div class="jumbotron jumbotron-fluid">
+<!--<div class="jumbotron jumbotron-fluid">
   <form action="/editFaculty" method="POST">
     <div class="container row">
       <div class="col-md-4">
@@ -32,5 +29,38 @@
       </div>
     </div>
   </form>
+
+</div>-->
+<div>
+  <form action="/facultyreport/facultycharts" method="POST">
+    <div class="mb-3">
+      <div class="lead">
+        <select
+          name="semester"
+          id="semester"
+          class="custom-select"
+          onclick="populate(this.id, 'department')"
+        >
+          <option value="" class="default" selected disabled>
+            -- Choose Semester --
+          </option>
+          <option value="1">1</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+      </div>
+    <div class="mb-3">
+      <select name="department" id="department" class="custom-select">
+        <option value="" class="default" selected disabled>
+        
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
 </div>
 
