@@ -45,9 +45,22 @@
     <link rel="stylesheet" href="../css/edit_faculty.css" />
 
     <link rel="stylesheet" href="../css/main.css" />
+    <style>
+      .faculty_list{
+        width: 100vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .dropdown_center{
+        
+        width: 100vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
   </head>
   <body class="crm_body_bg">
-    <div class="container">
+    <div class="">
       <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary" >
         <a><img src="../images/logo.jpeg" alt="" style="height: 40px; width: 40px;background-color: blue;"/></a>
         <div class="container-fluid">
@@ -75,7 +88,7 @@
       </nav></div>
     
 
-    <section class="main_content dashboard_part">
+    <section class="main_content dashboard_part justify-content-center">
       <!-- dropdown Options for course and department -->
       <%- include('../partials/editfaculty_dropdown.ejs')%>
 
