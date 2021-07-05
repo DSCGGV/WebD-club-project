@@ -19,6 +19,13 @@
 
     <link rel="shortcut icon" type="image/jpg" href="../images/favicon.png" />
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <style>
+      .password {
+        position: absolute;
+        top: 68%;
+        left: 56%;
+      }
+    </style>
   </head>
   <body class="admin-body">
     <div class="limiter">
@@ -76,32 +83,17 @@
             <div class="buttons">
               <button class="btnfos btnfos-5">Login</button>
             </div>
-
-            <div class="text-center p-t-12">
-              <span class="txt1"> Forgot </span>
-              <a class="txt2" href="#"> Username / Password? </a>
-            </div>
           </form>
-          <a href="/admin/adminVerification">Forgot Password</a>
+          <div class="text-center p-t-12 password" >
+            <span class="txt1" style="font-size: 18px;"> Forgot </span>
+            <a class="txt2" style="font-size: 18px;" href="/admin/adminVerification"> Password? </a>
+          </div>
+          
         </div>
       </div>
     </div>
 
-    <script>
-      $(".js-tilt").tilt({
-        scale: 1.1,
-      });
-    </script>
-
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-23581568-13");
-    </script>
+  
 
     <script src="../js/main.js"></script>
   </body>
