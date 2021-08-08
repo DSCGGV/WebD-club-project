@@ -121,7 +121,9 @@ h3 {
 h3 {
   font-size: 1.75rem;
 }
+
 .container {
+  
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -1265,7 +1267,8 @@ iframe {
   padding: 0;
   margin: 0;
   font-size: 14px;
-  background: #f5f7f9;
+  background-color: blanchedalmond;
+
 }
 
 :focus {
@@ -1546,9 +1549,46 @@ th:focus {
   /* margin-left: 200px;*/
 }
 
+.toggler{
+  margin-left: 200px;
+  color: white;
+  cursor: pointer;
+}
+.toggler:checked ~ .sidebar{
+  display: none !important; 
+}
+.toggler:checked {
+  margin-left: 0px;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .toggler{
+    margin-left: 300px;}
+}
+@media only screen and (max-width: 989px) {
+  .toggler{
+    margin-left: 170px;}
+}
+@media only screen and (max-width: 915px) {
+  .toggler{
+    margin-left: 200px;}
+}
+@media only screen and (max-width: 847px) {
+  .toggler{
+    margin-left: 250px;}
+}
+@media only screen and (max-width: 766px) {
+  .toggler{
+    margin-left: 220px;}
+}
+@media only screen and (max-width: 616px) {
+  .toggler{
+    margin-left: 270px;}
+}
+
 .sidebar {
   height: 100vh;
-  left: 0;
+  left: 0%;
   top: 0;
   z-index: 99;
   padding-bottom: 50px;
@@ -1577,6 +1617,9 @@ th:focus {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .toggler{
+    margin-left:270px;
+   }
   .sidebar {
     width: 20%;
   }
@@ -1722,13 +1765,12 @@ body::-webkit-scrollbar {
 }
 
 .main_content {
-  padding-left: 20px; 
+  
+  margin-left: 400px; 
   width: 100%;
-  padding-top: 0px !important;
-  padding-right: 400px;
+  padding-right: 600px;
   transition: 0.5s;
   min-height: 100vh;
-  padding-bottom: 90px;
 }
 
 @media (max-width: 575.98px) {
@@ -1741,6 +1783,7 @@ body::-webkit-scrollbar {
   .main_content {
     padding-left: 300px;
   }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1783,17 +1826,12 @@ body::-webkit-scrollbar {
     margin: 50px 0px 200px 250px;
   }
 }
-@media (max-width: 586px) {
-  .main_content .main_content_iner {
-    margin: 50px 0px 200px 250px;
-  }
-}
-470,369
 @media only screen and (min-width: 369px) and (max-width: 498px) {
  .main_content_iner {
     margin-left: 00px;
   }
 }
+
 .white_box {
   padding: 30px;
   background-color: #ffffff;
