@@ -54,35 +54,35 @@
            <li class="mm-active">
              <a href="/admin_dashboard" aria-expanded="false">
                <img src="../images/dashboard.svg" alt="" />
-               <span>Dashboard</span>
+               <span class="item">Dashboard</span>
              </a>
            </li>
    
            <li class="">
              <a href="/editFaculty" aria-expanded="false">
                <img src="../images/10.svg" alt="" />
-               <span>Add Faculty Details</span>
+               <span class="item">Add Faculty Details</span>
              </a>
            </li>
    
            <li class="">
              <a href="/facultyreport" aria-expanded="false">
                <img src="../images/001-teacher.svg" alt="" />
-               <span>Generate Report for Faculties</span>
+               <span class="item">Generate Report for Faculties</span>
              </a>
            </li>
    
            <li class="">
              <a href="/departmentreport" aria-expanded="false">
                <img src="../images/department.svg" alt="" />
-               <span>Generate Report for Department</span>
+               <span class="item">Generate Report for Department</span>
              </a>
            </li>
    
            <li class="">
              <a href="/logout" aria-expanded="false">
                <img src="../images/002-logout.svg" alt="" />
-               <span>Logout</span>
+               <span class="item">Logout</span>
              </a>
            </li>
          </ul>
@@ -90,8 +90,8 @@
     
     <section class="main_content dashboard_part" >
       <%- include('../partials/facultyreport_dropdown.ejs')%>
-        <h1>Faculty-wise charts</h1>
-        
+        <h1 class="headfac" >Faculty-wise charts</h1>
+        <div class="underline"></div>
         <%for(list of record){%>
         <%for(i=0 ; i<record.length ; i++){%>
         <div class="chart_div">
