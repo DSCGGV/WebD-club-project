@@ -121,15 +121,15 @@ $("#admin_profile_active").metisMenu();
     });
 
     //active sidebar
-    $('.sidebar_icon').on('click', function(){
+    /*$('.sidebar_icon').on('click', function(){
         $('.sidebar').toggleClass('active_sidebar');
     });
     $('.sidebar_close_icon i').on('click', function(){
         $('.sidebar').removeClass('active_sidebar');
-    });
+    });*/
     
     //active menu
-    $('.troggle_icon').on('click', function(){
+    $('.toggle_icon').on('click', function(){
         $('.setting_navbar_bar').toggleClass('active_menu');
     });
 
@@ -157,11 +157,11 @@ $("#admin_profile_active").metisMenu();
         }
     });
     //remove sidebar
-    $(document).click(function(event){
+   /* $(document).click(function(event){
         if (!$(event.target).closest(".sidebar_icon, .sidebar").length) {
             $("body").find(".sidebar").removeClass("active_sidebar");
         }
-    });
+    });*/
     
     // check all
     $("#checkAll").click(function () {
